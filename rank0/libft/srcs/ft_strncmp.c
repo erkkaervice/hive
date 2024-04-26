@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: eala-lah <eala-lah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 11:39:22 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/04/22 11:39:29 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/04/22 11:40:37 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/04/26 18:57:48 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(char const *str, int c)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char const	*aux;
-
-	aux = NULL;
-	while (*str)
+	if (n == 0)
+		return (0);
+	while (*s1 && *s2 && *s1 == *s2 && n > 1)
 	{
-		if (*str == (char)c)
-			aux = str;
-		str++;
+		s1++;
+		s2++;
+		n--;
 	}
-	if (*str == (char)c)
-		return ((char *)str);
-	else
-		return ((char *)aux);
+	return (((unsigned char)(*s1) - (unsigned char)(*s2)));
 }

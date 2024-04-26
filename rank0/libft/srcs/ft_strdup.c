@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: eala-lah <eala-lah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:36:38 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/04/22 11:37:13 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:54:47 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	str_len(char const *str)
+static size_t	str_len(const char *str)
 {
 	size_t	i;
 
@@ -32,7 +32,7 @@ static char	*str_new(size_t n)
 	return (str);
 }
 
-char	*ft_strdup(char const *src)
+char	*ft_strdup(const char *src)
 {
 	char	*dest;
 	char	*start;

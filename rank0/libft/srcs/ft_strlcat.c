@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: eala-lah <eala-lah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:38:08 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/04/22 11:38:17 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/04/26 17:46:56 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	str_len(char const *str)
+static size_t	str_len(const char *str)
 {
 	size_t	i;
 

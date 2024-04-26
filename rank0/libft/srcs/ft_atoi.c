@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: eala-lah <eala-lah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:41:02 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/04/22 11:49:14 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/04/26 19:23:17 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	check_space(int c)
 {
 	if ((c > 8 && c < 14)
 		|| (c == 32))
-		return (8192);
+		return (1);
 	return (0);
 }
 
@@ -27,7 +27,7 @@ static int	check_digit(int c)
 	return (0);
 }
 
-int	ft_atoi(char const *str)
+int	ft_atoi(const char *str)
 {
 	long long int	n;
 	long long int	check;
