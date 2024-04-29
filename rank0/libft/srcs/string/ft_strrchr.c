@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 11:36:15 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/04/26 15:36:01 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/04/22 11:39:22 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/04/29 12:10:12 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+char	*ft_strrchr(char const *str, int c)
 {
-	size_t	i;
+	const char	*last_hit;
 
-	i = 0;
-	while (*(str + i))
-		i++;
-	return (i);
+	last_hit = NULL;
+	while (*str)
+	{
+		if (*str == (char)c)
+			last_hit = str;
+		str++;
+	}
+	if (*str == (char)c)
+		return ((char *)str);
+	else
+		return ((char *)last_hit);
 }

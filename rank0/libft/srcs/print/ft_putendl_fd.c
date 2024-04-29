@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 11:38:08 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/04/26 17:46:56 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/04/22 12:15:11 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/04/29 16:57:12 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	str_len(const char *str)
+static size_t	str_len(char *str)
 {
 	size_t	i;
 
@@ -22,27 +22,11 @@ static size_t	str_len(const char *str)
 	return (i);
 }
 
-size_t	ft_strlcat(char *dest, const char *src, size_t n)
+void	ft_putendl_fd(char *s, int fd)
 {
-	size_t		dest_len;
-	size_t		total_len;
-	const char	*s;
-
-	if ((!dest || !src) && !n)
-		return (0);
-	s = src;
-	dest_len = 0;
-	while (*(dest + dest_len) && dest_len < n)
-		dest_len++;
-	if (dest_len < n)
-		total_len = dest_len + str_len(s);
-	else
-		return (n + str_len(s));
-	while (*s && (dest_len + 1) < n)
+	if (s)
 	{
-		*(dest + dest_len) = *s++;
-		dest_len++;
+		write(fd, s, str_len(s));
+		write(fd, "\n", 1);
 	}
-	*(dest + dest_len) = '\0';
-	return (total_len);
 }

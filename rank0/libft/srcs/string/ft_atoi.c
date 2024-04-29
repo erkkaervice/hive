@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:41:02 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/04/26 19:23:17 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/04/29 12:10:19 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	check_digit(int c)
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char const *str)
 {
 	long long int	n;
 	long long int	check;
