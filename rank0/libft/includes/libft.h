@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:19:41 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/04/29 16:53:24 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/04/30 12:13:52 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int			ft_toupper(int c);
 /* ************************************************************************** */
 /*                                   LIST                                     */
 /* ************************************************************************** */
-/*
+
 void		ft_lstadd_back(t_list **lst, t_list *new);
 void		ft_lstadd_front(t_list **lst, t_list *new);
 void		ft_lstclear(t_list **lst, void (*del)(void *));
@@ -95,5 +95,5 @@ t_list		*ft_lstlast(t_list *lst);
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list		*ft_lstnew(void *content);
 int			ft_lstsize(t_list *lst);
-*/
+
 #endif
