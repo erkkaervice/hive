@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 16:34:53 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/01 19:00:46 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/04/22 11:43:31 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/01 20:06:19 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+int	ft_isalnum(int c)
 {
-	size_t	i;
-
-	if (s && f)
-	{
-		i = 0;
-		while (*s)
-			f(i++, s++);
-	}
+	if ((c > 64 && c < 91)
+		|| (c > 96 && c < 123)
+		|| (c > 47 && c < 58))
+		return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 16:34:06 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/01 16:36:38 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:22:16 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,5 @@ int	ft_atoi(char const *str)
 			return (-1);
 		str++;
 	}
-	return (n);
+	return ((int)n);
 }
