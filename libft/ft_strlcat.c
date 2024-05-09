@@ -5,44 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 16:35:09 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/01 16:36:48 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/06 14:56:50 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/09 15:15:27 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	str_len(char const *str)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
+	size_t	del;
+	size_t	sol;
 	size_t	i;
 
+	del = 0;
+	sol = 0;
 	i = 0;
-	while (*(str + i))
-		i++;
-	return (i);
-}
-
-size_t	ft_strlcat(char *dest, char const *src, size_t n)
-{
-	size_t		dest_len;
-	size_t		total_len;
-	char const	*s;
-
-	if ((!dest || !src) && !n)
-		return (0);
-	s = src;
-	dest_len = 0;
-	while (*(dest + dest_len) && dest_len < n)
-		dest_len++;
-	if (dest_len < n)
-		total_len = dest_len + str_len(s);
-	else
-		return (n + str_len(s));
-	while (*s && (dest_len + 1) < n)
+	while (del < dstsize && dst[del] != '\0')
 	{
-		*(dest + dest_len) = *s++;
-		dest_len++;
+		del++;
 	}
-	*(dest + dest_len) = '\0';
-	return (total_len);
+	while (src[sol] != '\0')
+	{
+		sol++;
+	}
+	while (src[i] != '\0' && del + i + 1 < dstsize)
+	{
+		dst[del + i] = src[i];
+		i++;
+	}
+	if (del < dstsize)
+	{
+		dst[del + i] = '\0';
+	}
+	return (del + sol);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 16:37:57 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/01 16:38:47 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/06 13:54:36 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/06 14:04:40 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	ft_bzero(void *s, size_t n)
 {
+	unsigned char	*p;
+
+	p = (unsigned char *)s;
 	while (n--)
-		*(unsigned char *)s++ = 0;
+	{
+		*p++ = 0;
+	}
 }

@@ -5,28 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 16:38:03 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/01 16:38:49 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/08 12:45:31 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/08 14:39:53 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	s_zero(void *s, size_t n)
+void	*ft_calloc(size_t count, size_t size)
 {
-	while (n--)
-		*(unsigned char *)s++ = 0;
-}
+	void			*mem;
+	unsigned char	*ptr;
+	unsigned char	*end;
 
-void	*ft_calloc(size_t count, size_t n)
-{
-	void	*memory;
-
-	if (count && n && count > (UINT_MAX / n))
+	mem = malloc(count * size);
+	ptr = mem;
+	end = ptr + (count * size);
+	if (!mem)
+	{
+		errno = ENOMEM;
 		return (NULL);
-	memory = malloc(count * n);
-	if (!memory)
+	}
+	if (count && size && count > (SIZE_MAX / size))
+	{
 		return (NULL);
-	s_zero(memory, count * n);
-	return (memory);
+	}
+	while (ptr < end)
+	{
+		*ptr++ = 0;
+	}
+	return (mem);
 }

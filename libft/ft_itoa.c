@@ -5,21 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 16:34:22 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/01 16:36:38 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/08 17:32:46 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/09 19:05:19 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	nbr_len(int nbr)
+static int	ft_nbrlen(int nbr)
 {
 	int	len;
 
 	len = 0;
-	if (nbr < 1)
+	if (nbr <= 0)
+	{
 		len++;
-	while (nbr)
+	}
+	while (nbr != 0)
 	{
 		nbr /= 10;
 		len++;
@@ -27,25 +29,25 @@ static int	nbr_len(int nbr)
 	return (len);
 }
 
-static long long	abs_val(long long n)
+static unsigned int	ft_signmark(int n)
 {
-	long long	nb;
-
-	nb = 1;
 	if (n < 0)
-		nb *= -n;
-	else
-		nb *= n;
-	return (nb);
+	{
+		return (-n);
+	}
+	return (n);
 }
 
-static char	*str_new(size_t n)
+static char	*ft_newstr(size_t n)
 {
 	char	*str;
 
 	str = (char *)malloc(sizeof(char) * (n + 1));
 	if (!str)
+	{
 		return (NULL);
+	}
+	*str = '\0';
 	return (str);
 }
 
@@ -56,21 +58,23 @@ char	*ft_itoa(int n)
 	int				len;
 	char			*str;
 
+	nbr = ft_signmark(n);
 	sign = 0;
-	if (n < 0)
-		sign = 1;
-	len = nbr_len(n);
-	str = str_new(len);
+	len = ft_nbrlen(n);
+	str = ft_newstr(len);
 	if (!str)
 		return (NULL);
-	*(str + len) = '\0';
-	nbr = abs_val(n);
-	while (len--)
+	if (n < 0)
+		sign = 1;
+	str[len] = '\0';
+	while (len-- > sign)
 	{
-		*(str + len) = 48 + nbr % 10;
+		str[len] = '0' + nbr % 10;
 		nbr /= 10;
 	}
 	if (sign)
-		*(str) = 45;
+	{
+		str[0] = '-';
+	}
 	return (str);
 }

@@ -5,32 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 16:35:43 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/01 16:36:55 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/07 12:46:28 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/09 19:51:15 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(char const *haystack, char const *needle, size_t n)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	i;
+	size_t	ndl;
+	size_t	hsl;
 
-	if (!haystack && !n)
+	ndl = ft_strlen(needle);
+	hsl = ft_strlen(haystack);
+	if (!haystack || !needle)
 		return (NULL);
-	if (!*needle)
-		return ((char *)haystack);
-	while (*haystack && n--)
+	if (ndl > len || hsl < ndl)
+		return (NULL);
+	if (ndl == 0 || len == 0)
 	{
-		i = 0;
-		while (*(haystack + i) == *(needle + i)
-			&& *(needle + i) && i <= n)
+		return ((char *)haystack);
+	}
+	while (*haystack && len >= ndl)
+	{
+		if (!ft_strncmp(haystack, needle, ndl))
 		{
-			if (!*(needle + i + 1))
-				return ((char *)haystack);
-			i++;
+			return ((char *)haystack);
 		}
 		haystack++;
+		len--;
 	}
 	return (NULL);
 }

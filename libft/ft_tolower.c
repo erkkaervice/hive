@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 11:46:10 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/04/22 13:36:28 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/06 16:17:45 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/09 13:22:16 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 int	ft_tolower(int c)
 {
-	if (c > 64 && c < 91)
-		c += 32;
+	unsigned char	usc;
+
+	usc = (unsigned char)c;
+	if (usc >= 'A' && usc <= 'Z')
+	{
+		return (usc + ('a' - 'A'));
+	}
 	return (c);
 }

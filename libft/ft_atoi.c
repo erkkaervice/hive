@@ -5,52 +5,56 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 16:34:06 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/02 16:22:16 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/07 15:17:32 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/09 18:49:50 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	check_space(int c)
+static int	ft_space(int c)
 {
 	if ((c > 8 && c < 14)
 		|| (c == 32))
+	{
 		return (1);
+	}
 	return (0);
 }
 
-static int	check_digit(int c)
+static int	ft_digit(int c)
 {
 	if (c > 47 && c < 58)
+	{
 		return (1);
+	}
 	return (0);
 }
 
 int	ft_atoi(char const *str)
 {
 	long long int	n;
-	long long int	check;
 	int				sign;
+	long long int	dig;
 
 	n = 0;
 	sign = 1;
-	while (*str && check_space(*str))
-		str++;
-	if (*str == 45 || *str == 43)
+	while (*str && ft_space(*str))
 	{
-		if (*str == 45)
-			sign *= -1;
 		str++;
 	}
-	while (*str && check_digit(*str))
+	if (*str == '-' || *str == '+')
 	{
-		check = n;
-		n = n * 10 + sign * (*str - 48);
-		if (n > check && sign < 0)
-			return (0);
-		if (n < check && sign > 0)
-			return (-1);
+		if (*str == '-')
+		{
+			sign *= -1;
+		}
+		str++;
+	}
+	while (*str && ft_digit(*str))
+	{
+		dig = *str - '0';
+		n = n * 10 + sign * dig;
 		str++;
 	}
 	return ((int)n);

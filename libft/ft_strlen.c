@@ -5,19 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 16:35:24 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/01 16:36:51 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/06 13:32:14 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/06 13:38:03 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(char const *str)
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
 	i = 0;
-	while (*(str + i))
+	while (s[i])
+	{
 		i++;
+	}
 	return (i);
 }

@@ -5,26 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 16:35:51 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/01 16:36:56 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/06 17:00:26 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/09 15:19:50 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(char const *str, int c)
+char	*ft_strrchr(const char *s, int c)
 {
-	const char	*last_hit;
+	const char	*lso;
 
-	last_hit = NULL;
-	while (*str)
+	lso = NULL;
+	while (*s)
 	{
-		if (*str == (char)c)
-			last_hit = str;
-		str++;
+		if (*s == (char)c)
+		{
+			lso = s;
+		}
+		s++;
 	}
-	if (*str == (char)c)
-		return ((char *)str);
+	if (*s == (char)c)
+	{
+		return ((char *)s);
+	}
 	else
-		return ((char *)last_hit);
+	{
+		return ((char *)lso);
+	}
 }

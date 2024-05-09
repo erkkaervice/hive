@@ -5,31 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 16:38:30 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/01 16:38:55 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/06 14:20:04 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/09 15:39:30 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, void const *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	void	*dest_ptr;
+	unsigned char	*dsp;
 
-	dest_ptr = dest;
-	if (!dest && !src)
-		return (dest);
-	if (dest == src)
-		return (dest);
-	if (dest > src)
+	dsp = dst;
+	if (dst == src)
 	{
-		while (n--)
-			((char *)dest)[n] = ((char *)src)[n];
+		return (dst);
+	}
+	if (dst > src)
+	{
+		while (len--)
+		{
+			((char *)dst)[len] = ((char *)src)[len];
+		}
 	}
 	else
 	{
-		while (n--)
-			*(char *)dest++ = *(char *)src++;
+		while (len--)
+		{
+			*(char *)dst++ = *(char *)src++;
+		}
 	}
-	return (dest_ptr);
+	return (dsp);
 }

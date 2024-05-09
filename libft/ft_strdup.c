@@ -5,44 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 16:34:46 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/01 16:36:46 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/08 13:39:57 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/09 13:47:41 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	str_len(char const *str)
+char	*ft_strdup(const char *s1)
 {
-	size_t	i;
+	char	*dst;
+	char	*sta;
 
-	i = 0;
-	while (*(str + i))
-		i++;
-	return (i);
-}
-
-static char	*str_new(size_t n)
-{
-	char	*str;
-
-	str = (char *)malloc(sizeof(char) * (n + 1));
-	if (!str)
+	dst = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	sta = dst;
+	if (!s1 || !dst)
+	{
+		errno = ENOMEM;
+		free (dst);
 		return (NULL);
-	return (str);
-}
-
-char	*ft_strdup(char const *src)
-{
-	char	*dest;
-	char	*start;
-
-	dest = str_new(str_len(src));
-	if (!dest)
-		return (NULL);
-	start = dest;
-	while (*src)
-		*dest++ = *src++;
-	*dest = '\0';
-	return (start);
+	}
+	while (*s1)
+	{
+		*dst = *s1;
+		dst++;
+		s1++;
+	}
+	*dst = '\0';
+	return (sta);
 }

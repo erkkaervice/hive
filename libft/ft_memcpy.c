@@ -5,21 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 16:38:24 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/01 16:38:54 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/06 14:06:19 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/09 14:40:44 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void	*dest, void const *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	void	*dest_ptr;
+	void	*dsp;
 
-	dest_ptr = dest;
-	if (!dest && !src)
-		return (dest);
+	dsp = dst;
+	if (!dst && !src)
+	{
+		return (dst);
+	}
 	while (n--)
-		*(char *)dest++ = *(char *)src++;
-	return (dest_ptr);
+	{
+		*(char *)dst++ = *(const char *)src++;
+	}
+	return (dsp);
 }

@@ -5,23 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 16:34:39 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/01 16:36:43 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/06 16:48:05 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/09 14:54:50 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(char const *str, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	while (*str)
+	while (*s)
 	{
-		if (*str == (char)c)
-			return ((char *)str);
-		str++;
+		if (*s == (char)c)
+		{
+			return ((char *)s);
+		}
+		s++;
 	}
-	if (*str == (char)c)
-		return ((char *)str);
+	if (*s == (char)c)
+	{
+		return ((char *)s);
+	}
 	else
+	{
 		return (NULL);
+	}
 }

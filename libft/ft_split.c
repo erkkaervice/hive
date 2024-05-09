@@ -5,55 +5,55 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 12:11:46 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/04/22 12:12:10 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/08 16:57:14 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/09 19:30:33 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	count_words(char const *s, char c)
+static size_t	ft_words(char const *s, char c)
 {
 	size_t	count;
 	size_t	i;
 
 	count = 0;
 	i = 0;
-	while (*(s + i))
+	while (s[i])
 	{
-		if (*(s + i) != c)
+		if (s[i] != c)
 		{
 			count++;
-			while (*(s + i) && *(s + i) != c)
+			while (s[i] && s[i] != c)
 				i++;
 		}
-		else if (*(s + i) == c)
+		else if (s[i] == c)
 			i++;
 	}
 	return (count);
 }
 
-static size_t	get_word_len(char const *s, char c)
+static size_t	ft_wrdlen(char const *s, char c)
 {
 	size_t	i;
 
 	i = 0;
-	while (*(s + i) && *(s + i) != c)
+	while (s[i] && s[i] != c)
 		i++;
 	return (i);
 }
 
-static void	free_array(size_t i, char **array)
+static void	ft_farray(size_t i, char **array)
 {
 	while (i > 0)
 	{
 		i--;
-		free(*(array + i));
+		free(array[i]);
 	}
 	free(array);
 }
 
-static char	**split(char const *s, char c, char **array, size_t words_count)
+static char	**ft_saw(char const *s, char c, char **marray, size_t words_count)
 {
 	size_t	i;
 	size_t	j;
@@ -62,33 +62,33 @@ static char	**split(char const *s, char c, char **array, size_t words_count)
 	j = 0;
 	while (i < words_count)
 	{
-		while (*(s + j) && *(s + j) == c)
+		while (s[j] && s[j] == c)
 			j++;
-		*(array + i) = ft_substr(s, j, get_word_len(&*(s + j), c));
-		if (!*(array + i))
+		marray[i] = ft_substr(s, j, ft_wrdlen(&s[j], c));
+		if (!marray[i])
 		{
-			free_array(i, array);
+			ft_farray(i, marray);
 			return (NULL);
 		}
-		while (*(s + j) && *(s + j) != c)
+		while (s[j] && s[j] != c)
 			j++;
 		i++;
 	}
-	*(array + i) = NULL;
-	return (array);
+	marray[i] = NULL;
+	return (marray);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**array;
 	size_t	words;
+	char	**marray;
 
+	words = ft_words(s, c);
+	marray = (char **)malloc(sizeof(char *) * (words + 1));
 	if (!s)
 		return (NULL);
-	words = count_words(s, c);
-	array = (char **)malloc(sizeof(char *) * (words + 1));
-	if (!array)
+	if (!marray)
 		return (NULL);
-	array = split(s, c, array, words);
-	return (array);
+	marray = ft_saw(s, c, marray, words);
+	return (marray);
 }

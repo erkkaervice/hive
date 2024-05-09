@@ -5,73 +5,62 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 16:35:58 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/01 16:36:57 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/08 16:05:40 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/09 19:57:45 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	char_check(char const *str, char const c)
+static size_t	ft_check(const char *set, char c)
 {
-	size_t	i;
-
-	if (!str)
-		return (0);
-	i = 0;
-	while (*(str + i))
+	while (*set)
 	{
-		if (*(str + i) == c)
+		if (*set == c)
+		{
 			return (1);
-		i++;
+		}
+		set++;
 	}
 	return (0);
 }
 
-static size_t	str_len(char const *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (*(str + i))
-		i++;
-	return (i);
-}
-
-static char	*str_new(size_t n)
+static char	*ft_newstr(size_t n)
 {
 	char	*str;
 
 	str = (char *)malloc(sizeof(char) * (n + 1));
 	if (!str)
+	{
 		return (NULL);
+	}
+	*str = '\0';
 	return (str);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*trim;
-	size_t	start;
-	size_t	end;
 	size_t	i;
+	size_t	len;
+	char	*saw;
+	char	*tri;
 
+	i = 0;
+	len = ft_strlen(s1);
 	if (!s1 || !set)
 		return (NULL);
-	start = 0;
-	while (*(s1 + start) && char_check(set, *(s1 + start)))
-		start++;
-	end = str_len(s1);
-	while (end > start && char_check(set, *(s1 + (end - 1))))
-		end--;
-	trim = str_new(end - start);
-	if (!trim)
-		return (NULL);
-	i = 0;
-	while ((start + i) < end)
-	{
-		*(trim + i) = *(s1 + (start + i));
+	while (s1[i] && ft_check(set, s1[i]))
 		i++;
+	while (len > i && ft_check(set, s1[len - 1]))
+		len--;
+	saw = ft_newstr(len - i);
+	if (!saw)
+		return (NULL);
+	tri = saw;
+	while (i < len)
+	{
+		*saw++ = s1[i++];
 	}
-	*(trim + i) = '\0';
-	return (trim);
+	*saw = '\0';
+	return (tri);
 }

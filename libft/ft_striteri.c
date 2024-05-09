@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 16:34:53 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/01 19:00:45 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/08 18:07:18 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/09 15:13:29 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	size_t	i;
+	unsigned int	i;
 
+	i = 0;
 	if (s && f)
 	{
-		i = 0;
 		while (*s)
-			f(i++, s++);
+		{
+			f(i, s);
+			i++;
+			s++;
+		}
 	}
 }

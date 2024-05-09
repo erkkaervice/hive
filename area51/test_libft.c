@@ -6,13 +6,14 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 16:44:54 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/02 14:48:38 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:36:32 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <fcntl.h>
 #include "libft.h"
+#include <strings.h>
 
 void	test_ft_isalnum(void)
 {
@@ -127,27 +128,29 @@ void	test_ft_lstdelone()
     }
 }
 
+void    ft_lstiter_test(void *content)
+{
+    char    *str;
+
+    str = ft_strdup((char *)content);
+    if (!str)
+    {
+        return;
+    }
+    str[0] = 'H';
+    content = str;
+}
+
 void	test_ft_lstiter(void)
 {
-    t_list *list = ft_lstnew(ft_strdup("hello"));
+	t_list	*list;
 
-    t_list *curr = list;
-    while (curr)
-    {
-        char *content = curr->content;
-        char *ptr = content;
-        while (*ptr)
-        {
-            *ptr = (*ptr >= 'a' && *ptr <= 'z') ? *ptr - 32 : *ptr;
-            ptr++;
-        }
-        curr = curr->next;
-    }
-
-    if (strcmp(list->content, "HELLO") != 0)
-        printf("Test ft_lstiter: [\033[0;31mKO\033[0m]\n");
-    else
-        printf("Test ft_lstiter: [\033[0;32mOK\033[0m]\n");
+	list = ft_lstnew("Hello");
+	ft_lstiter(list, &ft_lstiter_test);
+	if (strcmp(list->content, "Hello"))
+		printf("Test ft_lstiter: [\033[0;31mKO\033[0m]\n");
+	else
+		printf("Test ft_lstiter: [\033[0;32mOK\033[0m]\n");
 }
 
 void	test_ft_lstlast(void)
