@@ -6,11 +6,9 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:26:00 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/09 16:38:22 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:39:20 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 int	ft_isdigit(int c)
 {

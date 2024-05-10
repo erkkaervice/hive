@@ -6,11 +6,9 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:17:32 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/09 18:49:50 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:38:51 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 static int	ft_space(int c)
 {

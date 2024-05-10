@@ -6,11 +6,9 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:07:18 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/09 15:13:29 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:41:08 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
