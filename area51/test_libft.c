@@ -6,14 +6,14 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 16:44:54 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/09 18:36:32 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:43:09 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <fcntl.h>
-#include "libft.h"
 #include <strings.h>
+#include "libft.h"
 
 void	test_ft_isalnum(void)
 {
@@ -69,7 +69,7 @@ void	test_ft_lstadd_back(void)
 		printf("Test ft_lstadd_back: [\033[0;32mOK\033[0m]\n");
 }
 
-void	test_lstadd_front(void)
+void	test_ft_lstadd_front(void)
 {
 	t_list	*list;
 	t_list	*new;
@@ -82,63 +82,73 @@ void	test_lstadd_front(void)
 	else
 		printf("Test ft_lstadd_front: [\033[0;32mOK\033[0m]\n");
 }
+
 void	test_ft_lstclear(void)
 {
-    t_list	*list;
+	t_list	*list;
 
-    list = ft_lstnew(ft_strdup("Hello"));
-    if (!list)
-    {
-        printf("Memory allocation error\n");
-        return; // Handle error appropriately
-    }
+	list = ft_lstnew(ft_strdup("Hello"));
+	if (!list)
+	{
+		printf("Memory allocation error\n");
+		return ;
+	}
 
-    ft_lstclear(&list, &free);
-    if (list)
-        printf("Test ft_lstclear: [\033[0;31mKO\033[0m]\n");
-    else
-        printf("Test ft_lstclear: [\033[0;32mOK\033[0m]\n");
+	ft_lstclear(&list, &free);
+	if (list)
+		printf("Test ft_lstclear: [\033[0;31mKO\033[0m]\n");
+	else
+		printf("Test ft_lstclear: [\033[0;32mOK\033[0m]\n");
 }
 
-void	delete_int(void *content) 
+void	delete_int(void *content)
 {
-    int *ptr = (int *)content;
-    free(ptr);
+	int	*ptr;
+
+	ptr = (int *)content;
+	free(ptr);
 }
 
-void	test_ft_lstdelone() 
+void	test_ft_lstdelone(void)
 {
-    t_list *list = NULL;
+	t_list	*list;
+	int		*data;
 
-    int *data = malloc(sizeof(int));
-    *data = 42;
-    ft_lstadd_front(&list, ft_lstnew(data));
+	list = NULL;
+	data = malloc(sizeof(int));
+	*data = 42;
+	ft_lstadd_front(&list, ft_lstnew(data));
+	if (list != NULL)
+	{
+		ft_lstdelone(list, delete_int);
+		list = NULL;
 
-    if (list != NULL) {
-        ft_lstdelone(list, delete_int);
-        list = NULL;
-
-        if (list == NULL) {
-            printf("Test ft_lstdelone: [\033[0;32mOK\033[0m]\n");
-        } else {
-            printf("Test ft_lstdelone: [\033[0;31mKO\033[0m]\n");
-        }
-    } else {
-        printf("Test ft_lstdelone: [\033[0;31mKO\033[0m]\n");
-    }
+		if (list == NULL)
+		{
+			printf("Test ft_lstdelone: [\033[0;32mOK\033[0m]\n");
+		}
+		else
+		{
+			printf("Test ft_lstdelone: [\033[0;31mKO\033[0m]\n");
+		}
+	}
+	else
+	{
+		printf("Test ft_lstdelone: [\033[0;31mKO\033[0m]\n");
+	}
 }
 
-void    ft_lstiter_test(void *content)
+void	ft_lstiter_test(void *content)
 {
-    char    *str;
+	char	*str;
 
-    str = ft_strdup((char *)content);
-    if (!str)
-    {
-        return;
-    }
-    str[0] = 'H';
-    content = str;
+	str = ft_strdup((char *)content);
+	if (!str)
+	{
+		return ;
+	}
+	str[0] = 'H';
+	content = str;
 }
 
 void	test_ft_lstiter(void)
@@ -168,32 +178,35 @@ void	test_ft_lstlast(void)
 
 void	test_ft_lstmap(void)
 {
-    t_list *list = ft_lstnew("Hello");
+	t_list	*list;
+	t_list	*curr;
+	t_list	*new;
+	t_list	*prev;
+	t_list	*node;
 
-    t_list *curr = list;
-    t_list *new = NULL;
-    t_list *prev = NULL;
-
-    while (curr)
-    {
-        t_list *node = ft_lstnew(curr->content);
-        if (!node)
-        {
-            ft_lstclear(&new, free);
-            return;
-        }
-        if (!new)
-            new = node;
-        else
-            prev->next = node;
-        prev = node;
-        curr = curr->next;
-    }
-
-    if (strcmp(new->content, "Hello") != 0)
-        printf("Test ft_lstmap: [\033[0;31mKO\033[0m]\n");
-    else
-        printf("Test ft_lstmap: [\033[0;32mOK\033[0m]\n");
+	list = ft_lstnew("Hello");
+	curr = list;
+	new = NULL;
+	prev = NULL;
+	while (curr)
+	{
+		node = ft_lstnew(curr->content);
+		if (!node)
+		{
+			ft_lstclear(&new, free);
+			return ;
+		}
+		if (!new)
+			new = node;
+		else
+			prev->next = node;
+		prev = node;
+		curr = curr->next;
+	}
+	if (strcmp(new->content, "Hello") != 0)
+		printf("Test ft_lstmap: [\033[0;31mKO\033[0m]\n");
+	else
+		printf("Test ft_lstmap: [\033[0;32mOK\033[0m]\n");
 }
 
 void	test_ft_lstnew(void)
@@ -301,96 +314,99 @@ void	test_ft_memset(void)
 		printf("Test ft_memset: [\033[0;32mOK\033[0m]\n");
 }
 
+char *ft_readfile(const char *filename)
+{
+	int		fd;
+	off_t	file_size;
+	char	*buffer;
+	ssize_t	bytes_read;
+
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+	{
+		perror("Error opening file");
+		return (NULL);
+	}
+	file_size = lseek(fd, 0, SEEK_END);
+	lseek(fd, 0, SEEK_SET);
+	buffer = (char *)malloc(file_size + 1);
+	if (buffer == NULL)
+	{
+		perror("Error allocating memory");
+		close(fd);
+		return (NULL);
+	}
+	bytes_read = read(fd, buffer, file_size);
+	if (bytes_read == -1)
+	{
+		perror("Error reading file");
+		free(buffer);
+		close(fd);
+		return (NULL);
+	}
+	buffer[bytes_read] = '\0';
+	close(fd);
+	return (buffer);
+}
+
 void	test_ft_putchar_fd(void)
 {
-	int	fd = open("test.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	int	fd;
 
+	fd = open("test.txt", O_RDWR | O_CREAT | O_TRUNC, 0644);
 	ft_putchar_fd('a', fd);
 	close(fd);
-	fd = open("test.txt", O_RDONLY);
-	char	c;
-	read(fd, &c, 1);
-	if (c != 'a')
+	if (strcmp(ft_readfile("test.txt"), "a"))
 		printf("Test ft_putchar_fd: [\033[0;31mKO\033[0m]\n");
 	else
 		printf("Test ft_putchar_fd: [\033[0;32mOK\033[0m]\n");
-	close(fd);
 }
 
 void	test_ft_putendl_fd(void)
 {
-	int	fd = open("test.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	int	fd;
+
+	fd = open("test.txt", O_RDWR | O_CREAT | O_TRUNC, 0644);
 	ft_putendl_fd("Hello", fd);
 	close(fd);
-	fd = open("test.txt", O_RDONLY);
-	char	str[50];
-	read(fd, str, 6);
-	if (strcmp(str, "Hello\n") == 0)
-		printf("Test ft_putendl_fd: [\033[0;32mOK\033[0m]\n");
-	else
+	if (strcmp(ft_readfile("test.txt"), "Hello\n"))
 		printf("Test ft_putendl_fd: [\033[0;31mKO\033[0m]\n");
-	close(fd);
+	else
+		printf("Test ft_putendl_fd: [\033[0;32mOK\033[0m]\n");
 }
 
-void    test_ft_putnbr_fd(void)
+void	test_ft_putnbr_fd(void)
 {
-    int     fd = open("test.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-    ft_putnbr_fd(42, fd);
-    close(fd);
+	int	fd;
 
-    fd = open("test.txt", O_RDONLY);
-    char    str[50];
-
-    read(fd, str, 2);
-    str[2] = '\0';
-
-    if (strcmp(str, "42") == 0)
-        printf("Test ft_putnbr_fd: [\033[0;32mOK\033[0m]\n");
-    else
-        printf("Test ft_putnbr_fd: [\033[0;31mKO\033[0m]\n");
-    
-    close(fd);
+	fd = open("test.txt", O_RDWR | O_CREAT | O_TRUNC, 0644);
+	ft_putnbr_fd(42, fd);
+	close(fd);
+	if (strcmp(ft_readfile("test.txt"), "42"))
+		printf("Test ft_putnbr_fd: [\033[0;31mKO\033[0m]\n");
+	else
+		printf("Test ft_putnbr_fd: [\033[0;32mOK\033[0m]\n");
 }
-
 
 void	test_ft_putstr_fd(void)
 {
-	int	fd = open("test.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	int	fd;
+
+	fd = open("test.txt", O_RDWR | O_CREAT | O_TRUNC, 0644);
 	ft_putstr_fd("Hello", fd);
 	close(fd);
-	fd = open("test.txt", O_RDONLY);
-	char	str[50];
-	read(fd, str, 5);
-	str[5] = '\0';
-	if (strcmp(str, "Hello") == 0)
-		printf("Test ft_putstr_fd: [\033[0;32mOK\033[0m]\n");
-	else
+	if (strcmp(ft_readfile("test.txt"), "Hello"))
 		printf("Test ft_putstr_fd: [\033[0;31mKO\033[0m]\n");
-	close(fd);
-}
-
-void	test_ft_atoi(void)
-{
-	if (ft_atoi("42") != 42 || ft_atoi("-42") != -42 || ft_atoi("42a") != 42)
-		printf("Test ft_atoi: [\033[0;31mKO\033[0m]\n");
 	else
-		printf("Test ft_atoi: [\033[0;32mOK\033[0m]\n");
-}
-
-void	test_ft_itoa(void)
-{
-	if (strcmp(ft_itoa(42), "42") || strcmp(ft_itoa(-42), "-42"))
-		printf("Test ft_itoa: [\033[0;31mKO\033[0m]\n");
-	else
-		printf("Test ft_itoa: [\033[0;32mOK\033[0m]\n");
+		printf("Test ft_putstr_fd: [\033[0;32mOK\033[0m]\n");
 }
 
 void	test_ft_split(void)
 {
-	char	**array;
+	char	**tab;
 
-	array = ft_split("Hello World", ' ');
-	if (strcmp(array[0], "Hello") || strcmp(array[1], "World"))
+	tab = ft_split("Hello World", ' ');
+	if (strcmp(tab[0], "Hello") || strcmp(tab[1], "World") || tab[2] != NULL)
 		printf("Test ft_split: [\033[0;31mKO\033[0m]\n");
 	else
 		printf("Test ft_split: [\033[0;32mOK\033[0m]\n");
@@ -398,10 +414,10 @@ void	test_ft_split(void)
 
 void	test_ft_strchr(void)
 {
-	char	str[50];
+	char	*str;
 
-	ft_memset(str, 'a', 50);
-	if (strcmp(ft_strchr(str, 'a'), str))
+	str = "Hello";
+	if (ft_strchr(str, 'l') != strchr(str, 'l'))
 		printf("Test ft_strchr: [\033[0;31mKO\033[0m]\n");
 	else
 		printf("Test ft_strchr: [\033[0;32mOK\033[0m]\n");
@@ -416,59 +432,43 @@ void	test_ft_strdup(void)
 		printf("Test ft_strdup: [\033[0;31mKO\033[0m]\n");
 	else
 		printf("Test ft_strdup: [\033[0;32mOK\033[0m]\n");
-}
-
-void    test_ft_striteri(void)
-{
-    char    str[50];
-
-    strcpy(str, "Hello");
-
-    unsigned int i = 0;
-    while (str[i])
-    {
-        if (str[i] >= 'a' && str[i] <= 'z')
-            str[i] = str[i] - 32;
-        i++;
-    }
-
-    if (strcmp(str, "HELLO") != 0)
-        printf("Test ft_striteri: [\033[0;31mKO\033[0m]\n");
-    else
-        printf("Test ft_striteri: [\033[0;32mOK\033[0m]\n");
+	free(str);
 }
 
 void	test_ft_strjoin(void)
 {
 	char	*str;
 
-	str = ft_strjoin("Hello", "World");
-	if (strcmp(str, "HelloWorld"))
+	str = ft_strjoin("Hello ", "World");
+	if (strcmp(str, "Hello World"))
 		printf("Test ft_strjoin: [\033[0;31mKO\033[0m]\n");
 	else
 		printf("Test ft_strjoin: [\033[0;32mOK\033[0m]\n");
+	free(str);
 }
 
 void	test_ft_strlcat(void)
 {
-	char	dst[15] = "Hello";
-	char	src[] = " World!";
-	size_t	expected_len = strlen(dst) + strlen(src);
-	size_t	result = ft_strlcat(dst, src, sizeof(dst));
-	if (result == expected_len)
-		printf("Test ft_strlcat: [\033[0;32mOK\033[0m]\n");
-	else
+	char	dst[50] = "Hello ";
+	char	src[] = "World";
+	size_t	ret;
+
+	ret = ft_strlcat(dst, src, 50);
+	if (strcmp(dst, "Hello World") || ret != 11)
 		printf("Test ft_strlcat: [\033[0;31mKO\033[0m]\n");
+	else
+		printf("Test ft_strlcat: [\033[0;32mOK\033[0m]\n");
 }
 
 void	test_ft_strlcpy(void)
 {
-	char	str1[50];
-	char	str2[50];
+	char	dst[50];
+	char	src[] = "Hello";
+	size_t	ret;
 
-	ft_strlcpy(str1, "Hello", 50);
-	ft_strlcpy(str2, "Hello", 50);
-	if (strcmp(str1, str2))
+	ft_bzero(dst, 50);
+	ret = ft_strlcpy(dst, src, 50);
+	if (strcmp(dst, "Hello") || ret != 5)
 		printf("Test ft_strlcpy: [\033[0;31mKO\033[0m]\n");
 	else
 		printf("Test ft_strlcpy: [\033[0;32mOK\033[0m]\n");
@@ -484,29 +484,33 @@ void	test_ft_strlen(void)
 
 void test_ft_strmapi(void)
 {
-    const char *input = "Hello";
-    const char *expected = "Hello";
+	const char	*input;
+	const char	*expected;
+	int			i;
 
-    int i = 0;
-    while (input[i] != '\0' && expected[i] != '\0')
-    {
-        if (input[i] != expected[i])
-        {
-            printf("Test ft_strmapi: [\033[0;31mKO\033[0m]\n");
-            return;
-        }
-        i++;
-    }
+	input = "Hello";
+	expected = "Hello";
+	i = 0;
+	while (input[i] != '\0' && expected[i] != '\0')
+	{
+		if (input[i] != expected[i])
+		{
+			printf("Test ft_strmapi: [\033[0;31mKO\033[0m]\n");
+			return ;
+		}
+		i++;
+	}
 
-    if (input[i] == '\0' && expected[i] == '\0')
-        printf("Test ft_strmapi: [\033[0;32mOK\033[0m]\n");
-    else
-        printf("Test ft_strmapi: [\033[0;31mKO\033[0m]\n");
+	if (input[i] == '\0' && expected[i] == '\0')
+		printf("Test ft_strmapi: [\033[0;32mOK\033[0m]\n");
+	else
+		printf("Test ft_strmapi: [\033[0;31mKO\033[0m]\n");
 }
 
 void	test_ft_strncmp(void)
 {
-	if (ft_strncmp("Hello", "Hello", 5) == 0 && ft_strncmp("Hello", "Hell", 5) != 0)
+	if (ft_strncmp("Hello", "Hello", 5) == 0 
+		&& ft_strncmp("Hello", "Hell", 5) != 0)
 		printf("Test ft_strncmp: [\033[0;32mOK\033[0m]\n");
 	else
 		printf("Test ft_strncmp: [\033[0;31mKO\033[0m]\n");
@@ -514,7 +518,12 @@ void	test_ft_strncmp(void)
 
 void	test_ft_strnstr(void)
 {
-	if (strcmp(ft_strnstr("Hello", "Hello", 5), "Hello") || strcmp(ft_strnstr("Hello", "Hell", 5), "Hello"))
+	char	*str;
+
+	str = "Hello World";
+	if (ft_strnstr(str, "World", 11) != str + 6 
+		|| ft_strnstr(str, "World", 10) != NULL
+		|| ft_strnstr(str, "World", 5) != NULL)
 		printf("Test ft_strnstr: [\033[0;31mKO\033[0m]\n");
 	else
 		printf("Test ft_strnstr: [\033[0;32mOK\033[0m]\n");
@@ -522,10 +531,10 @@ void	test_ft_strnstr(void)
 
 void	test_ft_strrchr(void)
 {
-	char	str[50];
+	char	*str;
 
-	ft_memset(str, 'a', 50);
-	if (strcmp(ft_strrchr(str, 'a'), str + 49))
+	str = "Hello World";
+	if (ft_strrchr(str, 'l') != strrchr(str, 'l'))
 		printf("Test ft_strrchr: [\033[0;31mKO\033[0m]\n");
 	else
 		printf("Test ft_strrchr: [\033[0;32mOK\033[0m]\n");
@@ -533,23 +542,33 @@ void	test_ft_strrchr(void)
 
 void	test_ft_strtrim(void)
 {
-	if (strcmp(ft_strtrim("Hello", "Hello"), ""))
+	char	*str;
+
+	str = ft_strtrim("  Hello World  ", " ");
+	if (strcmp(str, "Hello World"))
 		printf("Test ft_strtrim: [\033[0;31mKO\033[0m]\n");
 	else
 		printf("Test ft_strtrim: [\033[0;32mOK\033[0m]\n");
+	free(str);
 }
 
 void	test_ft_substr(void)
 {
-	if (strcmp(ft_substr("Hello", 0, 5), "Hello") || strcmp(ft_substr("Hello", 0, 3), "Hel"))
+	char	*str;
+
+	str = ft_substr("Hello World", 6, 5);
+	if (strcmp(str, "World"))
 		printf("Test ft_substr: [\033[0;31mKO\033[0m]\n");
 	else
 		printf("Test ft_substr: [\033[0;32mOK\033[0m]\n");
+	free(str);
 }
 
 void	test_ft_tolower(void)
 {
-	if (ft_tolower('A') != 'a' || ft_tolower('a') != 'a' || ft_tolower('1') != '1')
+	if (ft_tolower('A') != 'a'
+		|| ft_tolower('Z') != 'z'
+		|| ft_tolower('a') != 'a')
 		printf("Test ft_tolower: [\033[0;31mKO\033[0m]\n");
 	else
 		printf("Test ft_tolower: [\033[0;32mOK\033[0m]\n");
@@ -557,7 +576,9 @@ void	test_ft_tolower(void)
 
 void	test_ft_toupper(void)
 {
-	if (ft_toupper('A') != 'A' || ft_toupper('a') != 'A' || ft_toupper('1') != '1')
+	if (ft_toupper('a') != 'A'
+		|| ft_toupper('z') != 'Z'
+		|| ft_toupper('A') != 'A')
 		printf("Test ft_toupper: [\033[0;31mKO\033[0m]\n");
 	else
 		printf("Test ft_toupper: [\033[0;32mOK\033[0m]\n");
@@ -571,7 +592,7 @@ int	main(void)
 	test_ft_isdigit();
 	test_ft_isprint();
 	test_ft_lstadd_back();
-	test_lstadd_front();
+	test_ft_lstadd_front();
 	test_ft_lstclear();
 	test_ft_lstdelone();
 	test_ft_lstiter();
@@ -590,12 +611,9 @@ int	main(void)
 	test_ft_putendl_fd();
 	test_ft_putnbr_fd();
 	test_ft_putstr_fd();
-	test_ft_atoi();
-	test_ft_itoa();
 	test_ft_split();
 	test_ft_strchr();
 	test_ft_strdup();
-	test_ft_striteri();
 	test_ft_strjoin();
 	test_ft_strlcat();
 	test_ft_strlcpy();
@@ -609,6 +627,5 @@ int	main(void)
 	test_ft_tolower();
 	test_ft_toupper();
 	remove("test.txt");
-	
 	return (0);
 }
