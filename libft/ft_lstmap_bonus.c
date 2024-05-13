@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 16:39:43 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/10 15:06:16 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/05/13 11:48:11 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	while (lst)
 	{
 		set = f(lst->content);
-		if (!set)
-		{
-			ft_lstclear(&new_list, del);
-			return (NULL);
-		}
 		new_node = ft_lstnew(set);
 		if (!new_node)
 		{
