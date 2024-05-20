@@ -6,13 +6,17 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:11:59 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/13 15:27:50 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/05/20 13:37:32 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
+	if (write(fd, &c, 1) == -1)
+	{
+		return (-1);
+	}
+	return (1);
 }

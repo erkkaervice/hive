@@ -6,28 +6,11 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:17:32 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/10 15:38:51 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:16:59 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	ft_space(int c)
-{
-	if ((c > 8 && c < 14)
-		|| (c == 32))
-	{
-		return (1);
-	}
-	return (0);
-}
-
-static int	ft_digit(int c)
-{
-	if (c > 47 && c < 58)
-	{
-		return (1);
-	}
-	return (0);
-}
+#include "libft.h"
 
 int	ft_atoi(char const *str)
 {
@@ -37,7 +20,7 @@ int	ft_atoi(char const *str)
 
 	n = 0;
 	sign = 1;
-	while (*str && ft_space(*str))
+	while (*str && ft_isspace(*str))
 	{
 		str++;
 	}
@@ -49,7 +32,7 @@ int	ft_atoi(char const *str)
 		}
 		str++;
 	}
-	while (*str && ft_digit(*str))
+	while (*str && ft_isdigit(*str))
 	{
 		dig = *str - '0';
 		n = n * 10 + sign * dig;

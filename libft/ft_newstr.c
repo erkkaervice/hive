@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_newstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 18:11:59 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/13 15:27:50 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/13 16:20:27 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/13 16:20:42 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+char	*ft_newstr(size_t n)
 {
-	write(fd, &c, 1);
+	char	*str;
+
+	str = (char *)malloc(sizeof(char) * (n + 1));
+	if (!str)
+	{
+		return (NULL);
+	}
+	*str = '\0';
+	return (str);
 }

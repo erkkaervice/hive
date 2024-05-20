@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 18:11:59 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/13 15:27:50 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/13 16:50:00 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/20 14:14:42 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_putnbr(int n)
 {
-	write(fd, &c, 1);
+	int	nbr_len;
+
+	nbr_len = ft_nbrlen(n);
+	if (ft_putnbr_fd(n, 1) == -1)
+		return (-1);
+	return (nbr_len);
 }

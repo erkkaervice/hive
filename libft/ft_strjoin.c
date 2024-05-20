@@ -6,24 +6,11 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:32:21 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/09 13:47:42 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:29:41 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static char	*ft_newstr(size_t n)
-{
-	char	*str;
-
-	str = (char *)malloc(sizeof(char) * (n + 1));
-	if (!str)
-	{
-		return (NULL);
-	}
-	*str = '\0';
-	return (str);
-}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

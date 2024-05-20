@@ -1,41 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 15:03:14 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/13 16:30:18 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/20 14:29:41 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/20 14:33:59 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+int	ft_putnbr_fd(int n, int fd)
 {
-	char	*str;
-	char	*stp;
-
-	if (!s)
-		return (NULL);
-	if (len == 0 || start >= ft_strlen(s))
+	if (n == INT_MIN)
 	{
-		return (ft_newstr(0));
+		if (ft_putnbr_fd(n / 10, fd) == -1)
+			return (-1);
+		if (ft_putchar_fd('8', fd) == -1)
+			return (-1);
+		return (0);
 	}
-	if (len > (ft_strlen(s) - start))
+	if (n < 0)
 	{
-		len = ft_strlen(s) - start;
+		if (ft_putchar_fd('-', fd) == -1)
+			return (-1);
+		n *= -1;
 	}
-	str = ft_newstr(len);
-	if (!str)
-		return (NULL);
-	stp = str;
-	s += start;
-	while (len-- && *s)
+	if (n >= 10)
 	{
-		*str++ = *s++;
+		if (ft_putnbr_fd(n / 10, fd) == -1)
+			return (-1);
 	}
-	*str = '\0';
-	return (stp);
+	if (ft_putchar_fd(n % 10 + '0', fd) == -1)
+		return (-1);
+	return (0);
 }

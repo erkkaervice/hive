@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   test_printf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 18:11:59 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/13 15:27:50 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/13 14:24:25 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/13 14:28:27 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
+#include <stdio.h>
 
-void	ft_putchar_fd(char c, int fd)
+int	main(void)
 {
-	write(fd, &c, 1);
+	int	ret_printf;
+	int	ret_ft_printf;
+
+	ret_printf = printf("Original printf: Hello, world!\n");
+	ret_ft_printf = ft_printf("Your ft_printf: Hello, world!\n");
+
+	printf("Return value of printf: %d\n", ret_printf);
+	printf("Return value of ft_printf: %d\n", ret_ft_printf);
+
+	return (0);
 }
