@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:24:25 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/23 15:47:56 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:49:03 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int	main(void)
 	int		ret_ft_printf;
 	void	*ptr;
 
+	ptr = (void *)0x12345678;
 	ret_printf = printf("Original: Character: %c\n", 'A');
 	ret_ft_printf = ft_printf("ft_printf: Character: %c\n", 'A');
 	ret_printf = printf("Original: String: %s\n", "Hello");
 	ret_ft_printf = ft_printf("ft_printf: String: %s\n", "Hello");
-	ptr = (void *)0x12345678;
 	ret_printf = printf("Original: Pointer: %p\n", ptr);
 	ret_ft_printf = ft_printf("ft_printf: Pointer: %p\n", ptr);
 	ret_printf = printf("Original: Integer: %d\n", 123);
