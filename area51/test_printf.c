@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:24:25 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/23 15:18:04 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:23:22 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ int	main(void)
 	printf("Return value of ft_printf: %d\n", ret_ft_printf - 1);
 	ret_printf = printf("Original: Null terminator: %c\n", '\0');
 	ret_ft_printf = ft_printf("ft_printf: Null terminator: %c\n", '\0');
+	printf("Return value of printf: %d\n", ret_printf);
+	printf("Return value of ft_printf: %d\n", ret_ft_printf - 1);
+	ret_printf = printf("Original: Null: %p\n", (NULL));
+	ret_ft_printf = ft_printf("ft_printf: Null: %p\n", (NULL));
 	printf("Return value of printf: %d\n", ret_printf);
 	printf("Return value of ft_printf: %d\n", ret_ft_printf - 1);
 	return (0);
