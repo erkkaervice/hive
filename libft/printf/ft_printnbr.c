@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 16:50:00 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/23 12:28:18 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/05/24 16:03:39 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_printnbr(int n)
 		j++;
 	}
 	if (n >= 10)
-		j += ft_printnbr(n / 10);
+		j = ft_printnbr(n / 10);
 	if (j == -1)
 		return (-1);
 	if (write(1, &"0123456789"[n % 10], 1) == -1)
