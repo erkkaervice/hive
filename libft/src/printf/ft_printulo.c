@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
+/*   ft_printulo.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/13 16:18:38 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/22 12:14:27 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/20 12:13:35 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/28 12:11:55 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_nbrlen(int nbr)
+int	ft_printulo(unsigned long n)
 {
-	size_t	i;
+	int		i;
+	char	*base;
 
 	i = 0;
-	if (nbr <= 0)
+	base = "0123456789";
+	if (n > (ft_strlen(base) - 1))
 	{
-		i++;
+		i = ft_printulo(n / ft_strlen(base));
+		if (i == -1)
+		{
+			return (-1);
+		}
 	}
-	while (nbr != 0)
+	i += ft_printchar(base[n % ft_strlen(base)]);
+	if (i == -1)
 	{
-		nbr /= 10;
-		i++;
+		return (-1);
 	}
 	return (i);
 }

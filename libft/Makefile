@@ -6,90 +6,91 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 17:41:41 by eala-lah          #+#    #+#              #
-#    Updated: 2024/05/13 16:25:25 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/05/28 13:26:52 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC         = \
-	ft_atoi.c \
-	ft_bzero.c \
-	ft_calloc.c \
-	ft_isalnum.c \
-	ft_isalpha.c \
-	ft_isascii.c \
-	ft_isdigit.c \
-	ft_isprint.c \
-	ft_isspace.c \
-	ft_itoa.c \
-	ft_memchr.c \
-	ft_memcmp.c \
-	ft_memcpy.c \
-	ft_memmove.c \
-	ft_memset.c \
-	ft_newstr.c \
-	ft_nbrlen.c \
-	ft_pole.c \
-	ft_putchar_fd.c \
-	ft_putstr_fd.c \
-	ft_putendl_fd.c \
-	ft_putnbr_fd.c \
-	ft_split.c \
-	ft_strchr.c \
-	ft_strdup.c \
-	ft_striteri.c \
-	ft_strjoin.c \
-	ft_strlcat.c \
-	ft_strlcpy.c \
-	ft_strlen.c \
-	ft_strmapi.c \
-	ft_strncmp.c \
-	ft_strnstr.c \
-	ft_strrchr.c \
-	ft_strtrim.c \
-	ft_substr.c \
-	ft_tolower.c \
-	ft_toupper.c 
+	src/checks/ft_isalnum.c \
+	src/checks/ft_isalpha.c \
+	src/checks/ft_isascii.c \
+	src/checks/ft_isdigit.c \
+	src/checks/ft_isprint.c \
+	src/checks/ft_isspace.c \
+	src/checks/ft_pole.c \
+	src/converters/ft_atoi.c \
+	src/converters/ft_itoa.c \
+	src/converters/ft_tolower.c \
+	src/converters/ft_toupper.c \
+	src/lists/ft_lstadd_back_bonus.c \
+	src/lists/ft_lstadd_front_bonus.c \
+	src/lists/ft_lstclear_bonus.c \
+	src/lists/ft_lstdelone_bonus.c \
+	src/lists/ft_lstiter_bonus.c \
+	src/lists/ft_lstlast_bonus.c \
+	src/lists/ft_lstmap_bonus.c \
+	src/lists/ft_lstnew_bonus.c \
+	src/lists/ft_lstsize_bonus.c \
+	src/memories/ft_bzero.c \
+	src/memories/ft_calloc.c \
+	src/memories/ft_memchr.c \
+	src/memories/ft_memcmp.c \
+	src/memories/ft_memcpy.c \
+	src/memories/ft_memmove.c \
+	src/memories/ft_memset.c \
+	src/printf/ft_printchar.c \
+	src/printf/ft_printf.c \
+	src/printf/ft_printhexa.c \
+	src/printf/ft_printmah.c \
+	src/printf/ft_printnbr.c \
+	src/printf/ft_printstr.c \
+	src/printf/ft_printulo.c \
+	src/puts/ft_putchar_fd.c \
+	src/puts/ft_putendl_fd.c \
+	src/puts/ft_putnbr_fd.c \
+	src/puts/ft_putstr_fd.c \
+	src/strings/ft_nbrlen.c \
+	src/strings/ft_newstr.c \
+	src/strings/ft_split.c \
+	src/strings/ft_strchr.c \
+	src/strings/ft_strdup.c \
+	src/strings/ft_striteri.c \
+	src/strings/ft_strjoin.c \
+	src/strings/ft_strlcat.c \
+	src/strings/ft_strlcpy.c \
+	src/strings/ft_strlen.c \
+	src/strings/ft_strmapi.c \
+	src/strings/ft_strncmp.c \
+	src/strings/ft_strnstr.c \
+	src/strings/ft_strrchr.c \
+	src/strings/ft_strtrim.c \
+	src/strings/ft_substr.c \
 
-SRC_BONUS   = \
-	ft_lstadd_back_bonus.c \
-	ft_lstadd_front_bonus.c \
-	ft_lstclear_bonus.c \
-	ft_lstdelone_bonus.c \
-	ft_lstiter_bonus.c \
-	ft_lstlast_bonus.c \
-	ft_lstmap_bonus.c \
-	ft_lstnew_bonus.c \
-	ft_lstsize_bonus.c 
 
 OBJS        = $(SRC:.c=.o)
-OBJS_BONUS  = $(SRC_BONUS:.c=.o)
 
-HEAD        = .
+HEAD        = include
 
 NAME        = libft.a
 AR          = ar rcs
 RM          = rm -f
 LIB         = ranlib
 GCC         = gcc
-CFLAGS      = -Wall -Wextra -Werror
+CFLAGS      = -Wall -Wextra -Werror -I $(HEAD)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(AR) $(NAME) $(OBJS)
 	@$(LIB) $(NAME)
-
-bonus: $(OBJS_BONUS) $(OBJS)
-	@$(AR) $(NAME) $(OBJS_BONUS)
-	@$(LIB) $(NAME)
-
+	
 clean:
-	@$(RM) $(OBJS) $(OBJS_BONUS)
+	@$(RM) $(OBJS)
 
 fclean: 
-	@$(RM) $(OBJS) $(OBJS_BONUS)
+	@$(RM) $(OBJS)
 	@$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re

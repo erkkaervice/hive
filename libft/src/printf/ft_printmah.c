@@ -1,33 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_printmah.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 16:48:05 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/23 15:29:40 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/20 12:09:06 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/28 12:10:53 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_strchr(const char *s, int c)
+static int	ft_hexacon(unsigned long n, char const *base)
 {
-	while (*s)
+	int	i;
+
+	i = 0;
+	if (n > (ft_strlen(base) - 1))
 	{
-		if (*s == (char)c)
-		{
-			return ((char *)s);
-		}
-		s++;
+		i = ft_hexacon(n / ft_strlen(base), base);
 	}
-	if (*s == (char)c)
+	i += ft_printchar(base[n % ft_strlen(base)]);
+	return (i);
+}
+
+int	ft_printmah(void *format)
+{
+	unsigned long	n;
+	const char		*base;
+	int				i;
+
+	n = (unsigned long)format;
+	base = "0123456789abcdef";
+	i = ft_printstr("0x");
+	if (i == -1)
 	{
-		return ((char *)s);
+		return (-1);
 	}
-	else
-	{
-		return (NULL);
-	}
+	i += ft_hexacon(n, base);
+	return (i);
 }
