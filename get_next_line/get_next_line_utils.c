@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:15:24 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/28 16:16:06 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/05/28 17:02:58 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,31 +86,31 @@ char	*ft_strdup(const char *s1)
 	return (sta);
 }
 
-char	*ft_strjoin(char *buffer, const char *content)
+char	*ft_strjoinwb(char *buf, const char *con)
 {
-	size_t	buffer_len;
-	size_t	content_len;
+	size_t	bul;
+	size_t	col;
 	char	*result;
-	char	*result_ptr;
+	char	*rep;
 	char	*src;
 
-	buffer_len = 0;
-	if (!buffer && !content)
+	bul = 0;
+	if (!buf && !con)
 		return (NULL);
-	if (buffer)
-		buffer_len = ft_strlen(buffer);
-	content_len = ft_strlen(content);
-	result = (char *)malloc(sizeof(char) * (buffer_len + content_len + 1));
+	if (buf)
+		bul = ft_strlen(buf);
+	col = ft_strlen(con);
+	result = (char *)malloc(sizeof(char) * (bul + col + 1));
 	if (!result)
 		return (NULL);
-	result_ptr = result;
-	src = buffer;
+	rep = result;
+	src = buf;
 	while (src && *src)
-		*result_ptr++ = *src++;
-	src = (char *)content;
+		*rep++ = *src++;
+	src = (char *)con;
 	while (src && *src)
-		*result_ptr++ = *src++;
-	*result_ptr = '\0';
-	free(buffer);
+		*rep++ = *src++;
+	*rep = '\0';
+	free(buf);
 	return (result);
 }

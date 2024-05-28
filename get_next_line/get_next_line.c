@@ -6,13 +6,13 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:14:15 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/28 15:56:37 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/05/28 17:15:11 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static size_t	find_next_line_break(char *str, size_t i)
+static size_t	ft_fbreak(char *str, size_t i)
 {
 	char	*ptr;
 
@@ -24,7 +24,7 @@ static size_t	find_next_line_break(char *str, size_t i)
 	return (ptr - str);
 }
 
-static char	*create_substring(char *str)
+static char	*ft_substring(char *str)
 {
 	char	*new_str;
 	size_t	i;
@@ -34,7 +34,7 @@ static char	*create_substring(char *str)
 	j = 0;
 	if (!*str)
 		return (free(str), NULL);
-	i = find_next_line_break(str, i);
+	i = ft_fbreak(str, i);
 	new_str = (char *)malloc((ft_strlen(str) - i) + 1);
 	if (!new_str)
 		return (free(new_str), NULL);
@@ -47,7 +47,7 @@ static char	*create_substring(char *str)
 	return (new_str);
 }
 
-static char	*read_line(char *str)
+static char	*ft_readline(char *str)
 {
 	char	*line;
 	size_t	i;
@@ -55,7 +55,7 @@ static char	*read_line(char *str)
 	i = 0;
 	if (!str || *str == '\0')
 		return (NULL);
-	i = find_next_line_break(str, i);
+	i = ft_fbreak(str, i);
 	line = (char *)malloc(sizeof(char) * i + 1);
 	if (!line)
 		return (NULL);
@@ -74,7 +74,7 @@ static char	*read_line(char *str)
 	return (line);
 }
 
-static char	*free_and_null(char *buff1, char *buff2)
+static char	*ft_fan(char *buff1, char *buff2)
 {
 	free(buff1);
 	free(buff2);
@@ -84,29 +84,29 @@ static char	*free_and_null(char *buff1, char *buff2)
 
 char	*get_next_line(int fd)
 {
-	char		*read_content;
-	int			read_bytes;
-	static char	*read_buffer;
+	char		*rco;
+	int			rby;
+	static char	*rbu;
 
-	read_bytes = 1;
+	rby = 1;
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX)
 		return (NULL);
-	read_content = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (!read_content)
+	rco = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!rco)
 		return (NULL);
-	while (!(ft_strchr(read_buffer, '\n')) && read_bytes != 0)
+	while (!(ft_strchr(rbu, '\n')) && rby != 0)
 	{
-		read_bytes = read(fd, read_content, BUFFER_SIZE);
-		if (read_bytes == -1)
+		rby = read(fd, rco, BUFFER_SIZE);
+		if (rby == -1)
 		{
-			read_buffer = free_and_null(read_content, read_buffer);
+			rbu = ft_fan(rco, rbu);
 			return (NULL);
 		}
-		*(read_content + read_bytes) = '\0';
-		read_buffer = ft_strjoin(read_buffer, read_content);
+		*(rco + rby) = '\0';
+		rbu = ft_strjoinwb(rbu, rco);
 	}
-	free(read_content);
-	read_content = read_line(read_buffer);
-	read_buffer = create_substring(read_buffer);
-	return (read_content);
+	free(rco);
+	rco = ft_readline(rbu);
+	rbu = ft_substring(rbu);
+	return (rco);
 }
