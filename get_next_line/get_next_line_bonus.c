@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 17:33:52 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/04 17:38:13 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/04 17:40:58 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_cleanup(char *sto)
 {
@@ -95,26 +95,26 @@ char	*ft_readbuf(int fd, char *sto)
 
 char	*get_next_line(int fd)
 {
-	static char	*sto = {0};
+	static char	*sto[OPEN_MAX];
 	char		*line;
 
 	if (fd < 0)
 	{
 		return (NULL);
 	}
-	if ((sto && !ft_strchr(sto, '\n')) || !sto)
+	if ((sto[fd] && !ft_strchr(sto[fd], '\n')) || !sto[fd])
 	{
-		sto = ft_readbuf (fd, sto);
+		sto[fd] = ft_readbuf (fd, sto[fd]);
 	}
-	if (!sto)
+	if (!sto[fd])
 	{
 		return (NULL);
 	}
-	line = ft_newline(sto);
+	line = ft_newline(sto[fd]);
 	if (!line)
 	{
-		return (ft_free(&sto));
+		return (ft_free(&sto[fd]));
 	}
-	sto = ft_cleanup(sto);
+	sto[fd] = ft_cleanup(sto[fd]);
 	return (line);
 }
