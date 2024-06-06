@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:39:57 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/28 15:45:35 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:03:56 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ char	*ft_strdup(const char *s1)
 		s1++;
 	}
 	*dst = '\0';
-	free(dst);
 	return (sta);
 }

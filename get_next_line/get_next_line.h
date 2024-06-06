@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:14:11 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/05 12:12:06 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:09:23 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # endif
 
 char	*ft_newstr(size_t n);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_gnlchr(const char *s, int c);
+char	*ft_gnljoin(char *s1, char *s2);
 size_t	ft_strlen(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_cleanup(char *sto);

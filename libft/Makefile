@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 17:41:41 by eala-lah          #+#    #+#              #
-#    Updated: 2024/05/28 13:26:52 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/06/06 11:55:20 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,8 +66,19 @@ SRC         = \
 	src/strings/ft_strtrim.c \
 	src/strings/ft_substr.c \
 
+SRC_BONUS   = \
+	src/lists/ft_lstadd_back_bonus.c \
+	src/lists/ft_lstadd_front_bonus.c \
+	src/lists/ft_lstclear_bonus.c \
+	src/lists/ft_lstdelone_bonus.c \
+	src/lists/ft_lstiter_bonus.c \
+	src/lists/ft_lstlast_bonus.c \
+	src/lists/ft_lstmap_bonus.c \
+	src/lists/ft_lstnew_bonus.c \
+	src/lists/ft_lstsize_bonus.c \
 
 OBJS        = $(SRC:.c=.o)
+OBJS_BONUS  = $(SRC_BONUS:.c=.o)
 
 HEAD        = include
 
@@ -83,12 +94,16 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@$(AR) $(NAME) $(OBJS)
 	@$(LIB) $(NAME)
+
+bonus: $(OBJS_BONUS) $(OBJS)
+	@$(AR) $(NAME) $(OBJS_BONUS)
+	@$(LIB) $(NAME)
 	
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean: 
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS) $(OBJS_BONUS)
 	@$(RM) $(NAME)
 
 re: fclean all
