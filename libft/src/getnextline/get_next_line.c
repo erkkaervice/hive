@@ -1,16 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 17:33:52 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/06 12:21:07 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:28:45 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
+
+char	*ft_gnljoin(char *s1, char *s2)
+{
+	char	*str;
+	size_t	i;
+	size_t	j;
+
+	if (!s1)
+	{
+		s1 = malloc(sizeof(char) + 1);
+		if (!s1)
+			return (0);
+		s1[0] = 0;
+	}
+	str = (char *)malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!str)
+		return (ft_free(&s1));
+	i = -1;
+	while (s1[++i])
+		str[i] = s1[i];
+	j = -1;
+	while (s2[++j])
+		str[i + j] = s2[j];
+	str[i + j] = '\0';
+	free(s1);
+	return (str);
+}
 
 char	*ft_cleanup(char *sto)
 {
@@ -39,13 +66,6 @@ char	*ft_cleanup(char *sto)
 		return (NULL);
 	}
 	return (new);
-}
-
-char	*ft_free(char **str)
-{
-	free(*str);
-	*str = NULL;
-	return (NULL);
 }
 
 char	*ft_newline(char *sto)

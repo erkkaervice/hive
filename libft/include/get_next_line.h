@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/28 14:14:11 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/06 12:20:19 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/06/04 17:39:52 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/06/06 12:30:54 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42

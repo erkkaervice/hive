@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 17:39:04 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/06 12:08:35 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:19:48 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,8 @@ char	*ft_newstr(size_t n)
 	return (str);
 }
 
-char	*ft_gnlchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	if (!s)
-	{
-		return (NULL);
-	}
 	while (*s)
 	{
 		if (*s == (char)c)

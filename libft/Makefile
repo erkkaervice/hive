@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 17:41:41 by eala-lah          #+#    #+#              #
-#    Updated: 2024/06/06 11:55:20 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/06/06 12:30:08 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC         = \
 	src/converters/ft_itoa.c \
 	src/converters/ft_tolower.c \
 	src/converters/ft_toupper.c \
+	src/getnextline/get_next_line.c \
 	src/lists/ft_lstadd_back_bonus.c \
 	src/lists/ft_lstadd_front_bonus.c \
 	src/lists/ft_lstclear_bonus.c \
@@ -33,6 +34,7 @@ SRC         = \
 	src/lists/ft_lstsize_bonus.c \
 	src/memories/ft_bzero.c \
 	src/memories/ft_calloc.c \
+	src/memories/ft_free.c \
 	src/memories/ft_memchr.c \
 	src/memories/ft_memcmp.c \
 	src/memories/ft_memcpy.c \
