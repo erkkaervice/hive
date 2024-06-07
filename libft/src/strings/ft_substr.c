@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:03:14 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/13 16:30:18 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/07 13:46:12 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
-	char	*stp;
+	char	*ptr;
 
 	if (!s)
 		return (NULL);
@@ -30,12 +30,12 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	str = ft_newstr(len);
 	if (!str)
 		return (NULL);
-	stp = str;
+	ptr = str;
 	s += start;
 	while (len-- && *s)
 	{
 		*str++ = *s++;
 	}
 	*str = '\0';
-	return (stp);
+	return (ptr);
 }

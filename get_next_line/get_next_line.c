@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 17:33:52 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/06 12:21:32 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/07 13:42:21 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*ft_readbuf(int fd, char *sto)
 	buf[0] = '\0';
 	while (i > 0 && !ft_strchr(buf, '\n'))
 	{
-		i = read (fd, buf, BUFFER_SIZE);
+		i = read(fd, buf, BUFFER_SIZE);
 		if (i > 0)
 		{
 			buf[i] = '\0';
@@ -104,7 +104,7 @@ char	*get_next_line(int fd)
 	}
 	if ((sto && !ft_strchr(sto, '\n')) || !sto)
 	{
-		sto = ft_readbuf (fd, sto);
+		sto = ft_readbuf(fd, sto);
 	}
 	if (!sto)
 	{
