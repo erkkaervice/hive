@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 17:41:41 by eala-lah          #+#    #+#              #
-#    Updated: 2024/06/06 12:30:08 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/06/19 17:58:21 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,7 @@ SRC_BONUS   = \
 OBJS        = $(SRC:.c=.o)
 OBJS_BONUS  = $(SRC_BONUS:.c=.o)
 
-HEAD        = include
+HEAD        = inc
 
 NAME        = libft.a
 AR          = ar rcs
