@@ -1,37 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 14:22:03 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/20 13:28:24 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/06/20 13:51:56 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/06/20 13:53:06 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-static void	ft_push(t_col **src, t_col **dst)
+int	ft_abs(int n)
 {
-	t_col	*tmp;
-
-	if (*src == NULL)
-		return ;
-	tmp = (*src)->next;
-	(*src)->next = *dst;
-	*dst = *src;
-	*src = tmp;
-}
-
-void	ft_pa(t_col **col_a, t_col **col_b)
-{
-	ft_push(col_a, col_b);
-	ft_putstr("pa\n");
-}
-
-void	ft_pb(t_col **col_a, t_col **col_b)
-{
-	ft_push(col_a, col_b);
-	ft_putstr("pb\n");
+	if (n < 0)
+	{
+		return (n * -1);
+	}
+	return (n);
 }

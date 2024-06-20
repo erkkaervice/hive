@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:41:12 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/19 17:29:57 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:33:08 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	ft_sorted(t_col *col)
 {
-	while (col->nex != NULL)
+	while (col->next != NULL)
 	{
-		if (col->val > col->nex->val)
+		if (col->val > col->next->val)
 		{
 			return (0);
 		}
-		col = col->nex;
+		col = col->next;
 	}
 	return (1);
 }
@@ -51,14 +51,14 @@ int	main(int ac, char **av)
 	{
 		return (NULL);
 	}
-	if (!CHECKER FOR CORRECT INPUT(av))
+	if (!ft_valid(av))
 	{
 		ft_error(NULL, NULL);
 	}
-	col_a = FILL WITH VALUE(ac, av);
+	col_a = ft_value(ac, av);
 	col_b = NULL;
 	cos = ft_slinky(col_a);
-	ft_ASSIGN INDEX(col_a, cos + 1);
+	ft_index(col_a, cos + 1);
 	push_swap(&col_a, &col_b, cos);
 	ft_free(col_a);
 	ft_free(col_b);

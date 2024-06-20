@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:54:50 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/19 16:51:48 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:28:24 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,31 +21,31 @@ static int	ft_finder(t_col *col)
 	{
 		if (col->ind > i)
 		{
-			i - col->ind;
+			i = col->ind;
 		}
-		col = col->nex;
+		col = col->next;
 	}
 	return (i);
 }
 
 void	ft_short(t_col **col)
 {
-	int	sdd;
+	int	i;
 
 	if (ft_sorted(col))
 	{
 		return ;
 	}
-	sdd = ft_finder(*col);
-	if ((*col)->ind == sdd)
+	i = ft_finder(*col);
+	if ((*col)->ind == i)
 	{
 		ft_ra(col);
 	}
-	else if ((*col)->nex->ind == sdd)
+	else if ((*col)->next->ind == i)
 	{
 		ft_rra(col);
 	}
-	if ((*col)->ind > (*col)->nex->ind)
+	if ((*col)->ind > (*col)->next->ind)
 	{
 		ft_sa(col);
 	}

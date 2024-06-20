@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:22:44 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/19 17:48:46 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:32:27 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_dartagnan(t_col **col_a, t_col **col_b)
 	int	hit;
 	int	i;
 
-	cos = slinky(*col_a);
+	cos = ft_slinky(*col_a);
 	hit = 0;
 	i = 0;
 	while (cos > 6 && i < cos && hit < cos / 2)
@@ -36,24 +36,24 @@ static void	ft_dartagnan(t_col **col_a, t_col **col_b)
 	}
 	while (cos - hit > 3)
 	{
-		ft_pb(col_a, col_b)
+		ft_pb(col_a, col_b);
 		hit++;
 	}
 }
 
-static void	ft_refill(t_col **col_a)
+static void	ft_rearrange(t_col **col_a)
 {
-	int	low;
+	int	res;
 	int	cos;
 
 	cos = ft_slinky(col_a);
-	low = ft_jumpable(col_a);
-	if (low > cos / 2)
+	res = ft_heli(col_a);
+	if (res > cos / 2)
 	{
-		while (low < cos)
+		while (res < cos)
 		{
 			ft_rra(col_a);
-			low--;
+			res--;
 		}
 	}
 }
@@ -64,12 +64,12 @@ void	ft_sort(t_col **col_a, t_col **col_b)
 	ft_short(col_a);
 	while (*col_b)
 	{
-		ft_push(col_a, col_b);
+		ft_aim(col_a, col_b);
 		ft_PRICE(col_a, col_b);
-		ft_CHEAPEST MOVE(col_a, col_b);
+		ft_CHEAPEST_MOVE(col_a, col_b);
 	}
 	if (!ft_sorted(*col_a))
 	{
-		ft_refill(col_a);
+		ft_rearrange(col_a);
 	}
 }

@@ -6,16 +6,18 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 17:41:41 by eala-lah          #+#    #+#              #
-#    Updated: 2024/06/19 17:58:21 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/06/20 13:53:01 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC         = \
+	src/checks/ft_abs.c \
 	src/checks/ft_isalnum.c \
 	src/checks/ft_isalpha.c \
 	src/checks/ft_isascii.c \
 	src/checks/ft_isdigit.c \
 	src/checks/ft_isprint.c \
+	src/checks/ft_issign.c \
 	src/checks/ft_isspace.c \
 	src/checks/ft_pole.c \
 	src/converters/ft_atoi.c \

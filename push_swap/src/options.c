@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:00:45 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/19 17:50:09 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:21:24 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,75 +22,75 @@ static void	ft_floor(t_col **col)
 	while (tmp)
 	{
 		tmp->pos = i;
-		tmp = tmp->nex;
+		tmp = tmp->next;
 		i++;
 	}
 }
 
-int	ft_jumpable(t_col **col)
+int	ft_heli(t_col **col)
 {
 	t_col	*tmp;
 	int		i;
-	int		low;
+	int		tgt;
 
 	tmp = *col;
 	i = INT_MAX;
 	ft_floor(col);
-	low = tmp->pos;
+	tgt = tmp->pos;
 	while (tmp)
 	{
 		if (tmp->ind < i)
 		{
 			i = tmp->ind;
-			low = tmp->pos;
+			tgt = tmp->pos;
 		}
-		tmp = tmp->nex;
+		tmp = tmp->next;
 	}
-	return (low);
+	return (tgt);
 }
 
-static int	ft_trampoline(t_col **a, int b_idx, int tgt_idx, int tgt_pos)
+static int	ft_trampoline(t_col **a, int b_ind, int tgt_ind, int tgt_pos)
 {
-	t_stack	*tmp_a;
+	t_col	*tmp;
 
-	tmp_a = *a;
-	while (tmp_a)
+	tmp = *a;
+	while (tmp)
 	{
-		if (tmp_a->ind > b_idx && tmp_a->ind < tgt_idx)
+		if (tmp->ind > b_ind && tmp->ind < tgt_ind)
 		{
-			tgt_idx = tmp_a->ind;
-			tgt_pos = tmp_a->pos;
+			tgt_ind = tmp->ind;
+			tgt_pos = tmp->pos;
 		}
-		tmp_a = TMp_a->nex;
+		tmp = tmp->next;
 	}
-	if (tgt_idx != INT_MAX)
+	if (tgt_ind != INT_MAX)
 		return (tgt_pos);
-	tmp_a = *a;
-	while (tmp_a)
+	tmp = *a;
+	while (tmp)
 	{
-		if (tmp_a->ind < target_idx)
+		if (tmp->ind < tgt_ind)
 		{
-			tgt_idx = tmp_a->ind;
-			tgt_pos = tmp_a->pos;
+			tgt_ind = tmp->ind;
+			tgt_pos = tmp->pos;
 		}
-		tmp_a = tmp_a->nex;
+		tmp = tmp->next;
 	}
 	return (tgt_pos);
 }
 
-void	ft_push(t_col **a, t_col **b)
+void	ft_aim(t_col **a, t_col **b)
 {
-	t_col	*tmp_b;
+	t_col	*tmp;
 	int		tgt_pos;
 
-	tmp_b = *b;
+	tmp = *b;
 	ft_floor(a);
 	ft_floor(b);
 	tgt_pos = 0;
-	while (tmp_b)
+	while (tmp)
 	{
-		tgt_pos = ft_trampoline(a, tmp_b->ind, INT_MAX, tgt_pos);
-		tmp_b->tgt_pos = tgt_pos;
-		tmp_b = tmp_b->nex;
+		tgt_pos = ft_trampoline(a, tmp->ind, INT_MAX, tgt_pos);
+		tmp->tgt = tgt_pos;
+		tmp = tmp->next;
 	}
 }
