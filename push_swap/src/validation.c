@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:00:31 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/20 13:31:08 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:00:46 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	ft_duplicate(char **av)
 		j = 1;
 		while (av[j])
 		{
-			if (j != i && ft_psscmp(av[i], av[j] == 0))
+			if (j != i && ft_psscmp(av[i], av[j]) == 0)
 			{
 				return (1);
 			}
@@ -63,7 +63,7 @@ static int	ft_zero(char*av)
 	{
 		i++;
 	}
-	while (av[i] && av[i] == '\0')
+	while (av[i] && av[i] == '0')
 	{
 		i++;
 	}

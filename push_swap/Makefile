@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/20 15:44:12 by eala-lah          #+#    #+#              #
-#    Updated: 2024/06/20 16:31:24 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/06/25 16:24:47 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ OBJS	= $(SRC:.c=.o)
 HEAD	= inc
 NAME	= push_swap
 AR	= ar rcs
-RM	= rm -f
+RM	= rm -rf
 LIB	= ranlib
 CC	= cc
 CFLAGS	= -Wall -Wextra -Werror -I $(HEAD)

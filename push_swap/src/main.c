@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:41:12 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/20 14:33:08 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:56:51 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	main(int ac, char **av)
 
 	if (ac < 2)
 	{
-		return (NULL);
+		return (0);
 	}
 	if (!ft_valid(av))
 	{
@@ -60,7 +60,7 @@ int	main(int ac, char **av)
 	cos = ft_slinky(col_a);
 	ft_index(col_a, cos + 1);
 	push_swap(&col_a, &col_b, cos);
-	ft_free(col_a);
-	ft_free(col_b);
+	ft_free(&col_a);
+	ft_free(&col_b);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:18:45 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/20 16:30:04 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:01:47 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ft_lobbybar(t_col **col, t_col *new)
 	{
 		return ;
 	}
-	if (!col)
+	if (!*col)
 	{
 		*col = new;
 		return ;

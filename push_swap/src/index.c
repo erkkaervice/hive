@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:57:36 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/20 16:24:07 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:53:56 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ t_col	*ft_value(int ac, char **av)
 		}
 		else
 		{
-			(&col_a, ft_wtc7((int)n));
+			ft_lobbybar(&col_a, ft_wtc7((int)n));
 		}
 		i++;
 	}
 	return (col_a);
 }
 
-t_col	ft_index(t_col *col_a, int cos)
+void	ft_index(t_col *col_a, int cos)
 {
 	t_col *ptr;
 	t_col *sdd;

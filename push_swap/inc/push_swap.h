@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:34:27 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/20 16:13:45 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:22:37 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <limits.h>
 # include <unistd.h>
+# include <stdlib.h>
 
 typedef struct s_col
 {
@@ -30,7 +31,7 @@ typedef struct s_col
 //index
 
 t_col		*ft_value(int ac, char **av);
-t_col		ft_index(t_col *col_a, int cos);
+void		ft_index(t_col *col_a, int cos);
 
 //main
 int		ft_sorted(t_col *col);
@@ -85,11 +86,12 @@ void		ft_ss(t_col **col_a, t_col **col_b);
 //tempft
 int		ft_isdigit(int c);
 int		ft_issign(char c);
+int		ft_isspace(int c);
 int		ft_abs(int n);
-void		ft_putstr(char *str);
 int		ft_atoi(char const *str);
 
 //utils
+void		ft_putstr(char *str);
 void		ft_free(t_col **col);
 void		ft_error(t_col **col_a, t_col **col_b);
 int		ft_psscmp(const char *s1, const char *s2);
@@ -102,7 +104,7 @@ int		ft_valid(char **av);
 t_col		*ft_lobby(t_col *col);
 t_col		*ft_stairs(t_col *col);
 int		ft_slinky(t_col *col);
-t_col		ft_wtc7(int v);
+t_col		*ft_wtc7(int value);
 void		ft_lobbybar(t_col **col, t_col *new);
 
 #endif

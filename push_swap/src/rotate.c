@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:05:02 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/20 13:28:24 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:54:18 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,20 @@
 
 static void	ft_rotate(t_col **col)
 {
-	t_col	*tmp;
-	t_col	end;
+    t_col *tmp;
+    t_col *end;
 
-	tmp = *col;
-	*col = (*col)->next;
-	end = ft_lobby(*col);
-	tmp->next = NULL;
-	end->next = tmp;
+    if (!*col || !(*col)->next)
+        return ;
+    tmp = *col;
+    *col = (*col)->next;
+    end = *col;
+    while (end->next != NULL)
+        end = end->next;
+    end->next = tmp;
+    tmp->next = NULL;
 }
+
 
 void	ft_ra(t_col **col_a)
 {
@@ -33,7 +38,7 @@ void	ft_ra(t_col **col_a)
 void	ft_rb(t_col **col_b)
 {
 	ft_rotate(col_b);
-	ft_putstr("ra\n");
+	ft_putstr("rb\n");
 }
 
 void	ft_rr(t_col **col_a, t_col **col_b)

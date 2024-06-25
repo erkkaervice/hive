@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:54:50 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/20 13:28:24 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:05:32 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_short(t_col **col)
 {
 	int	i;
 
-	if (ft_sorted(col))
+	if (ft_sorted(*col))
 	{
 		return ;
 	}

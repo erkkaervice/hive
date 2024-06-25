@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 14:39:22 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/20 15:16:12 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:58:59 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	ft_movera(t_col **a, int *stp)
 	}
 }
 
-static void	ft_movera(t_col **b, int *stp)
+static void	ft_moverb(t_col **b, int *stp)
 {
 	while (*stp)
 	{

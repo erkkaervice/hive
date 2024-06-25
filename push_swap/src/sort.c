@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:22:44 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/20 13:32:27 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:40:35 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	ft_rearrange(t_col **col_a)
 	int	res;
 	int	cos;
 
-	cos = ft_slinky(col_a);
+	cos = ft_slinky(*col_a);
 	res = ft_heli(col_a);
 	if (res > cos / 2)
 	{
@@ -65,8 +65,8 @@ void	ft_sort(t_col **col_a, t_col **col_b)
 	while (*col_b)
 	{
 		ft_aim(col_a, col_b);
-		ft_PRICE(col_a, col_b);
-		ft_CHEAPEST_MOVE(col_a, col_b);
+		ft_stepcount(col_a, col_b);
+		ft_quickstep(col_a, col_b);
 	}
 	if (!ft_sorted(*col_a))
 	{
