@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:22:32 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/25 16:21:56 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:10:39 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_psscmp(const char *s1, const char *s2)
 	int	j;
 
 	i = 0;
-	j = 1;
+	j = i;
 	if (s1[i] == '+')
 	{
 		if (s2[j] != '+')

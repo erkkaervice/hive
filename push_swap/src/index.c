@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:57:36 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/25 15:53:56 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/26 14:35:15 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_col	*ft_value(int ac, char **av)
 {
 	t_col		*col_a;
-	long int	n;
+	long		n;
 	int		i;
 
 	col_a = NULL;
@@ -30,11 +30,11 @@ t_col	*ft_value(int ac, char **av)
 		}
 		if (i == 1)
 		{
-			col_a = ft_wtc7((int)n);
+			col_a = ft_trump((int)n);
 		}
 		else
 		{
-			ft_lobbybar(&col_a, ft_wtc7((int)n));
+			ft_lobbybar(&col_a, ft_trump((int)n));
 		}
 		i++;
 	}
@@ -43,11 +43,11 @@ t_col	*ft_value(int ac, char **av)
 
 void	ft_index(t_col *col_a, int cos)
 {
-	t_col *ptr;
-	t_col *sdd;
+	t_col	*ptr;
+	t_col	*sdd;
 	int	min;
 
-	while (--cos  > 0)
+	while (--cos > 0)
 	{
 		ptr = col_a;
 		min = INT_MIN;

@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:18:45 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/25 17:01:47 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/26 14:16:55 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_slinky(t_col *col)
 	return (i);
 }
 
-t_col	*ft_wtc7(int value)
+t_col	*ft_trump(int value)
 {
 	t_col	*new;
 

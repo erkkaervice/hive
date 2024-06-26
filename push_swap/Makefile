@@ -6,49 +6,94 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/20 15:44:12 by eala-lah          #+#    #+#              #
-#    Updated: 2024/06/25 16:24:47 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/06/26 14:54:24 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC	= \
-	src/index.c \
-	src/main.c \
-	src/moves.c \
-	src/options.c \
-	src/push.c \
-	src/reverse_rotate.c \
-	src/rotate.c \
-	src/short.c \
-	src/sort.c \
-	src/steps.c \
-	src/swap.c \
-	src/tempft.c \
-	src/utils.c \
-	src/validation.c \
-	src/wtc.c	
-
-OBJS	= $(SRC:.c=.o)
-HEAD	= inc
 NAME	= push_swap
-AR	= ar rcs
-RM	= rm -rf
-LIB	= ranlib
-CC	= cc
-CFLAGS	= -Wall -Wextra -Werror -I $(HEAD)
 
-all: $(NAME)
+INCS	= -I ./inc/
+
+SRC_PATH = src/
+SRCS	= $(addprefix $(SRC_PATH), $(SRC))
+SRC	= \
+	index.c \
+	main.c \
+	moves.c \
+	options.c \
+	push.c \
+	reverse_rotate.c \
+	rotate.c \
+	short.c \
+	sort.c \
+	steps.c \
+	swap.c \
+	tempft.c \
+	utils.c \
+	validation.c \
+	wtc.c	
+
+OBJ_PATH = obj/
+OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
+OBJ	= $(SRC:.c=.o)
+
+CC	= gcc
+CFLAGS	= -Wall -Wextra -Werror
+
+all: $(OBJ_PATH) $(NAME) 
+
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	$(CC) $(CFLAGS) -c $< -o $@ $(INCS)
+
+$(OBJ_PATH):
+	mkdir $(OBJ_PATH)
 
 $(NAME): $(OBJS)
-	@$(AR) $(NAME) $(OBJS)
-	@$(LIB) $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-	@$(RM) $(OBJS)
+	rm -rf $(OBJ_PATH)
 
-fclean:
-	@$(RM) $(OBJS)
-	@$(RM) $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+test2:				$(NAME)	
+					$(eval ARG = $(shell shuf -i 0-100 -n 2))
+					./push_swap $(ARG) | ./checker_linux $(ARG)
+					@echo -n "Instructions: "
+					@./push_swap $(ARG) | wc -l
+
+test3:				$(NAME)	
+					$(eval ARG = $(shell shuf -i 0-100 -n 3))
+					./push_swap $(ARG) | ./checker_linux $(ARG)
+					@echo -n "Instructions: "
+					@./push_swap $(ARG) | wc -l
+
+test5:				$(NAME)	
+					$(eval ARG = $(shell shuf -i 0-5000 -n 5))
+					./push_swap $(ARG) | ./checker_linux $(ARG)
+					@echo -n "Instructions: "
+					@./push_swap $(ARG) | wc -l
+
+test100:			$(NAME)	
+					$(eval ARG = $(shell shuf -i 0-5000 -n 100))
+					./push_swap $(ARG) | ./checker_linux $(ARG)
+					@echo -n "Instructions: "
+					@./push_swap $(ARG) | wc -l
+
+test500:			$(NAME)	
+					$(eval ARG = $(shell shuf -i 0-5000 -n 500))
+					./push_swap $(ARG) | ./checker_linux $(ARG)
+					@echo -n "Instructions: "
+					@./push_swap $(ARG) | wc -l
+
+test1000:			$(NAME)	
+					$(eval ARG = $(shell shuf -i 0-5000 -n 1000))
+					./push_swap $(ARG) | ./checker_linux $(ARG)
+					@echo -n "Instructions: "
+					@./push_swap $(ARG) | wc -l
+
+
+.PHONY: all clean fclean re test2 test3 test5 test100 test500 test1000

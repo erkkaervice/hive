@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:00:31 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/25 17:00:46 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:05:39 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	ft_duplicate(char **av)
 	return (0);
 }
 
-static int	ft_zero(char*av)
+static int	ft_zero(char *av)
 {
 	int	i;
 
@@ -87,7 +87,7 @@ int	ft_valid(char **av)
 		{
 			return (0);
 		}
-		j -= ft_zero(av[i]);
+		j += ft_zero(av[i]);
 		i++;
 	}
 	if (j > 1)

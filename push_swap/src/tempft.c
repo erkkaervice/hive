@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:22:48 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/25 16:21:52 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/26 14:07:39 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,6 @@ int	ft_issign(char c)
 	}
 }
 
-int	ft_abs(int n)
-{
-	if (n < 0)
-	{
-		return (n * -1);
-	}
-	return (n);
-}
-
 int	ft_isspace(int c)
 {
 	if ((c > 8 && c < 14)
@@ -55,10 +46,19 @@ int	ft_isspace(int c)
 	return (0);
 }
 
+int	ft_abs(int n)
+{
+	if (n < 0)
+	{
+		return (n * -1);
+	}
+	return (n);
+}
+
 int	ft_atoi(char const *str)
 {
 	long long int	n;
-	int				sign;
+	int		sign;
 	long long int	dig;
 
 	n = 0;
