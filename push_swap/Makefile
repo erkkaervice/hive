@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/20 15:44:12 by eala-lah          #+#    #+#              #
-#    Updated: 2024/06/26 14:54:24 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/06/27 15:05:41 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ OBJ_PATH = obj/
 OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
 OBJ	= $(SRC:.c=.o)
 
-CC	= gcc
+CC	= cc
 CFLAGS	= -Wall -Wextra -Werror
 
 all: $(OBJ_PATH) $(NAME) 

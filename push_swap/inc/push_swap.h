@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:34:27 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/27 14:34:34 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:16:24 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void		ft_quickstep(t_col **col_a, t_col **col_b);
 //tempft
 int			ft_isdigit(int c);
 int			ft_issign(char c);
-int			ft_isspace(int c);
 int			ft_abs(int n);
 long int	ft_atoi(const char *str);
 
