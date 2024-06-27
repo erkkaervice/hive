@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 14:39:22 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/26 15:31:52 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:58:45 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	ft_moverb(t_col **b, int *stp)
 			ft_rb(b);
 			(*stp)--;
 		}
-		else if (*stp < 0) 
+		else if (*stp < 0)
 		{
 			ft_rrb(b);
 			(*stp)++;

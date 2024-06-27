@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:22:44 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/26 15:06:09 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:02:02 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static void	ft_rearrange(t_col **col_a)
 			ft_ra(col_a);
 			res--;
 		}
-	
 	}
 }
 

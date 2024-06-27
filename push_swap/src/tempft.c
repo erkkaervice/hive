@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:22:48 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/26 14:07:39 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:19:31 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,31 +55,28 @@ int	ft_abs(int n)
 	return (n);
 }
 
-int	ft_atoi(char const *str)
+long	ft_atoi(const char *str)
 {
-	long long int	n;
-	int		sign;
-	long long int	dig;
+	int		isneg;
+	int		i;
+	long	nb;
 
-	n = 0;
-	sign = 1;
-	while (*str && ft_isspace(*str))
+	nb = 0;
+	isneg = 1;
+	i = 0;
+	if (str[i] == '+')
 	{
-		str++;
+		i++;
 	}
-	if (*str == '-' || *str == '+')
+	else if (str[i] == '-')
 	{
-		if (*str == '-')
-		{
-			sign *= -1;
-		}
-		str++;
+		isneg *= -1;
+		i++;
 	}
-	while (*str && ft_isdigit(*str))
+	while (ft_isdigit(str[i]))
 	{
-		dig = *str - '0';
-		n = n * 10 + sign * dig;
-		str++;
+		nb = (nb * 10) + (str[i] - '0');
+		i++;
 	}
-	return ((int)n);
+	return (nb * isneg);
 }

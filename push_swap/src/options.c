@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:00:45 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/26 15:15:09 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:03:40 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	ft_floor(t_col **col)
 {
 	t_col	*tmp;
-	int	i;
+	int		i;
 
 	tmp = *col;
 	i = 0;
@@ -30,8 +30,8 @@ static void	ft_floor(t_col **col)
 int	ft_heli(t_col **col)
 {
 	t_col	*tmp;
-	int	i;
-	int	tgtt;
+	int		i;
+	int		tgtt;
 
 	tmp = *col;
 	i = INT_MAX;
@@ -81,7 +81,7 @@ static int	ft_trampoline(t_col **a, int b_ind, int tgt_ind, int tgt_pos)
 void	ft_aim(t_col **a, t_col **b)
 {
 	t_col	*tmp;
-	int	tgt_pos;
+	int		tgt_pos;
 
 	tmp = *b;
 	ft_floor(a);

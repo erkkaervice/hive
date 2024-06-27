@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:18:45 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/26 14:16:55 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:56:51 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_col	*ft_trump(int value)
 
 void	ft_lobbybar(t_col **col, t_col *new)
 {
-	t_col *bar;
+	t_col	*bar;
 
 	if (!new)
 	{

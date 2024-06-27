@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:22:32 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/26 13:10:39 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/27 12:49:33 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,33 +53,4 @@ void	ft_error(t_col **col_a, t_col **col_b)
 	}
 	write(2, "Error\n", 6);
 	exit (1);
-}
-
-int	ft_psscmp(const char *s1, const char *s2)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = i;
-	if (s1[i] == '+')
-	{
-		if (s2[j] != '+')
-		{
-			i++;
-		}
-	}
-	else
-	{
-		if (s2[j] == '+')
-		{
-			j++;
-		}
-	}
-	while (s1[i] != '\0' && s2[j] != '\0' && s1[i] == s2[j])
-	{
-		i++;
-		j++;
-	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[j]);
 }

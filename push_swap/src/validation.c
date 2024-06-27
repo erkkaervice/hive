@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:00:31 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/26 13:05:39 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:58:02 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	ft_duplicate(char **av)
 		j = 1;
 		while (av[j])
 		{
-			if (j != i && ft_psscmp(av[i], av[j]) == 0)
+			if (j != i && ft_atoi(av[i]) == ft_atoi(av[j]))
 			{
 				return (1);
 			}
@@ -79,8 +79,10 @@ int	ft_valid(char **av)
 	int	i;
 	int	j;
 
-	i = 1;
+	if (av[1] == NULL || av[1][0] == '\0')
+		return (0);
 	j = 0;
+	i = 1;
 	while (av[i])
 	{
 		if (!ft_number(av[i]))
