@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:41:12 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/01 15:33:45 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:12:40 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	main(int ac, char **av)
 {
 	t_stack	*sta;
 	t_stack	*stb;
-	int		sts;
 
 	if (ac < 2)
 	{
@@ -57,9 +56,8 @@ int	main(int ac, char **av)
 	}
 	stb = NULL;
 	sta = ft_value(ac, av);
-	sts = ft_slinky(sta);
-	ft_index(sta, sts + 1);
-	push_swap(&sta, &stb, sts);
+	ft_index(sta, ft_slinky(sta) + 1);
+	push_swap(&sta, &stb, ft_slinky(sta));
 	ft_free(&sta);
 	ft_free(&stb);
 	return (0);
