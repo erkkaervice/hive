@@ -6,11 +6,35 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:22:32 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/27 12:49:33 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:53:29 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
+}
+
+int	ft_issign(char c)
+{
+	if (c == '+' || c == '-')
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
+}
 
 void	ft_putstr(char *str)
 {
@@ -24,9 +48,9 @@ void	ft_putstr(char *str)
 	}
 }
 
-void	ft_free(t_col **col)
+void	ft_free(t_stack **col)
 {
-	t_col	*tmp;
+	t_stack	*tmp;
 
 	if (!col || !(*col))
 	{
@@ -41,15 +65,15 @@ void	ft_free(t_col **col)
 	*col = NULL;
 }
 
-void	ft_error(t_col **col_a, t_col **col_b)
+void	ft_error(t_stack **sta, t_stack **stb)
 {
-	if (col_a == NULL || *col_a != NULL)
+	if (sta == NULL || *sta != NULL)
 	{
-		ft_free(col_a);
+		ft_free(sta);
 	}
-	if (col_b == NULL || *col_b != NULL)
+	if (stb == NULL || *stb != NULL)
 	{
-		ft_free(col_b);
+		ft_free(stb);
 	}
 	write(2, "Error\n", 6);
 	exit (1);

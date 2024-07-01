@@ -6,13 +6,13 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 14:39:22 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/27 13:58:45 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:22:43 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_moverrr(t_col **a, t_col **b, int *coa, int *cob)
+static void	ft_moverrr(t_stack **a, t_stack **b, int *coa, int *cob)
 {
 	while (*coa < 0 && *cob < 0)
 	{
@@ -22,7 +22,7 @@ static void	ft_moverrr(t_col **a, t_col **b, int *coa, int *cob)
 	}
 }
 
-static void	ft_moverr(t_col **a, t_col **b, int *coa, int *cob)
+static void	ft_moverr(t_stack **a, t_stack **b, int *coa, int *cob)
 {
 	while (*coa > 0 && *cob > 0)
 	{
@@ -32,7 +32,7 @@ static void	ft_moverr(t_col **a, t_col **b, int *coa, int *cob)
 	}
 }
 
-static void	ft_movera(t_col **a, int *stp)
+static void	ft_movera(t_stack **a, int *stp)
 {
 	while (*stp)
 	{
@@ -49,7 +49,7 @@ static void	ft_movera(t_col **a, int *stp)
 	}
 }
 
-static void	ft_moverb(t_col **b, int *stp)
+static void	ft_moverb(t_stack **b, int *stp)
 {
 	while (*stp)
 	{
@@ -66,7 +66,7 @@ static void	ft_moverb(t_col **b, int *stp)
 	}
 }
 
-void	ft_move(t_col **a, t_col **b, int coa, int cob)
+void	ft_move(t_stack **a, t_stack **b, int coa, int cob)
 {
 	if (coa < 0 && cob < 0)
 	{

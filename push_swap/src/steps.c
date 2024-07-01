@@ -6,21 +6,21 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 14:42:48 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/27 14:12:14 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:49:42 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_stepcount(t_col **col_a, t_col **col_b)
+void	ft_stepcount(t_stack **sta, t_stack **stb)
 {
-	t_col	*tmp_a;
-	t_col	*tmp_b;
+	t_stack	*tmp_a;
+	t_stack	*tmp_b;
 	int		soa;
 	int		sob;
 
-	tmp_a = *col_a;
-	tmp_b = *col_b;
+	tmp_a = *sta;
+	tmp_b = *stb;
 	soa = ft_slinky(tmp_a);
 	sob = ft_slinky(tmp_b);
 	while (tmp_b)
@@ -39,14 +39,23 @@ void	ft_stepcount(t_col **col_a, t_col **col_b)
 	}
 }
 
-void	ft_quickstep(t_col **col_a, t_col **col_b)
+int	ft_abs(int n)
 {
-	t_col	*tmp;
+	if (n < 0)
+	{
+		return (n * -1);
+	}
+	return (n);
+}
+
+void	ft_quickstep(t_stack **sta, t_stack **stb)
+{
+	t_stack	*tmp;
 	int		qs;
 	int		coa;
 	int		cob;
 
-	tmp = *col_b;
+	tmp = *stb;
 	qs = INT_MAX;
 	while (tmp)
 	{
@@ -58,5 +67,5 @@ void	ft_quickstep(t_col **col_a, t_col **col_b)
 		}
 		tmp = tmp->next;
 	}
-	ft_move(col_a, col_b, coa, cob);
+	ft_move(sta, stb, coa, cob);
 }

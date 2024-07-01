@@ -6,19 +6,19 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:57:36 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/27 14:03:43 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:39:26 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_col	*ft_value(int ac, char **av)
+t_stack	*ft_value(int ac, char **av)
 {
-	t_col	*col_a;
+	t_stack	*sta;
 	long	n;
 	int		i;
 
-	col_a = NULL;
+	sta = NULL;
 	n = 0;
 	i = 1;
 	while (i < ac)
@@ -26,32 +26,32 @@ t_col	*ft_value(int ac, char **av)
 		n = ft_atoi(av[i]);
 		if (n > INT_MAX || n < INT_MIN)
 		{
-			ft_error(&col_a, NULL);
+			ft_error(&sta, NULL);
 		}
 		if (i == 1)
 		{
-			col_a = ft_trump((int)n);
+			sta = ft_newstack((int)n);
 		}
 		else
 		{
-			ft_lobbybar(&col_a, ft_trump((int)n));
+			ft_addbotstack(&sta, ft_newstack((int)n));
 		}
 		i++;
 	}
-	return (col_a);
+	return (sta);
 }
 
-void	ft_index(t_col *col_a, int cos)
+void	ft_index(t_stack *sta, int sts)
 {
-	t_col	*ptr;
-	t_col	*sdd;
+	t_stack	*ptr;
+	t_stack	*hdx;
 	int		min;
 
-	while (--cos > 0)
+	while (--sts > 0)
 	{
-		ptr = col_a;
+		ptr = sta;
 		min = INT_MIN;
-		sdd = NULL;
+		hdx = NULL;
 		while (ptr)
 		{
 			if (ptr->val == INT_MIN && ptr->ind == 0)
@@ -59,13 +59,13 @@ void	ft_index(t_col *col_a, int cos)
 			if (ptr->val > min && ptr->ind == 0)
 			{
 				min = ptr->val;
-				sdd = ptr;
-				ptr = col_a;
+				hdx = ptr;
+				ptr = sta;
 			}
 			else
 				ptr = ptr->next;
 		}
-		if (sdd != NULL)
-			sdd->ind = cos;
+		if (hdx != NULL)
+			hdx->ind = sts;
 	}
 }

@@ -6,15 +6,15 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:00:45 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/27 14:03:40 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:35:39 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_floor(t_col **col)
+static void	ft_findex(t_stack **col)
 {
-	t_col	*tmp;
+	t_stack	*tmp;
 	int		i;
 
 	tmp = *col;
@@ -27,15 +27,15 @@ static void	ft_floor(t_col **col)
 	}
 }
 
-int	ft_heli(t_col **col)
+int	ft_lindex(t_stack **col)
 {
-	t_col	*tmp;
+	t_stack	*tmp;
 	int		i;
 	int		tgtt;
 
 	tmp = *col;
 	i = INT_MAX;
-	ft_floor(col);
+	ft_findex(col);
 	tgtt = tmp->pos;
 	while (tmp)
 	{
@@ -49,9 +49,9 @@ int	ft_heli(t_col **col)
 	return (tgtt);
 }
 
-static int	ft_trampoline(t_col **a, int b_ind, int tgt_ind, int tgt_pos)
+static int	ft_sindex(t_stack **a, int b_ind, int tgt_ind, int tgt_pos)
 {
-	t_col	*tmp;
+	t_stack	*tmp;
 
 	tmp = *a;
 	while (tmp)
@@ -78,18 +78,18 @@ static int	ft_trampoline(t_col **a, int b_ind, int tgt_ind, int tgt_pos)
 	return (tgt_pos);
 }
 
-void	ft_aim(t_col **a, t_col **b)
+void	ft_tindex(t_stack **a, t_stack **b)
 {
-	t_col	*tmp;
+	t_stack	*tmp;
 	int		tgt_pos;
 
 	tmp = *b;
-	ft_floor(a);
-	ft_floor(b);
+	ft_findex(a);
+	ft_findex(b);
 	tgt_pos = 0;
 	while (tmp)
 	{
-		tgt_pos = ft_trampoline(a, tmp->ind, INT_MAX, tgt_pos);
+		tgt_pos = ft_sindex(a, tmp->ind, INT_MAX, tgt_pos);
 		tmp->tgt = tgt_pos;
 		tmp = tmp->next;
 	}

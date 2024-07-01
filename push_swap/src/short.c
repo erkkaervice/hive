@@ -6,13 +6,13 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:54:50 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/25 16:05:32 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:22:43 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_finder(t_col *col)
+static int	ft_finder(t_stack *col)
 {
 	int	i;
 
@@ -28,7 +28,7 @@ static int	ft_finder(t_col *col)
 	return (i);
 }
 
-void	ft_short(t_col **col)
+void	ft_short(t_stack **col)
 {
 	int	i;
 

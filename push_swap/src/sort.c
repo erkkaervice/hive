@@ -6,53 +6,53 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:22:44 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/27 14:59:18 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:33:45 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_dartagnan(t_col **col_a, t_col **col_b)
+static void	ft_dartagnan(t_stack **sta, t_stack **stb)
 {
-	int	cos;
+	int	sts;
 	int	hit;
 	int	i;
 
-	cos = ft_slinky(*col_a);
+	sts = ft_slinky(*sta);
 	hit = 0;
 	i = 0;
-	while (cos > 6 && i < cos && hit < cos / 2)
+	while (sts > 6 && i < sts && hit < sts / 2)
 	{
-		if ((*col_a)->ind <= cos / 2)
+		if ((*sta)->ind <= sts / 2)
 		{
-			ft_pb(col_a, col_b);
+			ft_pb(sta, stb);
 			hit++;
 		}
 		else
 		{
-			ft_ra(col_a);
+			ft_ra(sta);
 		}
 		i++;
 	}
-	while (cos - hit > 3)
+	while (sts - hit > 3)
 	{
-		ft_pb(col_a, col_b);
+		ft_pb(sta, stb);
 		hit++;
 	}
 }
 
-static void	ft_rearrange(t_col **col_a)
+static void	ft_rearrange(t_stack **sta)
 {
 	int	res;
-	int	cos;
+	int	sts;
 
-	cos = ft_slinky(*col_a);
-	res = ft_heli(col_a);
-	if (res > cos / 2)
+	sts = ft_slinky(*sta);
+	res = ft_lindex(sta);
+	if (res > sts / 2)
 	{
-		while (res < cos)
+		while (res < sts)
 		{
-			ft_rra(col_a);
+			ft_rra(sta);
 			res++;
 		}
 	}
@@ -60,24 +60,24 @@ static void	ft_rearrange(t_col **col_a)
 	{
 		while (res > 0)
 		{
-			ft_ra(col_a);
+			ft_ra(sta);
 			res--;
 		}
 	}
 }
 
-void	ft_sort(t_col **col_a, t_col **col_b)
+void	ft_sort(t_stack **sta, t_stack **stb)
 {
-	ft_dartagnan(col_a, col_b);
-	ft_short(col_a);
-	while (*col_b)
+	ft_dartagnan(sta, stb);
+	ft_short(sta);
+	while (*stb)
 	{
-		ft_aim(col_a, col_b);
-		ft_stepcount(col_a, col_b);
-		ft_quickstep(col_a, col_b);
+		ft_tindex(sta, stb);
+		ft_stepcount(sta, stb);
+		ft_quickstep(sta, stb);
 	}
-	if (!ft_sorted(*col_a))
+	if (!ft_sorted(*sta))
 	{
-		ft_rearrange(col_a);
+		ft_rearrange(sta);
 	}
 }

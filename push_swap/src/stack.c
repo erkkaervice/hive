@@ -1,36 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wtc.c                                              :+:      :+:    :+:   */
+/*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:18:45 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/27 13:56:51 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:44:51 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_col	*ft_lobby(t_col *col)
-{
-	while (col && col->next != NULL)
-	{
-		col = col->next;
-	}
-	return (col);
-}
-
-t_col	*ft_stairs(t_col *col)
-{
-	while (col && col->next && col->next->next != NULL)
-	{
-		col = col ->next;
-	}
-	return (col);
-}
-
-int	ft_slinky(t_col *col)
+int	ft_slinky(t_stack *col)
 {
 	int	i;
 
@@ -47,9 +29,9 @@ int	ft_slinky(t_col *col)
 	return (i);
 }
 
-t_col	*ft_trump(int value)
+t_stack	*ft_newstack(int value)
 {
-	t_col	*new;
+	t_stack	*new;
 
 	new = malloc(sizeof * new);
 	if (!new)
@@ -66,9 +48,27 @@ t_col	*ft_trump(int value)
 	return (new);
 }
 
-void	ft_lobbybar(t_col **col, t_col *new)
+t_stack	*ft_botstack(t_stack *col)
 {
-	t_col	*bar;
+	while (col && col->next != NULL)
+	{
+		col = col->next;
+	}
+	return (col);
+}
+
+t_stack	*ft_2ndbotstack(t_stack *col)
+{
+	while (col && col->next && col->next->next != NULL)
+	{
+		col = col ->next;
+	}
+	return (col);
+}
+
+void	ft_addbotstack(t_stack **col, t_stack *new)
+{
+	t_stack	*bar;
 
 	if (!new)
 	{
@@ -79,6 +79,6 @@ void	ft_lobbybar(t_col **col, t_col *new)
 		*col = new;
 		return ;
 	}
-	bar = ft_lobby(*col);
+	bar = ft_botstack(*col);
 	bar->next = new;
 }
