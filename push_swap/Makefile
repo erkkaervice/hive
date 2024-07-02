@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/20 15:44:12 by eala-lah          #+#    #+#              #
-#    Updated: 2024/07/01 15:53:29 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/07/02 19:26:14 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ SRC	= \
 	index.c \
 	main.c \
 	moves.c \
-	options.c \
 	push.c \
 	reverse_rotate.c \
 	rotate.c \

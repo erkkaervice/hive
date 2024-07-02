@@ -6,23 +6,23 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:28:14 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/01 15:44:09 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:00:08 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_reverse_rotate(t_stack **col)
+static void	ft_reverse_rotate(t_stack **sta)
 {
 	t_stack	*tmp;
 	t_stack	*end;
 	t_stack	*the;
 
-	end = ft_botstack(*col);
-	the = ft_2ndbotstack(*col);
-	tmp = *col;
-	*col = end;
-	(*col)->next = tmp;
+	end = ft_botstack(*sta);
+	the = ft_2ndbotstack(*sta);
+	tmp = *sta;
+	*sta = end;
+	(*sta)->next = tmp;
 	the->next = NULL;
 }
 

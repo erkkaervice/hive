@@ -6,24 +6,24 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:30:06 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/01 15:33:45 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:53:21 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_swap(t_stack *col)
+static void	ft_swap(t_stack *sta)
 {
 	int	tmp;
 
-	if (col == NULL || col->next == NULL)
+	if (sta == NULL || sta->next == NULL)
 		return ;
-	tmp = col->val;
-	col->val = col->next->val;
-	col->next->val = tmp;
-	tmp = col->ind;
-	col->ind = col->next->ind;
-	col->next->ind = tmp;
+	tmp = sta->val;
+	sta->val = sta->next->val;
+	sta->next->val = tmp;
+	tmp = sta->ind;
+	sta->ind = sta->next->ind;
+	sta->next->ind = tmp;
 }
 
 void	ft_sa(t_stack **sta)

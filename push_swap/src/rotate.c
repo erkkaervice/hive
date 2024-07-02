@@ -6,20 +6,20 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:05:02 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/01 15:33:45 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:00:08 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_rotate(t_stack **col)
+static void	ft_rotate(t_stack **sta)
 {
 	t_stack	*tmp;
 	t_stack	*end;
 
-	tmp = *col;
-	*col = (*col)->next;
-	end = ft_botstack(*col);
+	tmp = *sta;
+	*sta = (*sta)->next;
+	end = ft_botstack(*sta);
 	tmp->next = NULL;
 	end->next = tmp;
 }

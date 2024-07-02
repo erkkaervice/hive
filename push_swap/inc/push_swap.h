@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:34:27 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/01 15:33:45 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:38:53 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef struct s_stack
 	int				ind;
 	int				pos;
 	int				tgt;
-	int				coa;
-	int				cob;
+	int				soa;
+	int				sob;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -36,10 +36,10 @@ void		ft_index(t_stack *sta, int sts);
 int			main(int ac, char **av);
 
 //do move
-void		ft_move(t_stack **a, t_stack **b, int coa, int cob);
+void		ft_move(t_stack **a, t_stack **b, int soa, int sob);
 
 //options
-int			ft_lindex(t_stack **col);
+int			ft_lindex(t_stack **sta);
 void		ft_tindex(t_stack **a, t_stack **b);
 
 //moves
@@ -56,8 +56,8 @@ void		ft_sb(t_stack **stb);
 void		ft_ss(t_stack **sta, t_stack **stb);
 
 //sorting
-int			ft_sorted(t_stack *col);
-void		ft_short(t_stack **col);
+int			ft_sorted(t_stack *sta);
+void		ft_short(t_stack **sta);
 void		ft_sort(t_stack **sta, t_stack **stb);
 
 //steps
@@ -72,17 +72,17 @@ long int	ft_atoi(const char *str);
 
 //utils
 void		ft_putstr(char *str);
-void		ft_free(t_stack **col);
+void		ft_free(t_stack **sta);
 void		ft_error(t_stack **sta, t_stack **stb);
 
 //validation
 int			ft_valid(char **av);
 
 //stack
-t_stack		*ft_botstack(t_stack *col);
-t_stack		*ft_2ndbotstack(t_stack *col);
-int			ft_slinky(t_stack *col);
+t_stack		*ft_botstack(t_stack *sta);
+t_stack		*ft_2ndbotstack(t_stack *sta);
+int			ft_stalen(t_stack *sta);
 t_stack		*ft_newstack(int value);
-void		ft_addbotstack(t_stack **col, t_stack *new);
+void		ft_addbotstack(t_stack **sta, t_stack *new);
 
 #endif

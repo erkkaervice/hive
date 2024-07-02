@@ -6,35 +6,35 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 14:39:22 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/01 12:22:43 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:38:53 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_moverrr(t_stack **a, t_stack **b, int *coa, int *cob)
+static void	ft_moverrr(t_stack **a, t_stack **b, int *soa, int *sob)
 {
-	while (*coa < 0 && *cob < 0)
+	while (*soa < 0 && *sob < 0)
 	{
-		(*coa)++;
-		(*cob)++;
+		(*soa)++;
+		(*sob)++;
 		ft_rrr(a, b);
 	}
 }
 
-static void	ft_moverr(t_stack **a, t_stack **b, int *coa, int *cob)
+static void	ft_moverr(t_stack **a, t_stack **b, int *soa, int *sob)
 {
-	while (*coa > 0 && *cob > 0)
+	while (*soa > 0 && *sob > 0)
 	{
-		(*coa)--;
-		(*cob)--;
+		(*soa)--;
+		(*sob)--;
 		ft_rr(a, b);
 	}
 }
 
 static void	ft_movera(t_stack **a, int *stp)
 {
-	while (*stp)
+	while (*stp != 0)
 	{
 		if (*stp > 0)
 		{
@@ -51,7 +51,7 @@ static void	ft_movera(t_stack **a, int *stp)
 
 static void	ft_moverb(t_stack **b, int *stp)
 {
-	while (*stp)
+	while (*stp != 0)
 	{
 		if (*stp > 0)
 		{
@@ -66,17 +66,13 @@ static void	ft_moverb(t_stack **b, int *stp)
 	}
 }
 
-void	ft_move(t_stack **a, t_stack **b, int coa, int cob)
+void	ft_move(t_stack **a, t_stack **b, int soa, int sob)
 {
-	if (coa < 0 && cob < 0)
-	{
-		ft_moverrr(a, b, &coa, &cob);
-	}
-	else if (coa > 0 && cob > 0)
-	{
-		ft_moverr(a, b, &coa, &cob);
-	}
-	ft_movera(a, &coa);
-	ft_moverb(b, &cob);
+	if (soa < 0 && sob < 0)
+		ft_moverrr(a, b, &soa, &sob);
+	else if (soa > 0 && sob > 0)
+		ft_moverr(a, b, &soa, &sob);
+	ft_movera(a, &soa);
+	ft_moverb(b, &sob);
 	ft_pa(a, b);
 }
