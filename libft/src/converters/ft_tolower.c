@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:17:45 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/10 15:42:19 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:24:51 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int	ft_tolower(int c)
 
 	usc = (unsigned char)c;
 	if (usc >= 'A' && usc <= 'Z')
-	{
 		return (usc + ('a' - 'A'));
-	}
 	return (c);
 }

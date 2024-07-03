@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:17:32 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/13 16:16:59 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:24:52 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,11 @@ int	ft_atoi(char const *str)
 	n = 0;
 	sign = 1;
 	while (*str && ft_isspace(*str))
-	{
 		str++;
-	}
 	if (*str == '-' || *str == '+')
 	{
 		if (*str == '-')
-		{
 			sign *= -1;
-		}
 		str++;
 	}
 	while (*str && ft_isdigit(*str))

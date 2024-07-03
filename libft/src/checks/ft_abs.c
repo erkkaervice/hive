@@ -6,15 +6,13 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:51:56 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/20 13:53:06 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:14:03 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_abs(int n)
 {
 	if (n < 0)
-	{
-		return (n * -1);
-	}
+		return (-n);
 	return (n);
 }

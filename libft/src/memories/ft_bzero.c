@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:54:36 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/13 15:27:23 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:24:50 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,5 @@ void	ft_bzero(void *s, size_t n)
 
 	p = (unsigned char *)s;
 	while (n--)
-	{
 		*p++ = 0;
-	}
 }

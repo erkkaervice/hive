@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:05:40 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/13 16:30:08 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:27:03 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ static size_t	ft_check(const char *set, char c)
 	while (*set)
 	{
 		if (*set == c)
-		{
 			return (1);
-		}
 		set++;
 	}
 	return (0);
@@ -45,9 +43,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	tri = saw;
 	while (i < len)
-	{
 		*saw++ = s1[i++];
-	}
 	*saw = '\0';
 	return (tri);
 }

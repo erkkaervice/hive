@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 12:45:31 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/10 15:39:07 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:24:49 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,8 @@ void	*ft_calloc(size_t count, size_t size)
 		return (NULL);
 	}
 	if (count && size && count > (SIZE_MAX / size))
-	{
 		return (NULL);
-	}
 	while (ptr < end)
-	{
 		*ptr++ = 0;
-	}
 	return (mem);
 }

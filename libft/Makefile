@@ -6,109 +6,101 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 17:41:41 by eala-lah          #+#    #+#              #
-#    Updated: 2024/06/20 13:53:01 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/07/03 15:58:33 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC         = \
-	src/checks/ft_abs.c \
-	src/checks/ft_isalnum.c \
-	src/checks/ft_isalpha.c \
-	src/checks/ft_isascii.c \
-	src/checks/ft_isdigit.c \
-	src/checks/ft_isprint.c \
-	src/checks/ft_issign.c \
-	src/checks/ft_isspace.c \
-	src/checks/ft_pole.c \
-	src/converters/ft_atoi.c \
-	src/converters/ft_itoa.c \
-	src/converters/ft_tolower.c \
-	src/converters/ft_toupper.c \
-	src/getnextline/get_next_line.c \
-	src/lists/ft_lstadd_back_bonus.c \
-	src/lists/ft_lstadd_front_bonus.c \
-	src/lists/ft_lstclear_bonus.c \
-	src/lists/ft_lstdelone_bonus.c \
-	src/lists/ft_lstiter_bonus.c \
-	src/lists/ft_lstlast_bonus.c \
-	src/lists/ft_lstmap_bonus.c \
-	src/lists/ft_lstnew_bonus.c \
-	src/lists/ft_lstsize_bonus.c \
-	src/memories/ft_bzero.c \
-	src/memories/ft_calloc.c \
-	src/memories/ft_free.c \
-	src/memories/ft_memchr.c \
-	src/memories/ft_memcmp.c \
-	src/memories/ft_memcpy.c \
-	src/memories/ft_memmove.c \
-	src/memories/ft_memset.c \
-	src/printf/ft_printchar.c \
-	src/printf/ft_printf.c \
-	src/printf/ft_printhexa.c \
-	src/printf/ft_printmah.c \
-	src/printf/ft_printnbr.c \
-	src/printf/ft_printstr.c \
-	src/printf/ft_printulo.c \
-	src/puts/ft_putchar_fd.c \
-	src/puts/ft_putendl_fd.c \
-	src/puts/ft_putnbr_fd.c \
-	src/puts/ft_putstr_fd.c \
-	src/strings/ft_nbrlen.c \
-	src/strings/ft_newstr.c \
-	src/strings/ft_split.c \
-	src/strings/ft_strchr.c \
-	src/strings/ft_strdup.c \
-	src/strings/ft_striteri.c \
-	src/strings/ft_strjoin.c \
-	src/strings/ft_strlcat.c \
-	src/strings/ft_strlcpy.c \
-	src/strings/ft_strlen.c \
-	src/strings/ft_strmapi.c \
-	src/strings/ft_strncmp.c \
-	src/strings/ft_strnstr.c \
-	src/strings/ft_strrchr.c \
-	src/strings/ft_strtrim.c \
-	src/strings/ft_substr.c \
-
-SRC_BONUS   = \
-	src/lists/ft_lstadd_back_bonus.c \
-	src/lists/ft_lstadd_front_bonus.c \
-	src/lists/ft_lstclear_bonus.c \
-	src/lists/ft_lstdelone_bonus.c \
-	src/lists/ft_lstiter_bonus.c \
-	src/lists/ft_lstlast_bonus.c \
-	src/lists/ft_lstmap_bonus.c \
-	src/lists/ft_lstnew_bonus.c \
-	src/lists/ft_lstsize_bonus.c \
-
-OBJS        = $(SRC:.c=.o)
-OBJS_BONUS  = $(SRC_BONUS:.c=.o)
-
-HEAD        = inc
-
 NAME        = libft.a
-AR          = ar rcs
-RM          = rm -f
-LIB         = ranlib
-GCC         = gcc
-CFLAGS      = -Wall -Wextra -Werror -I $(HEAD)
 
-all: $(NAME)
+INCS        = -I ./inc/
+
+SRC_PATH    = src/
+SRC         = \
+checks/ft_abs.c \
+checks/ft_isalnum.c \
+checks/ft_isalpha.c \
+checks/ft_isascii.c \
+checks/ft_isdigit.c \
+checks/ft_isprint.c \
+checks/ft_issign.c \
+checks/ft_isspace.c \
+converters/ft_atoi.c \
+converters/ft_itoa.c \
+converters/ft_tolower.c \
+converters/ft_toupper.c \
+getnextline/get_next_line.c \
+lists/ft_lstadd_back_bonus.c \
+lists/ft_lstadd_front_bonus.c \
+lists/ft_lstclear_bonus.c \
+lists/ft_lstdelone_bonus.c \
+lists/ft_lstiter_bonus.c \
+lists/ft_lstlast_bonus.c \
+lists/ft_lstmap_bonus.c \
+lists/ft_lstnew_bonus.c \
+lists/ft_lstsize_bonus.c \
+memories/ft_bzero.c \
+memories/ft_calloc.c \
+memories/ft_free.c \
+memories/ft_memchr.c \
+memories/ft_memcmp.c \
+memories/ft_memcpy.c \
+memories/ft_memmove.c \
+memories/ft_memset.c \
+printf/ft_printchar.c \
+printf/ft_printf.c \
+printf/ft_printhexa.c \
+printf/ft_printmah.c \
+printf/ft_printnbr.c \
+printf/ft_printstr.c \
+printf/ft_printulo.c \
+puts/ft_putchar_fd.c \
+puts/ft_putendl_fd.c \
+puts/ft_putnbr_fd.c \
+puts/ft_putstr_fd.c \
+strings/ft_nbrlen.c \
+strings/ft_newstr.c \
+strings/ft_split.c \
+strings/ft_strchr.c \
+strings/ft_strdup.c \
+strings/ft_striteri.c \
+strings/ft_strjoin.c \
+strings/ft_strlcat.c \
+strings/ft_strlcpy.c \
+strings/ft_strlen.c \
+strings/ft_strmapi.c \
+strings/ft_strncmp.c \
+strings/ft_strnstr.c \
+strings/ft_strrchr.c \
+strings/ft_strtrim.c \
+strings/ft_substr.c \
+
+OBJ_PATH    = obj/
+OBJS        = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
+OBJ_DIRS    = $(sort $(dir $(OBJS)))
+
+GCC         = cc
+CFLAGS      = -Wall -Wextra -Werror
+
+AR          = ar rcs
+LIB         = ranlib
+
+all: $(OBJ_PATH) $(OBJ_DIRS) $(NAME)
+
+$(OBJ_PATH) $(OBJ_DIRS):
+	mkdir -p $(OBJ_DIRS)
+
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c | $(OBJ_PATH) $(OBJ_DIRS)
+	$(GCC) $(CFLAGS) -c $< -o $@ $(INCS)
 
 $(NAME): $(OBJS)
-	@$(AR) $(NAME) $(OBJS)
-	@$(LIB) $(NAME)
+	$(AR) $(NAME) $(OBJS)
+	$(LIB) $(NAME)
 
-bonus: $(OBJS_BONUS) $(OBJS)
-	@$(AR) $(NAME) $(OBJS_BONUS)
-	@$(LIB) $(NAME)
-	
 clean:
-	@$(RM) $(OBJS) $(OBJS_BONUS)
+	rm -rf $(OBJ_PATH)
 
-fclean: 
-	@$(RM) $(OBJS) $(OBJS_BONUS)
-	@$(RM) $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
 

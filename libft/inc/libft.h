@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:09:50 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/06/20 13:53:05 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:17:28 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <errno.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdint.h>
 
 // CHECKS
 
@@ -28,7 +29,6 @@ int			ft_isdigit(int c);
 int			ft_isprint(int c);
 int			ft_issign(char c);
 int			ft_isspace(int c);
-int			ft_pole(int n);
 
 // CONVERTERS
 

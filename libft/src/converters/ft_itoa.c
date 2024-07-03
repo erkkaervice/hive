@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:32:46 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/13 16:22:40 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:24:51 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_itoa(int n)
 	int				len;
 	char			*str;
 
-	nbr = ft_pole(n);
+	nbr = ft_abs(n);
 	sign = 0;
 	len = ft_nbrlen(n);
 	str = ft_newstr(len);
@@ -34,8 +34,6 @@ char	*ft_itoa(int n)
 		nbr /= 10;
 	}
 	if (sign)
-	{
 		str[0] = '-';
-	}
 	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 15:14:49 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/22 12:14:59 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:24:54 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 int	ft_printchar(char c)
 {
 	if (write(1, &c, 1) == -1)
-	{
 		return (-1);
-	}
 	else
-	{
 		return (1);
-	}
 }

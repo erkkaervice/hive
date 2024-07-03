@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:36:32 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/05/07 12:47:32 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:24:48 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	while (n--)
 	{
 		if (*p1 != *p2)
-		{
 			return (*p1 - *p2);
-		}
 		p1++;
 		p2++;
 	}
