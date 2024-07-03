@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:22:32 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/02 18:43:19 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:06:27 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_issign(char c)
 void	ft_putstr(char *str)
 {
 	while (*str)
-		write(1, str++, 1);	
+		write(1, str++, 1);
 }
 
 void	ft_free(t_stack **sta)

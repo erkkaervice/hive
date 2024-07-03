@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 14:42:48 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/02 19:55:53 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:07:55 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ void	ft_stepcount(t_stack **sta, t_stack **stb)
 	while (tmp)
 	{
 		if (tmp->pos > ft_stalen(*stb) / 2)
-            		tmp->sob = (ft_stalen(*stb) - tmp->pos) * -1;
+			tmp->sob = (ft_stalen(*stb) - tmp->pos) * -1;
 		else
-            		tmp->sob = tmp->pos;
-        	if (tmp->tgt > ft_stalen(*sta) / 2)
-            		tmp->soa = (ft_stalen(*sta) - tmp->tgt) * -1;
-        	else
-           		tmp->soa = tmp->tgt;
-        tmp = tmp->next;
+			tmp->sob = tmp->pos;
+		if (tmp->tgt > ft_stalen(*sta) / 2)
+			tmp->soa = (ft_stalen(*sta) - tmp->tgt) * -1;
+		else
+			tmp->soa = tmp->tgt;
+		tmp = tmp->next;
 	}
 }
 
