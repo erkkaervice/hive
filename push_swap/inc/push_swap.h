@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:34:27 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/02 19:38:53 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/10 17:01:04 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,11 @@ void		ft_stepcount(t_stack **sta, t_stack **stb);
 void		ft_quickstep(t_stack **sta, t_stack **stb);
 
 //tempft
-int			ft_isdigit(int c);
-int			ft_issign(char c);
-int			ft_abs(int n);
-long int	ft_atoi(const char *str);
+long int	ft_atoii(const char *str);
 
 //utils
 void		ft_putstr(char *str);
-void		ft_free(t_stack **sta);
+void		ft_freee(t_stack **sta);
 void		ft_error(t_stack **sta, t_stack **stb);
 
 //validation

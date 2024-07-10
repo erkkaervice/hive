@@ -6,13 +6,14 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:00:31 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/02 19:06:49 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:29:02 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "../libft/inc/libft.h"
 
-long	ft_atoi(const char *str)
+long	ft_atoii(const char *str)
 {
 	int		neg;
 	int		i;
@@ -70,7 +71,7 @@ static int	ft_duplicate(char **av)
 		j = i + 1;
 		while (av[j])
 		{
-			if (ft_atoi(av[i]) == ft_atoi(av[j]))
+			if (ft_atoii(av[i]) == ft_atoii(av[j]))
 				return (1);
 			j++;
 		}

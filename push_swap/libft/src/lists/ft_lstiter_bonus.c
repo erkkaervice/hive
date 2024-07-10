@@ -1,44 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 17:22:32 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/10 16:34:39 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/05/01 16:39:24 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/05/01 16:40:34 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	ft_putstr(char *str)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	while (*str)
-		write(1, str++, 1);
-}
-
-void	ft_freee(t_stack **sta)
-{
-	t_stack	*tmp;
-
-	if (!sta || !(*sta))
+	if (!lst || !f)
 		return ;
-	while (*sta)
+	while (lst)
 	{
-		tmp = (*sta)->next;
-		free(*sta);
-		*sta = tmp;
+		f(lst->content);
+		lst = lst->next;
 	}
-	*sta = NULL;
-}
-
-void	ft_error(t_stack **sta, t_stack **stb)
-{
-	if (sta == NULL || *sta != NULL)
-		ft_freee(sta);
-	if (stb == NULL || *stb != NULL)
-		ft_freee(stb);
-	write(2, "Error\n", 6);
-	exit (1);
 }

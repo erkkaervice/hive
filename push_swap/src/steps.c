@@ -6,11 +6,12 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 14:42:48 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/03 12:07:55 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:29:06 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "../libft/inc/libft.h"
 
 t_stack	*ft_value(int ac, char **av)
 {
@@ -23,7 +24,7 @@ t_stack	*ft_value(int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
-		n = ft_atoi(av[i]);
+		n = ft_atoii(av[i]);
 		if (n > INT_MAX || n < INT_MIN)
 			ft_error(&sta, NULL);
 		if (i == 1)
@@ -52,13 +53,6 @@ void	ft_stepcount(t_stack **sta, t_stack **stb)
 			tmp->soa = tmp->tgt;
 		tmp = tmp->next;
 	}
-}
-
-int	ft_abs(int n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
 }
 
 void	ft_quickstep(t_stack **sta, t_stack **stb)
