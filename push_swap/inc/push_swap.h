@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:34:27 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/10 17:01:04 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/11 12:08:11 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ typedef struct s_stack
 //index
 t_stack		*ft_value(int ac, char **av);
 void		ft_index(t_stack *sta, int sts);
-
-//main
-int			main(int ac, char **av);
 
 //do move
 void		ft_move(t_stack **a, t_stack **b, int soa, int sob);
