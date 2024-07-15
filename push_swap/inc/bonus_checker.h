@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:48:59 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/12 11:44:11 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/15 16:00:47 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "../libft/inc/ft_printf.h"
 # include <unistd.h>
 
-typedef struct	s_bonus_stack
+typedef struct s_b_stack
 {
 	int				val;
 	int				ind;
@@ -27,24 +27,24 @@ typedef struct	s_bonus_stack
 	int				tgt;
 	int				soa;
 	int				sob;
-	struct s_bonus_stack	*next;
-	int					num;
-	int					diff;
-}						t_bonus_stack;
+	struct s_b_stack	*next;
+	int				ft_isdigit;
+	int				diff;
+}					t_b_stack;
 
-void			stack_del(t_bonus_stack **stack);
-void			doubles_checker(t_bonus_stack **stack);
-int				*create_array_from_list(t_bonus_stack *stack, int len);
-int				s_len(t_bonus_stack *stack);
+void			stack_del(t_b_stack **stack);
+void			doubles_checker(t_b_stack **stack);
+int				*create_array_from_list(t_b_stack *stack, int len);
+int				s_len(t_b_stack *stack);
 int				check_int_overflow(char *str);
-void			quick_sort(int *stack1, int start, int end);
+void			quick_sort(int *sta, int start, int end);
 int				check_argv(char *str);
-int				do_commands(char *line, t_bonus_stack **first, t_bonus_stack **second);
-int				return_errors(char **line, t_bonus_stack **stack1, t_bonus_stack **stack2);
-int				stack_is_sorted(t_bonus_stack *first);
-void			print_checker_res(t_bonus_stack **first, t_bonus_stack **second);
-t_bonus_stack	*create_new_node(void);
-t_bonus_stack	*copy_args_in_stack(int argc, char **argv);
+int				do_commands(char *line, t_b_stack **first, t_b_stack **second);
+int				return_errors(char **line, t_b_stack **sta, t_b_stack **stb);
+int				stack_is_sorted(t_b_stack *first);
+void			print_checker_res(t_b_stack **first, t_b_stack **second);
+t_b_stack		*create_new_node(void);
+t_b_stack		*copy_args_in_stack(int argc, char **argv);
 void			ft_strdel(char **as);
 
 #endif

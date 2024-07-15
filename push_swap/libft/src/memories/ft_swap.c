@@ -6,13 +6,15 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 13:42:33 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/15 13:44:54 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:49:16 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_swap(int *a, int *b) 
+void	ft_swap(int *a, int *b)
 {
-	int tmp = *a;
+	int	tmp;
+
+	tmp = *a;
 	*a = *b;
 	*b = tmp;
 }
