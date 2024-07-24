@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:50:39 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/24 16:00:26 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:15:58 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	*create_array_from_list(t_b_stack *stack, int len)
 	i = 0;
 	while (i < len)
 	{
-		array[i] = stack->ft_isdigit;
+		array[i] = stack->val;
 		stack = stack->next;
 		i++;
 	}
