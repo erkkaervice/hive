@@ -6,35 +6,11 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:00:31 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/10 16:29:02 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:58:39 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "../libft/inc/libft.h"
-
-long	ft_atoii(const char *str)
-{
-	int		neg;
-	int		i;
-	long	nb;
-
-	nb = 0;
-	neg = 1;
-	i = 0;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			neg = -1;
-		i++;
-	}
-	while (ft_isdigit(str[i]))
-	{
-		nb = nb * 10 + (str[i] - '0');
-		i++;
-	}
-	return (nb * neg);
-}
 
 static int	ft_number(char *av)
 {
@@ -71,7 +47,7 @@ static int	ft_duplicate(char **av)
 		j = i + 1;
 		while (av[j])
 		{
-			if (ft_atoii(av[i]) == ft_atoii(av[j]))
+			if (ft_atoi(av[i]) == ft_atoi(av[j]))
 				return (1);
 			j++;
 		}

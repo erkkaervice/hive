@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:17:32 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/03 15:24:52 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:58:06 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	ft_atoi(char const *str)
 {
 	long long int	n;
 	int				sign;
-	long long int	dig;
 
 	n = 0;
 	sign = 1;
@@ -25,14 +24,17 @@ int	ft_atoi(char const *str)
 	if (*str == '-' || *str == '+')
 	{
 		if (*str == '-')
-			sign *= -1;
+			sign = -1;
 		str++;
 	}
 	while (*str && ft_isdigit(*str))
 	{
-		dig = *str - '0';
-		n = n * 10 + sign * dig;
+		n = n * 10 + (*str - '0');
 		str++;
+		if (n > INT_MAX && sign == 1)
+			return (INT_MAX);
+		if (n > (long long)INT_MAX + 1 && sign == -1)
+			return (INT_MIN);
 	}
-	return ((int)n);
+	return ((int)(n * sign));
 }

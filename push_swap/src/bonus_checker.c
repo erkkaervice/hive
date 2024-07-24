@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 13:29:55 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/24 16:13:11 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:11:01 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-t_b_stack	*copy_args_in_stack(int argc, char **argv)
+t_stack	*copy_args_in_stack(int argc, char **argv)
 {
-	t_b_stack	*stack;
-	t_b_stack	*new_node;
-	int			i;
+	t_stack	*stack;
+	t_stack	*new_node;
+	int		i;
 
 	stack = NULL;
 	i = 1;
 	while (i < argc)
 	{
-		new_node = (t_b_stack *)malloc(sizeof(t_b_stack));
+		new_node = (t_stack *)malloc(sizeof(t_stack));
 		if (!new_node)
 			return (NULL);
 		new_node->val = ft_atoi(argv[i]);
@@ -36,7 +36,7 @@ t_b_stack	*copy_args_in_stack(int argc, char **argv)
 	return (stack);
 }
 
-int	do_commands(char *line, t_b_stack **first, t_b_stack **second)
+int	do_commands(char *line, t_stack **first, t_stack **second)
 {
 	if (ft_strncmp(line, "sa\n", 3) == 0)
 		ft_sa((t_stack **)first);
@@ -65,7 +65,7 @@ int	do_commands(char *line, t_b_stack **first, t_b_stack **second)
 	return (0);
 }
 
-int	return_errors(char **line, t_b_stack **sta, t_b_stack **stb)
+int	return_errors(char **line, t_stack **sta, t_stack **stb)
 {
 	ft_strdel(line);
 	if (*sta)
@@ -76,9 +76,9 @@ int	return_errors(char **line, t_b_stack **sta, t_b_stack **stb)
 	return (0);
 }
 
-void	ft_result(t_b_stack **first, t_b_stack **second)
+void	ft_result(t_stack **first, t_stack **second)
 {
-	if (stack_is_sorted(*first))
+	if (!ft_sorted(*first))
 	{
 		if (!(*second))
 			write(1, "OK\n", 3);
@@ -91,23 +91,28 @@ void	ft_result(t_b_stack **first, t_b_stack **second)
 
 int	main(int argc, char **argv)
 {
-	t_b_stack	*first;
-	t_b_stack	*second;
-	char		*line;
+	t_stack	*first;
+	t_stack	*second;
+	char	*line;
 
 	if (argc < 2)
 		return (0);
-	if (!(first = copy_args_in_stack(argc, argv)))
+	first = copy_args_in_stack(argc, argv);
+	if (!first)
 	{
 		write(2, "Error\n", 6);
 		return (0);
 	}
 	second = NULL;
-	while ((line = get_next_line(0)) != NULL)
+	line = get_next_line(0);
+	while (line != NULL)
 	{
 		if (do_commands(line, &first, &second))
+		{
 			return (return_errors(&line, &first, &second));
+		}
 		ft_strdel(&line);
+		line = get_next_line(0);
 	}
 	ft_result(&first, &second);
 	return (0);

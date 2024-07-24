@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:34:27 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/11 12:08:11 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:07:03 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <limits.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include "../libft/inc/libft.h"
 
 typedef struct s_stack
 {

@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:22:32 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/24 16:05:30 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:31:10 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ int	ft_sorted(t_stack *sta)
 		sta = sta->next;
 	}
 	return (1);
-}
-
-void	ft_putstr(char *str)
-{
-	while (*str)
-		write(1, str++, 1);
 }
 
 void	ft_freee(t_stack **sta)

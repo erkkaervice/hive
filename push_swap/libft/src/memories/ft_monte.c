@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdel.c                                        :+:      :+:    :+:   */
+/*   ft_monte.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 15:45:21 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/24 17:06:43 by eala-lah         ###   ########.fr       */
+/*   Created: 2024/07/15 13:42:33 by eala-lah          #+#    #+#             */
+/*   Updated: 2024/07/24 16:37:49 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_strdel(char **str)
+void	ft_monte(int *a, int *b)
 {
-	if (str == NULL)
-		return ;
-	free(*str);
-	*str = NULL;
+	int	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }

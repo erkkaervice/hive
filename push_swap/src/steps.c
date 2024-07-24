@@ -6,12 +6,11 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 14:42:48 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/10 16:29:06 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:56:36 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "../libft/inc/libft.h"
 
 t_stack	*ft_value(int ac, char **av)
 {
@@ -24,8 +23,8 @@ t_stack	*ft_value(int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
-		n = ft_atoii(av[i]);
-		if (n > INT_MAX || n < INT_MIN)
+		n = ft_atoi(av[i]);
+		if (n == INT_MAX || n == INT_MIN)
 			ft_error(&sta, NULL);
 		if (i == 1)
 			sta = ft_newstack((int)n);

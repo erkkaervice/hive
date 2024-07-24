@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 17:41:41 by eala-lah          #+#    #+#              #
-#    Updated: 2024/07/24 15:47:47 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/07/24 16:37:50 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ memories/ft_memcmp.c \
 memories/ft_memcpy.c \
 memories/ft_memmove.c \
 memories/ft_memset.c \
-memories/ft_swap.c \
+memories/ft_monte.c \
 printf/ft_printchar.c \
 printf/ft_printf.c \
 printf/ft_printhexa.c \
@@ -58,6 +58,7 @@ puts/ft_putchar_fd.c \
 puts/ft_putendl_fd.c \
 puts/ft_putnbr_fd.c \
 puts/ft_putstr_fd.c \
+puts/ft_putstr.c \
 strings/ft_nbrlen.c \
 strings/ft_newstr.c \
 strings/ft_split.c \

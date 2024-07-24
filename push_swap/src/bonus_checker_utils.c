@@ -6,26 +6,11 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:50:39 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/24 16:15:58 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:05:51 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bonus_checker.h"
-
-int	s_len(t_b_stack *stack)
-{
-	int			len;
-	t_b_stack	*tmp;
-
-	len = 0;
-	tmp = stack;
-	while (tmp)
-	{
-		tmp = tmp->next;
-		len++;
-	}
-	return (len);
-}
 
 int	partition(int *sta, int start, int end)
 {
@@ -40,12 +25,12 @@ int	partition(int *sta, int start, int end)
 	{
 		if (sta[curr_indx] <= end_value)
 		{
-			ft_swap(&sta[strt_indx], &sta[curr_indx]);
+			ft_monte(&sta[strt_indx], &sta[curr_indx]);
 			strt_indx++;
 		}
 		curr_indx++;
 	}
-	ft_swap(&sta[strt_indx + 1], &sta[end]);
+	ft_monte(&sta[strt_indx + 1], &sta[end]);
 	return (strt_indx + 1);
 }
 
@@ -80,22 +65,7 @@ void	quick_sort(int *sta, int start, int end)
 	free(stb);
 }
 
-int	check_int_overflow(char *str)
-{
-	if (str[0] == '-')
-	{
-		if (ft_atoi(str) > 0)
-			return (1);
-	}
-	else
-	{
-		if (ft_atoi(str) < 0)
-			return (1);
-	}
-	return (0);
-}
-
-int	*create_array_from_list(t_b_stack *stack, int len)
+int	*create_array_from_list(t_stack *stack, int len)
 {
 	int	*array;
 	int	i;
@@ -113,10 +83,10 @@ int	*create_array_from_list(t_b_stack *stack, int len)
 	return (array);
 }
 
-void	stack_del(t_b_stack **stack)
+void	stack_del(t_stack **stack)
 {
-	t_b_stack	*del;
-	t_b_stack	*tmp;
+	t_stack	*del;
+	t_stack	*tmp;
 
 	tmp = *stack;
 	while (tmp)
@@ -147,45 +117,7 @@ int	check_argv(char *str)
 			return (1);
 		i++;
 	}
-	if (len == 10 && check_int_overflow(str))
+	if (len == 10 && ft_atoi(str) != 0)
 		return (1);
 	return (0);
-}
-
-void	doubles_checker(t_b_stack **stack)
-{
-	int	*array;
-	int	len;
-	int	i;
-
-	len = s_len(*stack);
-	array = create_array_from_list(*stack, len);
-	if (array == NULL)
-		return ;
-	quick_sort(array, 0, len - 1);
-	i = 0;
-	while (i < len - 1)
-	{
-		if (array[i] == array[i + 1])
-		{
-			free(array);
-			return ;
-		}
-		i++;
-	}
-	free(array);
-}
-
-int	stack_is_sorted(t_b_stack *first)
-{
-	t_b_stack	*current;
-
-	current = first;
-	while (current && current->next)
-	{
-		if (current->ft_isdigit > current->next->ft_isdigit)
-			return (0);
-		current = current->next;
-	}
-	return (1);
 }
