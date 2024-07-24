@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:09:50 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/15 13:43:18 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:46:29 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ size_t		ft_nbrlen(int nbr);
 char		*ft_newstr(size_t n);
 char		**ft_split(char const *s, char c);
 char		*ft_strchr(const char *s, int c);
+void		ft_strdel(char **str);
 char		*ft_strdup(const char *s1);
 void		ft_striteri(char *s, void (*f)(unsigned int, char *));
 char		*ft_strjoin(char const *s1, char const *s2);

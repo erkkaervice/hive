@@ -6,24 +6,11 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:41:12 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/10 17:03:36 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:06:04 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ft_sorted(t_stack *sta)
-{
-	if (!sta || !sta->next)
-		return (1);
-	while (sta->next != NULL)
-	{
-		if (sta->val > sta->next->val)
-			return (0);
-		sta = sta->next;
-	}
-	return (1);
-}
 
 static void	push_swap(t_stack **sta, t_stack **stb, int sts)
 {

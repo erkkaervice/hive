@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 17:41:41 by eala-lah          #+#    #+#              #
-#    Updated: 2024/07/15 13:43:56 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/07/24 15:47:47 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,7 @@ strings/ft_nbrlen.c \
 strings/ft_newstr.c \
 strings/ft_split.c \
 strings/ft_strchr.c \
+strings/ft_strdel.c \
 strings/ft_strdup.c \
 strings/ft_striteri.c \
 strings/ft_strjoin.c \

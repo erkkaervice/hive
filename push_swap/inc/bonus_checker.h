@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:48:59 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/15 16:00:47 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:13:33 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_b_stack
 	int				sob;
 	struct s_b_stack	*next;
 	int				ft_isdigit;
-	int				diff;
 }					t_b_stack;
 
 void			stack_del(t_b_stack **stack);
