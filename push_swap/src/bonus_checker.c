@@ -6,81 +6,93 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 13:29:55 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/25 15:26:35 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:39:16 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bonus_checker.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 
-t_stack	*copy_args_in_stack(int ac, char **av)
+t_stack	*ft_stack(int ac, char **av)
 {
-	t_stack	*stack;
-	t_stack	*new_node;
+	t_stack	*tmp;
+	t_stack	*new;
 	int		i;
 
-	stack = NULL;
+	tmp = NULL;
 	i = 1;
 	while (i < ac)
 	{
-		new_node = (t_stack *)malloc(sizeof(t_stack));
-		if (!new_node)
+		new = (t_stack *)malloc(sizeof(t_stack));
+		if (!new)
 			return (NULL);
-		new_node->val = ft_atoi(av[i]);
-		new_node->next = stack;
-		stack = new_node;
+		new->val = ft_atoi(av[i]);
+		new->next = tmp;
+		tmp = new;
 		i++;
 	}
-	return (stack);
+	return (tmp);
 }
 
-int	do_commands(char *line, t_stack **first, t_stack **second)
+int	ft_compare(char *line, t_stack **sta, t_stack **stb)
 {
 	if (ft_strncmp(line, "sa\n", 3) == 0)
-		ft_sa((t_stack **)first);
+		ft_sa((t_stack **)sta);
 	else if (ft_strncmp(line, "sb\n", 3) == 0)
-		ft_sb((t_stack **)second);
+		ft_sb((t_stack **)stb);
 	else if (ft_strncmp(line, "ss\n", 3) == 0)
-		ft_ss((t_stack **)first, (t_stack **)second);
+		ft_ss((t_stack **)sta, (t_stack **)stb);
 	else if (ft_strncmp(line, "pa\n", 3) == 0)
-		ft_pa((t_stack **)first, (t_stack **)second);
+		ft_pa((t_stack **)sta, (t_stack **)stb);
 	else if (ft_strncmp(line, "pb\n", 3) == 0)
-		ft_pb((t_stack **)second, (t_stack **)first);
+		ft_pb((t_stack **)stb, (t_stack **)sta);
 	else if (ft_strncmp(line, "ra\n", 3) == 0)
-		ft_ra((t_stack **)first);
+		ft_ra((t_stack **)sta);
 	else if (ft_strncmp(line, "rb\n", 3) == 0)
-		ft_rb((t_stack **)second);
+		ft_rb((t_stack **)stb);
 	else if (ft_strncmp(line, "rr\n", 3) == 0)
-		ft_rr((t_stack **)first, (t_stack **)second);
+		ft_rr((t_stack **)sta, (t_stack **)stb);
 	else if (ft_strncmp(line, "rra\n", 4) == 0)
-		ft_rra((t_stack **)first);
+		ft_rra((t_stack **)sta);
 	else if (ft_strncmp(line, "rrb\n", 4) == 0)
-		ft_rrb((t_stack **)second);
+		ft_rrb((t_stack **)stb);
 	else if (ft_strncmp(line, "rrr\n", 4) == 0)
-		ft_rrr((t_stack **)first, (t_stack **)second);
+		ft_rrr((t_stack **)sta, (t_stack **)stb);
 	else
 		return (write(2, "Error\n", 6), 1);
 	return (0);
 }
 
-int	return_errors(char **line, t_stack **sta, t_stack **stb)
+int	ft_cleaner(char **line, t_stack **sta, t_stack **stb)
 {
+	t_stack	*del;
+	t_stack	*tmp;
+
 	ft_strdel(line);
-	if (*sta)
-		stack_del(sta);
-	if (*stb)
-		stack_del(stb);
+	tmp = *sta;
+	while (tmp)
+	{
+		del = tmp;
+		tmp = tmp->next;
+		free(del);
+	}
+	*sta = NULL;
+	tmp = *stb;
+	while (tmp)
+	{
+		del = tmp;
+		tmp = tmp->next;
+		free(del);
+	}
+	*stb = NULL;
 	write(2, "Error\n", 6);
 	return (0);
 }
 
-void	ft_result(t_stack **first, t_stack **second)
+void	ft_result(t_stack **sta, t_stack **stb)
 {
-	if (!ft_sorted(*first))
+	if (!ft_sorted(*sta))
 	{
-		if (!(*second))
+		if (!(*stb))
 			write(1, "OK\n", 3);
 		else
 			write(1, "KO\n", 3);
@@ -91,27 +103,27 @@ void	ft_result(t_stack **first, t_stack **second)
 
 int	main(int ac, char **av)
 {
-	t_stack	*first;
-	t_stack	*second;
+	t_stack	*sta;
+	t_stack	*stb;
 	char	*line;
 
 	if (ac < 2)
 		return (0);
-	first = copy_args_in_stack(ac, av);
-	if (!first)
+	sta = ft_stack(ac, av);
+	if (!sta)
 	{
 		write(2, "Error\n", 6);
 		return (0);
 	}
-	second = NULL;
+	stb = NULL;
 	line = get_next_line(0);
 	while (line != NULL)
 	{
-		if (do_commands(line, &first, &second))
-			return (return_errors(&line, &first, &second));
+		if (ft_compare(line, &sta, &stb))
+			return (ft_cleaner(&line, &sta, &stb));
 		ft_strdel(&line);
 		line = get_next_line(0);
 	}
-	ft_result(&first, &second);
+	ft_result(&sta, &stb);
 	return (0);
 }

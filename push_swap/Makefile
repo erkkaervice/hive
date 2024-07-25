@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/20 15:44:12 by eala-lah          #+#    #+#              #
-#    Updated: 2024/07/25 16:59:45 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/07/25 17:46:52 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ SRC         = \
 
 BONUS_SRC   = \
     bonus_checker.c \
-    bonus_checker_utils.c \
     1-validation.c \
     2-stacking.c \
     5-moving.c \
@@ -49,48 +48,37 @@ BONUS_OBJS  = $(addprefix $(OBJ_PATH), $(BONUS_SRC:.c=.o))
 CC      = gcc
 CFLAGS  = -Wall -Wextra -Werror
 
-# Default target
 all: $(OBJ_PATH) $(LIBFT) $(NAME)
 
-# Rule to compile regular source files
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
-# Create obj directory
 $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH)
 
-# Build the library
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
-# Build push_swap executable
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L$(LIBFT_DIR) -lft
 
-# Bonus target rule
 bonus: $(BONUS_NAME)
 
-# Compile bonus source files
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
-# Build checker executable
 $(BONUS_NAME): $(BONUS_OBJS)
 	$(CC) $(CFLAGS) $(BONUS_OBJS) -o $(BONUS_NAME) -L$(LIBFT_DIR) -lft
 
-# Clean object files and libraries
 clean:
 	rm -rf $(OBJ_PATH)
 	make -C $(LIBFT_DIR) clean
 
-# Clean everything including executables
 fclean: clean
 	rm -f $(LIBFT)
 	rm -f $(NAME)
 	rm -f $(BONUS_NAME)
 
-# Rebuild everything
 re: fclean all
 
 .PHONY: all clean fclean re bonus
