@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/20 15:44:12 by eala-lah          #+#    #+#              #
-#    Updated: 2024/07/24 15:51:32 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/07/25 16:59:45 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,29 +20,27 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 SRC_PATH    = src/
 SRCS        = $(addprefix $(SRC_PATH), $(SRC))
 SRC         = \
-    index.c \
+    1-validation.c \
+    2-stacking.c \
+    3-indexing.c \
+    4-sorting.c \
+    5-moving.c \
     main.c \
-    moves.c \
     push.c \
     reverse_rotate.c \
     rotate.c \
-    short.c \
-    sort.c \
-    steps.c \
-    swap.c \
-    utils.c \
-    validation.c \
-    stack.c
+    swap.c
 
 BONUS_SRC   = \
     bonus_checker.c \
     bonus_checker_utils.c \
+    1-validation.c \
+    2-stacking.c \
+    5-moving.c \
     push.c \
     swap.c \
     rotate.c \
-    reverse_rotate.c \
-    stack.c \
-    utils.c
+    reverse_rotate.c
 
 OBJ_PATH    = obj/
 OBJS        = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))

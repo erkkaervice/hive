@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   index.c                                            :+:      :+:    :+:   */
+/*   3-indexing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:00:45 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/12 12:34:52 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:40:03 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ int	ft_lindex(t_stack **sta)
 	return (tgtt);
 }
 
-static int	ft_sindex(t_stack **a, int b_ind, int tgt_ind, int tgt_pos)
+static int	ft_sindex(t_stack **sta, int b_ind, int tgt_ind, int tgt_pos)
 {
 	t_stack	*tmp;
 
-	tmp = *a;
+	tmp = *sta;
 	while (tmp)
 	{
 		if (tmp->ind > b_ind && tmp->ind < tgt_ind)
@@ -64,7 +64,7 @@ static int	ft_sindex(t_stack **a, int b_ind, int tgt_ind, int tgt_pos)
 	}
 	if (tgt_ind != INT_MAX)
 		return (tgt_pos);
-	tmp = *a;
+	tmp = *sta;
 	while (tmp)
 	{
 		if (tmp->ind < tgt_ind)
@@ -77,18 +77,18 @@ static int	ft_sindex(t_stack **a, int b_ind, int tgt_ind, int tgt_pos)
 	return (tgt_pos);
 }
 
-void	ft_tindex(t_stack **a, t_stack **b)
+void	ft_tindex(t_stack **sta, t_stack **stb)
 {
 	t_stack	*tmp;
 	int		tgt_pos;
 
-	tmp = *b;
-	ft_findex(a);
-	ft_findex(b);
+	tmp = *stb;
+	ft_findex(sta);
+	ft_findex(stb);
 	tgt_pos = 0;
 	while (tmp)
 	{
-		tmp->tgt = ft_sindex(a, tmp->ind, INT_MAX, tgt_pos);
+		tmp->tgt = ft_sindex(sta, tmp->ind, INT_MAX, tgt_pos);
 		tmp = tmp->next;
 	}
 }

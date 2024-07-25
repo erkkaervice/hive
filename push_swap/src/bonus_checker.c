@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 13:29:55 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/24 17:11:01 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:26:35 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-t_stack	*copy_args_in_stack(int argc, char **argv)
+t_stack	*copy_args_in_stack(int ac, char **av)
 {
 	t_stack	*stack;
 	t_stack	*new_node;
@@ -23,12 +23,12 @@ t_stack	*copy_args_in_stack(int argc, char **argv)
 
 	stack = NULL;
 	i = 1;
-	while (i < argc)
+	while (i < ac)
 	{
 		new_node = (t_stack *)malloc(sizeof(t_stack));
 		if (!new_node)
 			return (NULL);
-		new_node->val = ft_atoi(argv[i]);
+		new_node->val = ft_atoi(av[i]);
 		new_node->next = stack;
 		stack = new_node;
 		i++;
@@ -89,15 +89,15 @@ void	ft_result(t_stack **first, t_stack **second)
 		write(1, "KO\n", 3);
 }
 
-int	main(int argc, char **argv)
+int	main(int ac, char **av)
 {
 	t_stack	*first;
 	t_stack	*second;
 	char	*line;
 
-	if (argc < 2)
+	if (ac < 2)
 		return (0);
-	first = copy_args_in_stack(argc, argv);
+	first = copy_args_in_stack(ac, av);
 	if (!first)
 	{
 		write(2, "Error\n", 6);
@@ -108,9 +108,7 @@ int	main(int argc, char **argv)
 	while (line != NULL)
 	{
 		if (do_commands(line, &first, &second))
-		{
 			return (return_errors(&line, &first, &second));
-		}
 		ft_strdel(&line);
 		line = get_next_line(0);
 	}

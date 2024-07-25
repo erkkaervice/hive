@@ -6,11 +6,59 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:41:12 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/24 16:06:04 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:51:06 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_freee(t_stack **sta)
+{
+	t_stack	*tmp;
+
+	if (!sta || !(*sta))
+		return ;
+	while (*sta)
+	{
+		tmp = (*sta)->next;
+		free(*sta);
+		*sta = tmp;
+	}
+	*sta = NULL;
+}
+
+void	ft_error(t_stack **sta, t_stack **stb)
+{
+	if (sta == NULL || *sta != NULL)
+		ft_freee(sta);
+	if (stb == NULL || *stb != NULL)
+		ft_freee(stb);
+	write(2, "Error\n", 6);
+	exit (1);
+}
+
+t_stack	*ft_value(int ac, char **av)
+{
+	t_stack	*sta;
+	long	n;
+	int		i;
+
+	sta = NULL;
+	n = 0;
+	i = 1;
+	while (i < ac)
+	{
+		n = ft_atoi(av[i]);
+		if (n == INT_MAX || n == INT_MIN)
+			ft_error(&sta, NULL);
+		if (i == 1)
+			sta = ft_newstack((int)n);
+		else
+			ft_addbotstack(&sta, ft_newstack((int)n));
+		i++;
+	}
+	return (sta);
+}
 
 static void	push_swap(t_stack **sta, t_stack **stb, int sts)
 {

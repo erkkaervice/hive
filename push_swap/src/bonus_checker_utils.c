@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:50:39 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/24 17:05:51 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:26:35 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	stack_del(t_stack **stack)
 	*stack = NULL;
 }
 
-int	check_argv(char *str)
+int	check_av(char *str)
 {
 	int	i;
 	int	len;
