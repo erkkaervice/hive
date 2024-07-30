@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:34:27 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/25 17:46:55 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:40:37 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ typedef struct s_stack
 }	t_stack;
 
 int			ft_valid(char **av);
+void		ft_freee(t_stack **sta);
+void		ft_error(t_stack **sta, t_stack **stb);
+t_stack		*ft_value(int ac, char **av);
 int			ft_stalen(t_stack *sta);
 t_stack		*ft_newstack(int value);
 t_stack		*ft_botstack(t_stack *sta);
@@ -52,5 +55,7 @@ void		ft_sb(t_stack **stb);
 void		ft_ss(t_stack **sta, t_stack **stb);
 void		ft_stepcount(t_stack **sta, t_stack **stb);
 void		ft_quickstep(t_stack **sta, t_stack **stb);
+
+
 
 #endif

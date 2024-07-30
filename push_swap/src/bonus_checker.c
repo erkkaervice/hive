@@ -6,32 +6,11 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 13:29:55 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/25 17:52:11 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:36:18 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bonus_checker.h"
-
-t_stack	*ft_stack(int ac, char **av)
-{
-	t_stack	*tmp;
-	t_stack	*new;
-	int		i;
-
-	tmp = NULL;
-	i = 1;
-	while (i < ac)
-	{
-		new = (t_stack *)malloc(sizeof(t_stack));
-		if (!new)
-			return (NULL);
-		new->val = ft_atoi(av[i]);
-		new->next = tmp;
-		tmp = new;
-		i++;
-	}
-	return (tmp);
-}
 
 int	ft_compare(char *line, t_stack **sta, t_stack **stb)
 {
@@ -44,7 +23,7 @@ int	ft_compare(char *line, t_stack **sta, t_stack **stb)
 	else if (ft_strncmp(line, "pa\n", 3) == 0)
 		ft_pa(sta, stb);
 	else if (ft_strncmp(line, "pb\n", 3) == 0)
-		ft_pb(stb, sta);
+		ft_pb(sta, stb);
 	else if (ft_strncmp(line, "ra\n", 3) == 0)
 		ft_ra(sta);
 	else if (ft_strncmp(line, "rb\n", 3) == 0)
@@ -90,7 +69,7 @@ int	ft_cleaner(char **line, t_stack **sta, t_stack **stb)
 
 void	ft_result(t_stack **sta, t_stack **stb)
 {
-	if (!ft_sorted(*sta) && !(*stb))
+	if (ft_sorted(*sta) && !(*stb))
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
@@ -104,7 +83,7 @@ int	main(int ac, char **av)
 
 	if (ac < 2)
 		return (0);
-	sta = ft_stack(ac, av);
+	sta = ft_value(ac, av);
 	if (!sta)
 		return (write(2, "Error\n", 6), 0);
 	stb = NULL;
