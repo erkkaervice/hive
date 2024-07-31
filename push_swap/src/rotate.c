@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:05:02 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/15 15:57:54 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/31 11:15:14 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	ft_rotate(t_stack **sta)
 	t_stack	*tmp;
 	t_stack	*end;
 
-	if (*sta == NULL || (*sta)->next == NULL)
+	if (!sta || !*sta || !(*sta)->next)
 		return ;
 	tmp = *sta;
 	*sta = (*sta)->next;

@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:00:31 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/30 16:33:36 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/31 11:30:56 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_number(char *av)
 	int	i;
 
 	i = 0;
-	if (ft_issign(av[i]) && av[i + 1] != '\0')
+	if (ft_issign(av[i]) && av[i + 1])
 		i++;
 	while (av[i] && ft_isdigit(av[i]))
 		i++;

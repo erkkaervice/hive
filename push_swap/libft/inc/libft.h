@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:09:50 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/24 16:37:50 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/31 14:12:59 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdint.h>
+# include "get_next_line.h"
+# include "ft_printf.h"
 
 // CHECKS
 
@@ -32,7 +34,7 @@ int			ft_isspace(int c);
 
 // CONVERTERS
 
-int			ft_atoi(const char *str);
+long		ft_atoi(const char *str);
 char		*ft_itoa(int n);
 int			ft_tolower(int c);
 int			ft_toupper(int c);

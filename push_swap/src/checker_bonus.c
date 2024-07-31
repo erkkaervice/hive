@@ -6,11 +6,11 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 13:29:55 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/30 16:36:18 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:12:25 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bonus_checker.h"
+#include "checker_bonus.h"
 
 int	ft_compare(char *line, t_stack **sta, t_stack **stb)
 {
@@ -44,25 +44,20 @@ int	ft_compare(char *line, t_stack **sta, t_stack **stb)
 int	ft_cleaner(char **line, t_stack **sta, t_stack **stb)
 {
 	t_stack	*del;
-	t_stack	*tmp;
 
 	ft_strdel(line);
-	tmp = *sta;
-	while (tmp)
+	while (*sta)
 	{
-		del = tmp;
-		tmp = tmp->next;
+		del = *sta;
+		*sta = (*sta)->next;
 		free(del);
 	}
-	*sta = NULL;
-	tmp = *stb;
-	while (tmp)
+	while (*stb)
 	{
-		del = tmp;
-		tmp = tmp->next;
+		del = *stb;
+		*stb = (*stb)->next;
 		free(del);
 	}
-	*stb = NULL;
 	write(2, "Error\n", 6);
 	return (0);
 }
@@ -88,7 +83,7 @@ int	main(int ac, char **av)
 		return (write(2, "Error\n", 6), 0);
 	stb = NULL;
 	line = get_next_line(0);
-	while (line != NULL)
+	while (line)
 	{
 		if (ft_compare(line, &sta, &stb))
 			return (ft_cleaner(&line, &sta, &stb));

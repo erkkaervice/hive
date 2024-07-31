@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_checker.h                                    :+:      :+:    :+:   */
+/*   checker_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:48:59 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/25 17:41:02 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:51:25 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BONUS_CHECKER_H
-# define BONUS_CHECKER_H
+#ifndef CHECKER_BONUS_H
+# define CHECKER_BONUS_H
 
 # include "push_swap.h"
-# include "../libft/inc/libft.h"
-# include "../libft/inc/get_next_line.h"
 
 #endif

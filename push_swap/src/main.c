@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:41:12 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/30 16:55:21 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/31 14:55:12 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,19 @@ void	ft_stepcount(t_stack **sta, t_stack **stb)
 void	ft_quickstep(t_stack **sta, t_stack **stb)
 {
 	t_stack	*tmp;
-	int		qs;
 	int		soa;
 	int		sob;
+	int		qs;
+	int		ts;
 
 	tmp = *stb;
 	qs = INT_MAX;
 	while (tmp)
 	{
-		if (ft_abs(tmp->soa) + ft_abs(tmp->sob) < ft_abs(qs))
+		ts = ft_abs(tmp->soa) + ft_abs(tmp->sob);
+		if (ts < qs)
 		{
-			qs = ft_abs(tmp->sob) + ft_abs(tmp->soa);
+			qs = ts;
 			soa = tmp->soa;
 			sob = tmp->sob;
 		}

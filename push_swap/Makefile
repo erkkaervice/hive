@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/20 15:44:12 by eala-lah          #+#    #+#              #
-#    Updated: 2024/07/30 16:51:47 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/07/31 13:12:25 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRC         = \
     swap.c
 
 BONUS_SRC   = \
-    bonus_checker.c \
+    checker_bonus.c \
     1-validation.c \
     2-valuation.c \
     3-stacking.c \

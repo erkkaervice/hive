@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:28:14 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/15 15:58:28 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:09:03 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_reverse_rotate(t_stack **sta)
 	t_stack	*end;
 	t_stack	*the;
 
-	if (*sta == NULL || (*sta)->next == NULL)
+	if (!sta || !*sta || !(*sta)->next)
 		return ;
 	end = ft_botstack(*sta);
 	the = ft_2ndbotstack(*sta);

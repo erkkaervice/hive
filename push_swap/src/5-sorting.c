@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   4-sorting.c                                        :+:      :+:    :+:   */
+/*   5-sorting.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:54:50 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/25 16:21:57 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/31 15:03:50 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ static int	ft_finder(t_stack *sta)
 {
 	int	i;
 
-	i = sta->ind;
+	i = INT_MIN;
 	while (sta)
 	{
 		if (sta->ind > i)
-		{
 			i = sta->ind;
-		}
 		sta = sta->next;
 	}
 	return (i);
@@ -75,22 +73,12 @@ static void	ft_rearrange(t_stack **sta)
 	int	res;
 
 	res = ft_lindex(sta);
-	if (res > ft_stalen(*sta) / 2)
-	{
-		while (res < ft_stalen(*sta))
-		{
+	if (res >= ft_stalen(*sta) / 2)
+		while (res++ < ft_stalen(*sta))
 			ft_rra(sta);
-			res++;
-		}
-	}
 	else
-	{
-		while (res > 0)
-		{
+		while (res-- > 0)
 			ft_ra(sta);
-			res--;
-		}
-	}
 }
 
 void	ft_sort(t_stack **sta, t_stack **stb)

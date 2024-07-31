@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   3-indexing.c                                       :+:      :+:    :+:   */
+/*   4-indexing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:00:45 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/25 16:40:03 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/31 12:00:40 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,13 @@ static int	ft_sindex(t_stack **sta, int b_ind, int tgt_ind, int tgt_pos)
 void	ft_tindex(t_stack **sta, t_stack **stb)
 {
 	t_stack	*tmp;
-	int		tgt_pos;
 
-	tmp = *stb;
 	ft_findex(sta);
 	ft_findex(stb);
-	tgt_pos = 0;
+	tmp = *stb;
 	while (tmp)
 	{
-		tmp->tgt = ft_sindex(sta, tmp->ind, INT_MAX, tgt_pos);
+		tmp->tgt = ft_sindex(sta, tmp->ind, INT_MAX, 0);
 		tmp = tmp->next;
 	}
 }
@@ -117,7 +115,7 @@ void	ft_index(t_stack *sta, int sts)
 			else
 				ptr = ptr->next;
 		}
-		if (hdx != NULL)
+		if (hdx)
 			hdx->ind = sts;
 	}
 }

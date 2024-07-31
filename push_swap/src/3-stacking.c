@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   3-stacking.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:18:45 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/02 19:38:53 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:10:53 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	ft_stalen(t_stack *sta)
 	int	i;
 
 	i = 0;
-	while (sta != NULL)
+	while (sta)
 	{
-		sta = sta->next;
 		i++;
+		sta = sta->next;
 	}
 	return (i);
 }
@@ -44,20 +44,26 @@ t_stack	*ft_newstack(int value)
 
 t_stack	*ft_botstack(t_stack *sta)
 {
-	while (sta && sta->next != NULL)
+	if (!sta)
+		return (NULL);
+	while (sta->next)
 		sta = sta->next;
 	return (sta);
 }
 
 t_stack	*ft_2ndbotstack(t_stack *sta)
 {
-	while (sta && sta->next && sta->next->next != NULL)
-		sta = sta ->next;
+	if (!sta || !sta->next)
+		return (NULL);
+	while (sta->next->next)
+		sta = sta->next;
 	return (sta);
 }
 
 void	ft_addbotstack(t_stack **sta, t_stack *new)
 {
+	t_stack	*last;
+
 	if (!new)
 		return ;
 	if (!*sta)
@@ -65,5 +71,6 @@ void	ft_addbotstack(t_stack **sta, t_stack *new)
 		*sta = new;
 		return ;
 	}
-	ft_botstack(*sta)->next = new;
+	last = ft_botstack(*sta);
+	last->next = new;
 }

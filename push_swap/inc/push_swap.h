@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:34:27 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/30 16:40:37 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:08:34 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,5 @@ void		ft_sb(t_stack **stb);
 void		ft_ss(t_stack **sta, t_stack **stb);
 void		ft_stepcount(t_stack **sta, t_stack **stb);
 void		ft_quickstep(t_stack **sta, t_stack **stb);
-
-
 
 #endif
