@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   3-stacking.c                                       :+:      :+:    :+:   */
+/*   2-stacking.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:18:45 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/31 13:10:53 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/02 16:36:37 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ft_stalen(t_stack *sta)
-{
-	int	i;
-
-	i = 0;
-	while (sta)
-	{
-		i++;
-		sta = sta->next;
-	}
-	return (i);
-}
 
 t_stack	*ft_newstack(int value)
 {
@@ -73,4 +60,23 @@ void	ft_addbotstack(t_stack **sta, t_stack *new)
 	}
 	last = ft_botstack(*sta);
 	last->next = new;
+}
+
+t_stack	*ft_value(int ac, char **av)
+{
+	t_stack	*sta;
+	long	n;
+	int		i;
+
+	sta = NULL;
+	i = 1;
+	while (i < ac)
+	{
+		n = ft_atoi(av[i]);
+		if (n > INT_MAX || n < INT_MIN)
+			ft_error(&sta, NULL);
+		ft_addbotstack(&sta, ft_newstack((int)n));
+		i++;
+	}
+	return (sta);
 }

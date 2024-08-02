@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/20 15:44:12 by eala-lah          #+#    #+#              #
-#    Updated: 2024/07/31 13:12:25 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/08/02 16:42:43 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ SRC_PATH    = src/
 SRCS        = $(addprefix $(SRC_PATH), $(SRC))
 SRC         = \
     1-validation.c \
-    2-valuation.c \
-    3-stacking.c \
+    2-stacking.c \
+    3-valuation.c \
     4-indexing.c \
     5-sorting.c \
     6-moving.c \
@@ -35,8 +35,8 @@ SRC         = \
 BONUS_SRC   = \
     checker_bonus.c \
     1-validation.c \
-    2-valuation.c \
-    3-stacking.c \
+    2-stacking.c \
+    3-valuation.c \
     6-moving.c \
     push.c \
     swap.c \

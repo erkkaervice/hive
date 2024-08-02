@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:33:08 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/02 13:23:04 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/02 16:36:37 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,16 @@ int	ft_sorted(t_stack *sta)
 	return (1);
 }
 
-t_stack	*ft_value(int ac, char **av)
+int	ft_stalen(t_stack *sta)
 {
-	t_stack	*sta;
-	long	n;
-	int		i;
+	int	i;
 
-	sta = NULL;
-	i = 1;
-	while (i < ac)
+	i = 0;
+	while (sta)
 	{
-		n = ft_atoi(av[i]);
-		if (n > INT_MAX || n < INT_MIN)
-			ft_error(&sta, NULL);
-		ft_addbotstack(&sta, ft_newstack((int)n));
 		i++;
+		sta = sta->next;
 	}
-	return (sta);
+	return (i);
 }
+
