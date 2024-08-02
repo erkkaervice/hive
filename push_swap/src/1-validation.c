@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:00:31 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/31 11:30:56 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/02 15:17:04 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,6 @@ static int	ft_number(char *av)
 	if (ft_issign(av[i]) && av[i + 1])
 		i++;
 	while (av[i] && ft_isdigit(av[i]))
-		i++;
-	return (av[i] == '\0');
-}
-
-static int	ft_zero(char *av)
-{
-	int	i;
-
-	i = 0;
-	if (ft_issign(av[i]))
-		i++;
-	while (av[i] == '0')
 		i++;
 	return (av[i] == '\0');
 }
@@ -59,19 +47,38 @@ static int	ft_duplicate(char **av)
 int	ft_valid(char **av)
 {
 	int	i;
-	int	j;
 
-	if (!av[1] || !av[1][0])
-		return (0);
-	j = 0;
 	i = 1;
 	while (av[i])
 	{
 		if (!ft_number(av[i]))
 			return (0);
-		if (ft_zero(av[i]))
-			j++;
 		i++;
 	}
-	return (j <= 1 && !ft_duplicate(av));
+	return (!ft_duplicate(av));
+}
+
+void	ft_freee(t_stack **sta)
+{
+	t_stack	*tmp;
+
+	if (!sta || !*sta)
+		return ;
+	while (*sta)
+	{
+		tmp = (*sta)->next;
+		free(*sta);
+		*sta = tmp;
+	}
+	*sta = NULL;
+}
+
+void	ft_error(t_stack **sta, t_stack **stb)
+{
+	if (sta && *sta)
+		ft_freee(sta);
+	if (stb && *stb)
+		ft_freee(stb);
+	write(2, "Error\n", 6);
+	exit (1);
 }

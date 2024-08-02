@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:41:12 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/31 14:55:12 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/02 15:40:42 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,24 @@ static void	push_swap(t_stack **sta, t_stack **stb, int sts)
 		ft_sort(sta, stb);
 }
 
+
 int	main(int ac, char **av)
 {
 	t_stack	*sta;
 	t_stack	*stb;
 
-	if (ac < 2)
+	if (ac < 2 || !av[1][0])
 		return (0);
 	if (!ft_valid(av))
 		ft_error(NULL, NULL);
 	sta = ft_value(ac, av);
+	if (!sta)
+		ft_error(NULL, NULL);
+	if (ft_sorted(sta))
+	{
+		ft_freee(&sta);
+		return (0);
+	}
 	stb = NULL;
 	ft_index(sta, ft_stalen(sta) + 1);
 	push_swap(&sta, &stb, ft_stalen(sta));

@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:33:08 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/31 14:51:12 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/02 13:23:04 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,6 @@ int	ft_sorted(t_stack *sta)
 		sta = sta->next;
 	}
 	return (1);
-}
-
-void	ft_freee(t_stack **sta)
-{
-	t_stack	*tmp;
-
-	while (*sta && *sta)
-	{
-		tmp = (*sta)->next;
-		free(*sta);
-		*sta = tmp;
-	}
-	if (sta)
-		*sta = NULL;
-}
-
-void	ft_error(t_stack **sta, t_stack **stb)
-{
-	if (sta && *sta)
-		ft_freee(sta);
-	if (stb && *stb)
-		ft_freee(stb);
-	write(2, "Error\n", 6);
-	exit (1);
 }
 
 t_stack	*ft_value(int ac, char **av)
