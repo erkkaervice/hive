@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   5-sorting.c                                        :+:      :+:    :+:   */
+/*   4a-sorting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:54:50 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/31 15:03:50 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:57:29 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_finder(t_stack *sta)
+int	ft_stalen(t_stack *sta)
 {
 	int	i;
 
-	i = INT_MIN;
+	i = 0;
 	while (sta)
 	{
-		if (sta->ind > i)
-			i = sta->ind;
+		i++;
 		sta = sta->next;
 	}
 	return (i);
+}
+
+int	ft_sorted(t_stack *sta)
+{
+	while (sta && sta->next)
+	{
+		if (sta->next->val < sta->val)
+			return (0);
+		sta = sta->next;
+	}
+	return (1);
 }
 
 void	ft_short(t_stack **sta)
@@ -41,46 +51,6 @@ void	ft_short(t_stack **sta)
 		ft_sa(sta);
 }
 
-static void	ft_dartagnan(t_stack **sta, t_stack **stb)
-{
-	int	sts;
-	int	hit;
-	int	i;
-
-	sts = ft_stalen(*sta);
-	hit = 0;
-	i = 0;
-	while (sts > 6 && i < sts && hit < sts / 2)
-	{
-		if ((*sta)->ind <= sts / 2)
-		{
-			ft_pb(sta, stb);
-			hit++;
-		}
-		else
-			ft_ra(sta);
-		i++;
-	}
-	while (sts - hit > 3)
-	{
-		ft_pb(sta, stb);
-		hit++;
-	}
-}
-
-static void	ft_rearrange(t_stack **sta)
-{
-	int	res;
-
-	res = ft_lindex(sta);
-	if (res >= ft_stalen(*sta) / 2)
-		while (res++ < ft_stalen(*sta))
-			ft_rra(sta);
-	else
-		while (res-- > 0)
-			ft_ra(sta);
-}
-
 void	ft_sort(t_stack **sta, t_stack **stb)
 {
 	ft_dartagnan(sta, stb);
@@ -93,4 +63,14 @@ void	ft_sort(t_stack **sta, t_stack **stb)
 	}
 	if (!ft_sorted(*sta))
 		ft_rearrange(sta);
+}
+
+void	push_swap(t_stack **sta, t_stack **stb, int sts)
+{
+	if (sts == 2 && !ft_sorted(*sta))
+		ft_sa(sta);
+	else if (sts == 3)
+		ft_short(sta);
+	else if (sts > 3 && !ft_sorted(*sta))
+		ft_sort(sta, stb);
 }

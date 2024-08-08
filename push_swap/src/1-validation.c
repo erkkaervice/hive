@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:00:31 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/02 15:17:04 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/08 13:46:42 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	ft_valid(char **av)
 	i = 1;
 	while (av[i])
 	{
+		if (!av[1][0])
+			return (0);
 		if (!ft_number(av[i]))
 			return (0);
 		i++;

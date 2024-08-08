@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   4-indexing.c                                       :+:      :+:    :+:   */
+/*   3-indexing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:00:45 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/31 12:00:40 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:59:57 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_findex(t_stack **sta)
+static void	ft_pindex(t_stack **sta)
 {
 	t_stack	*tmp;
 	int		i;
@@ -32,9 +32,9 @@ int	ft_lindex(t_stack **sta)
 	int		i;
 	int		tgtt;
 
+	ft_pindex(sta);
 	tmp = *sta;
 	i = INT_MAX;
-	ft_findex(sta);
 	tgtt = tmp->pos;
 	while (tmp)
 	{
@@ -81,8 +81,8 @@ void	ft_tindex(t_stack **sta, t_stack **stb)
 {
 	t_stack	*tmp;
 
-	ft_findex(sta);
-	ft_findex(stb);
+	ft_pindex(sta);
+	ft_pindex(stb);
 	tmp = *stb;
 	while (tmp)
 	{
@@ -93,27 +93,23 @@ void	ft_tindex(t_stack **sta, t_stack **stb)
 
 void	ft_index(t_stack *sta, int sts)
 {
-	t_stack	*ptr;
+	t_stack	*tmp;
 	t_stack	*hdx;
-	int		min;
+	int		num;
 
 	while (--sts > 0)
 	{
-		ptr = sta;
-		min = INT_MIN;
+		tmp = sta;
+		num = INT_MIN;
 		hdx = NULL;
-		while (ptr)
+		while (tmp)
 		{
-			if (ptr->val == INT_MIN && ptr->ind == 0)
-				ptr->ind = 1;
-			if (ptr->val > min && ptr->ind == 0)
+			if (tmp->ind == 0 && tmp->val > num)
 			{
-				min = ptr->val;
-				hdx = ptr;
-				ptr = sta;
+				num = tmp->val;
+				hdx = tmp;
 			}
-			else
-				ptr = ptr->next;
+			tmp = tmp->next;
 		}
 		if (hdx)
 			hdx->ind = sts;

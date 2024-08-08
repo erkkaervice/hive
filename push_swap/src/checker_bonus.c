@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_checker.c                                    :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 13:29:55 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/31 13:12:25 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:52:26 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,14 @@ int	ft_compare(char *line, t_stack **sta, t_stack **stb)
 	else if (ft_strncmp(line, "rrr\n", 4) == 0)
 		ft_rrr(sta, stb);
 	else
-		return (write(2, "Error\n", 6), 1);
+		ft_error(sta, stb);
 	return (0);
 }
 
 int	ft_cleaner(char **line, t_stack **sta, t_stack **stb)
 {
-	t_stack	*del;
-
 	ft_strdel(line);
-	while (*sta)
-	{
-		del = *sta;
-		*sta = (*sta)->next;
-		free(del);
-	}
-	while (*stb)
-	{
-		del = *stb;
-		*stb = (*stb)->next;
-		free(del);
-	}
-	write(2, "Error\n", 6);
+	ft_error(sta, stb);
 	return (0);
 }
 
@@ -80,7 +66,7 @@ int	main(int ac, char **av)
 		return (0);
 	sta = ft_value(ac, av);
 	if (!sta)
-		return (write(2, "Error\n", 6), 0);
+		ft_error(&sta, NULL);
 	stb = NULL;
 	line = get_next_line(0);
 	while (line)

@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:34:27 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/31 13:08:34 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:22:30 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ void		ft_index(t_stack *sta, int sts);
 int			ft_sorted(t_stack *sta);
 void		ft_short(t_stack **sta);
 void		ft_sort(t_stack **sta, t_stack **stb);
+void		push_swap(t_stack **sta, t_stack **stb, int sts);
+int			ft_finder(t_stack *sta);
+void		ft_dartagnan(t_stack **sta, t_stack **stb);
+void		ft_rearrange(t_stack **sta);
 void		ft_move(t_stack **a, t_stack **b, int soa, int sob);
 void		ft_pa(t_stack **sta, t_stack **stb);
 void		ft_pb(t_stack **sta, t_stack **stb);
