@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:33:08 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/08 17:17:30 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/09 14:52:49 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,40 +30,24 @@ void	ft_dartagnan(t_stack **sta, t_stack **stb)
 {
 	int	sts;
 	int	hit;
-	int	i;
+	int	tpb;
 
 	sts = ft_stalen(*sta);
 	hit = 0;
-	i = 0;
-	while (sts > 6 && i < sts && hit < sts / 2)
+	tpb = sts / 2;
+	while (sts > 6 && hit < tpb)
 	{
-		if ((*sta)->ind <= sts / 2)
+		if ((*sta)->ind <= tpb)
 		{
 			ft_pb(sta, stb);
 			hit++;
 		}
 		else
 			ft_ra(sta);
-		i++;
+		sts--;
 	}
-	while (sts - hit > 3)
-	{
+	while (ft_stalen(*sta) > 3)
 		ft_pb(sta, stb);
-		hit++;
-	}
-}
-
-void	ft_rearrange(t_stack **sta)
-{
-	int	low;
-
-	low = ft_lindex(sta);
-	if (low >= ft_stalen(*sta) / 2)
-		while (low++ < ft_stalen(*sta))
-			ft_rra(sta);
-	else
-		while (low-- > 0)
-			ft_ra(sta);
 }
 
 void	ft_stepcount(t_stack **sta, t_stack **stb)
@@ -107,4 +91,17 @@ void	ft_quickstep(t_stack **sta, t_stack **stb)
 		tmp = tmp->next;
 	}
 	ft_move(sta, stb, soa, sob);
+}
+
+void	ft_rearrange(t_stack **sta)
+{
+	int	low;
+
+	low = ft_lindex(sta);
+	if (low >= ft_stalen(*sta) / 2)
+		while (low++ < ft_stalen(*sta))
+			ft_rra(sta);
+	else
+		while (low-- > 0)
+			ft_ra(sta);
 }

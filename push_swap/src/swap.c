@@ -6,39 +6,47 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:30:06 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/31 13:09:20 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/09 16:03:48 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_swap(t_stack **sta)
-{
-	t_stack	*tmp;
-
-	if (!sta || !*sta || !(*sta)->next)
-		return ;
-	tmp = (*sta)->next;
-	(*sta)->next = tmp->next;
-	tmp->next = *sta;
-	*sta = tmp;
-}
-
 void	ft_sa(t_stack **sta)
 {
-	ft_swap(sta);
+	t_stack *first;
+	t_stack *second;
+
+	if (*sta && (*sta)->next)
+	{
+		first = *sta;
+		second = (*sta)->next;
+		first->next = second->next;
+		second->next = first;
+		*sta = second;
+	}
 	ft_putstr("sa\n");
 }
 
 void	ft_sb(t_stack **stb)
 {
-	ft_swap(stb);
+	t_stack *first;
+	t_stack *second;
+
+	if (*stb && (*stb)->next)
+	{
+		first = *stb;
+		second = (*stb)->next;
+		first->next = second->next;
+		second->next = first;
+		*stb = second;
+	}
 	ft_putstr("sb\n");
 }
 
 void	ft_ss(t_stack **sta, t_stack **stb)
 {
-	ft_swap(sta);
-	ft_swap(stb);
+	ft_sa(sta);
+	ft_sb(stb);
 	ft_putstr("ss\n");
 }

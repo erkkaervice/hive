@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:00:45 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/08 16:59:57 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/09 14:02:57 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,55 +26,33 @@ static void	ft_pindex(t_stack **sta)
 	}
 }
 
-int	ft_lindex(t_stack **sta)
-{
-	t_stack	*tmp;
-	int		i;
-	int		tgtt;
-
-	ft_pindex(sta);
-	tmp = *sta;
-	i = INT_MAX;
-	tgtt = tmp->pos;
-	while (tmp)
-	{
-		if (tmp->ind < i)
-		{
-			i = tmp->ind;
-			tgtt = tmp->pos;
-		}
-		tmp = tmp->next;
-	}
-	return (tgtt);
-}
-
-static int	ft_sindex(t_stack **sta, int b_ind, int tgt_ind, int tgt_pos)
+static int	ft_findex(t_stack **sta, int bdx, int tdx, int tpo)
 {
 	t_stack	*tmp;
 
 	tmp = *sta;
 	while (tmp)
 	{
-		if (tmp->ind > b_ind && tmp->ind < tgt_ind)
+		if (tmp->ind > bdx && tmp->ind < tdx)
 		{
-			tgt_ind = tmp->ind;
-			tgt_pos = tmp->pos;
+			tdx = tmp->ind;
+			tpo = tmp->pos;
 		}
 		tmp = tmp->next;
 	}
-	if (tgt_ind != INT_MAX)
-		return (tgt_pos);
+	if (tdx != INT_MAX)
+		return (tpo);
 	tmp = *sta;
 	while (tmp)
 	{
-		if (tmp->ind < tgt_ind)
+		if (tmp->ind < tdx)
 		{
-			tgt_ind = tmp->ind;
-			tgt_pos = tmp->pos;
+			tdx = tmp->ind;
+			tpo = tmp->pos;
 		}
 		tmp = tmp->next;
 	}
-	return (tgt_pos);
+	return (tpo);
 }
 
 void	ft_tindex(t_stack **sta, t_stack **stb)
@@ -86,9 +64,33 @@ void	ft_tindex(t_stack **sta, t_stack **stb)
 	tmp = *stb;
 	while (tmp)
 	{
-		tmp->tgt = ft_sindex(sta, tmp->ind, INT_MAX, 0);
+		tmp->tgt = ft_findex(sta, tmp->ind, INT_MAX, 0);
 		tmp = tmp->next;
 	}
+}
+
+int	ft_lindex(t_stack **sta)
+{
+	t_stack	*tmp;
+	int		ldx;
+	int		lpo;
+
+	ft_pindex(sta);
+	tmp = *sta;
+	if (!tmp)
+		return (-1);
+	ldx = INT_MAX;
+	lpo = tmp->pos;
+	while (tmp)
+	{
+		if (tmp->ind < ldx)
+		{
+			ldx = tmp->ind;
+			lpo = tmp->pos;
+		}
+		tmp = tmp->next;
+	}
+	return (lpo);
 }
 
 void	ft_index(t_stack *sta, int sts)

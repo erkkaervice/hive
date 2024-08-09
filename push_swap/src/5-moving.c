@@ -1,78 +1,73 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   6-moving.c                                         :+:      :+:    :+:   */
+/*   5-moving.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 14:39:22 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/31 12:41:42 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/09 15:14:59 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_moverrr(t_stack **a, t_stack **b, int *soa, int *sob)
+static void	ft_both(t_stack **a, t_stack **b, int *soa, int *sob)
 {
-	while (*soa < 0 && *sob < 0)
+	if (*soa < 0 && *sob < 0)
 	{
-		(*soa)++;
-		(*sob)++;
-		ft_rrr(a, b);
+		while (*soa < 0 && *sob < 0)
+		{
+			(*soa)++;
+			(*sob)++;
+			ft_rrr(a, b);
+		}
+	}
+	else if (*soa > 0 && *sob > 0)
+	{
+		while (*soa > 0 && *sob > 0)
+		{
+			(*soa)--;
+			(*sob)--;
+			ft_rr(a, b);
+		}
 	}
 }
 
-static void	ft_moverr(t_stack **a, t_stack **b, int *soa, int *sob)
+static void	ft_one(t_stack **a, t_stack **b, int *soa, int *sob)
 {
-	while (*soa > 0 && *sob > 0)
+	while (*soa != 0)
 	{
-		(*soa)--;
-		(*sob)--;
-		ft_rr(a, b);
-	}
-}
-
-static void	ft_movera(t_stack **a, int *stp)
-{
-	while (*stp != 0)
-	{
-		if (*stp > 0)
+		if (*soa > 0)
 		{
 			ft_ra(a);
-			(*stp)--;
+			(*soa)--;
 		}
 		else
 		{
 			ft_rra(a);
-			(*stp)++;
+			(*soa)++;
 		}
 	}
-}
 
-static void	ft_moverb(t_stack **b, int *stp)
-{
-	while (*stp != 0)
+	while (*sob != 0)
 	{
-		if (*stp > 0)
+		if (*sob > 0)
 		{
 			ft_rb(b);
-			(*stp)--;
+			(*sob)--;
 		}
 		else
 		{
 			ft_rrb(b);
-			(*stp)++;
+			(*sob)++;
 		}
 	}
 }
 
 void	ft_move(t_stack **a, t_stack **b, int soa, int sob)
 {
-	if (soa < 0 && sob < 0)
-		ft_moverrr(a, b, &soa, &sob);
-	else if (soa > 0 && sob > 0)
-		ft_moverr(a, b, &soa, &sob);
-	ft_movera(a, &soa);
-	ft_moverb(b, &sob);
+	ft_both(a, b, &soa, &sob);
+	ft_one(a, b, &soa, &sob);
 	ft_pa(a, b);
 }
