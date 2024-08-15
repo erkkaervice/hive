@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:18:45 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/15 12:39:50 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:40:29 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_stack	*ft_newstack(int value)
 	new->ind = 0;
 	new->pos = -1;
 	new->tgt = -1;
-	new->soa = -1;
-	new->sob = -1;
+	new->roa = -1;
+	new->rob = -1;
 	new->next = NULL;
 	return (new);
 }

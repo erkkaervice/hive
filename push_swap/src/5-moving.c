@@ -6,67 +6,52 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 14:39:22 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/15 12:39:50 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:57:07 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_both(t_stack **a, t_stack **b, int *soa, int *sob)
+static void	ft_both(t_stack **a, t_stack **b, int *roa, int *rob)
 {
-	if (*soa < 0 && *sob < 0)
+	if (*roa < 0 && *rob < 0)
 	{
-		while (*soa < 0 && *sob < 0)
+		while (*roa < 0 && *rob < 0)
 		{
-			(*soa)++;
-			(*sob)++;
+			(*roa)++;
+			(*rob)++;
 			ft_rrr(a, b);
 		}
 	}
-	else if (*soa > 0 && *sob > 0)
+	else if (*roa > 0 && *rob > 0)
 	{
-		while (*soa > 0 && *sob > 0)
+		while (*roa > 0 && *rob > 0)
 		{
-			(*soa)--;
-			(*sob)--;
+			(*roa)--;
+			(*rob)--;
 			ft_rr(a, b);
 		}
 	}
 }
 
-static void	ft_one(t_stack **a, t_stack **b, int *soa, int *sob)
+static void	ft_one(t_stack **a, t_stack **b, int *roa, int *rob)
 {
-	while (*soa != 0)
+	while (*roa != 0 || *rob != 0)
 	{
-		if (*soa > 0)
-		{
-			ft_ra(a);
-			(*soa)--;
-		}
-		else
-		{
-			ft_rra(a);
-			(*soa)++;
-		}
-	}
-	while (*sob != 0)
-	{
-		if (*sob > 0)
-		{
-			ft_rb(b);
-			(*sob)--;
-		}
-		else
-		{
-			ft_rrb(b);
-			(*sob)++;
-		}
+		if (*roa > 0)
+			(ft_ra(a), (*roa)--);
+		else if (*roa < 0)
+			(ft_rra(a), (*roa)++);
+		if (*rob > 0)
+			(ft_rb(b), (*rob)--);
+		else if (*rob < 0)
+			(ft_rrb(b), (*rob)++);
 	}
 }
 
-void	ft_move(t_stack **a, t_stack **b, int soa, int sob)
+void	ft_move(t_stack **a, t_stack **b, int roa, int rob)
 {
-	ft_both(a, b, &soa, &sob);
-	ft_one(a, b, &soa, &sob);
+	ft_both(a, b, &roa, &rob);
+	ft_one(a, b, &roa, &rob);
 	ft_pa(a, b);
 }

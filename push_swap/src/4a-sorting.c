@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:54:50 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/15 12:16:58 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:43:33 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	ft_sort(t_stack **sta, t_stack **stb)
 	while (*stb)
 	{
 		ft_tindex(sta, stb);
-		ft_stepcount(sta, stb);
-		ft_quickstep(sta, stb);
+		ft_clicker(sta, stb);
+		ft_fastrotate(sta, stb);
 	}
 	if (!ft_sorted(*sta))
 		ft_rearrange(sta);

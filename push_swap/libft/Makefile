@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 17:41:41 by eala-lah          #+#    #+#              #
-#    Updated: 2024/07/24 16:37:50 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/08/15 13:54:34 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,7 @@ OBJS        = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
 OBJ_DIRS    = $(sort $(dir $(OBJS)))
 
 GCC         = cc
-CFLAGS      = -Wall -Wextra -Werror
+CFLAGS      = -Wall -Wextra -Werror -fPIC
 
 AR          = ar rcs
 LIB         = ranlib
