@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:18:45 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/02 16:36:37 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:39:50 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,6 @@ t_stack	*ft_newstack(int value)
 	return (new);
 }
 
-t_stack	*ft_botstack(t_stack *sta)
-{
-	if (!sta)
-		return (NULL);
-	while (sta->next)
-		sta = sta->next;
-	return (sta);
-}
-
-t_stack	*ft_2ndbotstack(t_stack *sta)
-{
-	if (!sta || !sta->next)
-		return (NULL);
-	while (sta->next->next)
-		sta = sta->next;
-	return (sta);
-}
-
 void	ft_addbotstack(t_stack **sta, t_stack *new)
 {
 	t_stack	*last;
@@ -58,7 +40,9 @@ void	ft_addbotstack(t_stack **sta, t_stack *new)
 		*sta = new;
 		return ;
 	}
-	last = ft_botstack(*sta);
+	last = *sta;
+	while (last->next)
+		last = last->next;
 	last->next = new;
 }
 

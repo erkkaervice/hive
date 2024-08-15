@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 14:39:22 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/09 15:14:59 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:39:50 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static void	ft_one(t_stack **a, t_stack **b, int *soa, int *sob)
 			(*soa)++;
 		}
 	}
-
 	while (*sob != 0)
 	{
 		if (*sob > 0)

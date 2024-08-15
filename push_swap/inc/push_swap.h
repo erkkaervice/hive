@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:34:27 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/08 16:22:30 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:34:13 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void		ft_error(t_stack **sta, t_stack **stb);
 t_stack		*ft_value(int ac, char **av);
 int			ft_stalen(t_stack *sta);
 t_stack		*ft_newstack(int value);
-t_stack		*ft_botstack(t_stack *sta);
-t_stack		*ft_2ndbotstack(t_stack *sta);
 void		ft_addbotstack(t_stack **sta, t_stack *new);
 int			ft_lindex(t_stack **sta);
 void		ft_tindex(t_stack **a, t_stack **b);

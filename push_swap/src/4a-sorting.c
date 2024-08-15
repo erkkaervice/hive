@@ -6,20 +6,21 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:54:50 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/09 12:43:08 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:16:58 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_stalen(t_stack *sta)
+int	ft_finder(t_stack *sta)
 {
 	int	i;
 
 	i = 0;
 	while (sta)
 	{
-		i++;
+		if (sta->ind > i)
+			i = sta->ind;
 		sta = sta->next;
 	}
 	return (i);
