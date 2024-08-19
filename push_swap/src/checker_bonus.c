@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 13:29:55 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/08 16:52:26 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:19:15 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,41 +41,92 @@ int	ft_compare(char *line, t_stack **sta, t_stack **stb)
 	return (0);
 }
 
-int	ft_cleaner(char **line, t_stack **sta, t_stack **stb)
+void	ft_arnew(int ac, char **av, char ***new_av)
 {
-	ft_strdel(line);
-	ft_error(sta, stb);
-	return (0);
+	int	i;
+
+	*new_av = (char **)malloc(sizeof(char *) * (ac + 1));
+	if (!*new_av)
+		ft_error(NULL, NULL);
+	i = 0;
+	while (i < ac)
+	{
+		(*new_av)[i] = av[i];
+		i++;
+	}
+	(*new_av)[ac] = NULL;
 }
 
-void	ft_result(t_stack **sta, t_stack **stb)
+void	ft_pipe(int ac, char **av, int *pipe_fd)
 {
-	if (ft_sorted(*sta) && !(*stb))
-		write(1, "OK\n", 3);
+	pid_t	pid;
+	char	**new_av;
+
+	if (pipe(pipe_fd) == -1)
+		ft_error(NULL, NULL);
+	pid = fork();
+	if (pid == -1)
+		ft_error(NULL, NULL);
+	if (pid == 0)
+	{
+		close(pipe_fd[0]);
+		dup2(pipe_fd[1], STDOUT_FILENO);
+		close(pipe_fd[1]);
+		ft_arnew(ac, av, &new_av);
+		if (execvp("./push_swap", new_av) == -1)
+		{
+			free(new_av);
+			ft_error(NULL, NULL);
+		}
+	}
 	else
-		write(1, "KO\n", 3);
+	{
+		close(pipe_fd[1]);
+		waitpid(pid, NULL, 0);
+	}
+}
+
+void	ft_comparison(int fd, t_stack **sta, t_stack **stb)
+{
+	char	*line;
+
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (ft_compare(line, sta, stb))
+		{
+			free(line);
+			ft_error(sta, stb);
+		}
+		free(line);
+		line = get_next_line(fd);
+	}
 }
 
 int	main(int ac, char **av)
 {
 	t_stack	*sta;
 	t_stack	*stb;
-	char	*line;
+	int		fd;
+	int		pipe_fd[2];
 
 	if (ac < 2)
 		return (0);
+	if (!ft_valid(av))
+		ft_error(NULL, NULL);
 	sta = ft_value(ac, av);
 	if (!sta)
 		ft_error(&sta, NULL);
 	stb = NULL;
-	line = get_next_line(0);
-	while (line)
-	{
-		if (ft_compare(line, &sta, &stb))
-			return (ft_cleaner(&line, &sta, &stb));
-		ft_strdel(&line);
-		line = get_next_line(0);
-	}
-	ft_result(&sta, &stb);
+	ft_pipe(ac, av, pipe_fd);
+	fd = pipe_fd[0];
+	ft_comparison(fd, &sta, &stb);
+	close(fd);
+	if (ft_sorted(sta) && !stb)
+		write(1, "OK\n", 3);
+	else
+		write(1, "KO\n", 3);
+	ft_freee(&sta);
+	ft_freee(&stb);
 	return (0);
 }

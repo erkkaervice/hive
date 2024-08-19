@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/20 15:44:12 by eala-lah          #+#    #+#              #
-#    Updated: 2024/08/15 13:10:45 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/08/19 15:25:18 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,13 +66,10 @@ $(LIBFT):
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L $(LIBFT_DIR) -lft
 
-bonus: $(BONUS_NAME)
-
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
-
-$(BONUS_NAME): $(BONUS_OBJS)
+$(BONUS_NAME): $(BONUS_OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(BONUS_OBJS) -o $(BONUS_NAME) -L $(LIBFT_DIR) -lft
+
+bonus: $(OBJ_PATH) $(BONUS_NAME)
 
 clean:
 	rm -rf $(OBJ_PATH)
