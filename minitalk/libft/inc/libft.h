@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:09:50 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/03 15:17:28 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:14:28 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ char		*ft_itoa(int n);
 int			ft_tolower(int c);
 int			ft_toupper(int c);
 
+// GET NEXT LINE
+
+char		*get_next_line(int fd);
+
 // LISTS
 
 typedef struct s_list
@@ -64,6 +68,10 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
 void		*ft_memcpy(void *dst, const void *src, size_t n);
 void		*ft_memmove(void *dst, const void *src, size_t len);
 void		*ft_memset(void *b, int c, size_t len);
+
+// PRINTF
+
+int		ft_printf(const char *str, ...);
 
 // PUTS
 
