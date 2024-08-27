@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:09:50 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/26 14:24:45 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/27 14:30:16 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			ft_toupper(int c);
 
 // GET NEXT LINE
 
-// char		*get_next_line(int fd);
+char		*get_next_line(int fd);
 
 // LISTS
 
@@ -73,7 +73,7 @@ void		*ft_memset(void *b, int c, size_t len);
 
 // PRINTF
 
-int		ft_printf(const char *str, ...);
+int			ft_printf(const char *str, ...);
 
 // PUTS
 
@@ -102,4 +102,5 @@ char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char		*ft_strrchr(char const *s, int c);
 char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
+
 #endif
