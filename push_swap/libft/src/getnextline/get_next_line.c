@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 17:33:52 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/07/03 14:53:09 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/27 14:23:16 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,13 @@ char	*ft_cleanup(char *sto)
 		return (ft_free(&sto));
 	}
 	else
-	{
 		len = (ptr - sto) + 1;
-	}
 	if (!sto[len])
-	{
 		return (ft_free(&sto));
-	}
 	new = ft_substr(sto, len, ft_strlen(sto) - len);
 	ft_free(&sto);
 	if (!new)
-	{
 		return (NULL);
-	}
 	return (new);
 }
 
@@ -78,9 +72,7 @@ char	*ft_newline(char *sto)
 	len = (ptr - sto) + 1;
 	line = ft_substr(sto, 0, len);
 	if (!line)
-	{
 		return (NULL);
-	}
 	return (line);
 }
 
@@ -92,9 +84,7 @@ char	*ft_readbuf(int fd, char *sto)
 	i = 1;
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
-	{
 		return (ft_free(&sto));
-	}
 	buf[0] = '\0';
 	while (i > 0 && !ft_strchr(buf, '\n'))
 	{
@@ -107,9 +97,7 @@ char	*ft_readbuf(int fd, char *sto)
 	}
 	free(buf);
 	if (i == -1)
-	{
 		return (ft_free(&sto));
-	}
 	return (sto);
 }
 
@@ -119,22 +107,14 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0)
-	{
 		return (NULL);
-	}
 	if ((sto[fd] && !ft_strchr(sto[fd], '\n')) || !sto[fd])
-	{
 		sto[fd] = ft_readbuf (fd, sto[fd]);
-	}
 	if (!sto[fd])
-	{
 		return (NULL);
-	}
 	line = ft_newline(sto[fd]);
 	if (!line)
-	{
 		return (ft_free(&sto[fd]));
-	}
 	sto[fd] = ft_cleanup(sto[fd]);
 	return (line);
 }
