@@ -6,32 +6,42 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:33 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/26 15:49:31 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:43:46 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
+static void	ft_send_bit(int pid, int bit)
+{
+	if (bit)
+		kill(pid, SIGUSR2);
+	else
+		kill(pid, SIGUSR1);
+	usleep(100);  // Adjusted for reliability and performance
+}
+
+static void	ft_send_char(int pid, char c)
+{
+	int	bit;
+
+	bit = 0;
+	while (bit < 8)
+	{
+		ft_send_bit(pid, (c & (1 << bit)));
+		bit++;
+	}
+}
+
 static void	ft_send(int pid, char *msg)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (msg[i])
+	while (*msg)
 	{
-		j = 0;
-		while (j < 8)
-		{
-			if (msg[i] & (1 << j))
-				kill(pid, SIGUSR2);
-			else
-				kill(pid, SIGUSR1);
-			usleep(100);
-			j++;
-		}
-		i++;
+		ft_send_char(pid, *msg);
+		msg++;
 	}
+	// Send end-of-message delimiter (0xFF)
+	ft_send_char(pid, 0xFF);
 }
 
 int	main(int ac, char **av)
@@ -40,7 +50,7 @@ int	main(int ac, char **av)
 
 	if (ac != 3)
 	{
-		ft_printf("Idiot sandwich", av[0]);
+		ft_printf("Usage: %s <server_pid> <message>\n", av[0]);
 		return (1);
 	}
 	pid = ft_atoi(av[1]);
