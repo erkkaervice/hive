@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:53 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/27 15:43:19 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/27 15:53:59 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	ft_recieve(int sig)
 	if (g_msg.btc == 8)
 	{
 		write(1, &g_msg.chr, 1);
+		if (g_msg.chr == '\0')
+			write(1, "\n", 1);
 		g_msg.chr = 0;
 		g_msg.btc = 0;
 	}

@@ -6,32 +6,39 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:43 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/27 15:32:33 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/27 15:59:27 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
 
+static void	ft_bits(int pid, char c)
+{
+	int	bit;
+
+	bit = 0;
+	while (bit < 8)
+	{
+		if (c & (1 << bit))
+			kill(pid, SIGUSR2);
+		else
+			kill(pid, SIGUSR1);
+		usleep(100);
+		bit++;
+	}
+}
+
 static void	ft_send(int pid, char *msg)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	while (msg[i])
 	{
-		j = 0;
-		while (j < 8)
-		{
-			if (msg[i] & (1 << j))
-				kill(pid, SIGUSR2);
-			else
-				kill(pid, SIGUSR1);
-			usleep(100);
-			j++;
-		}
+		ft_bits(pid, msg[i]);
 		i++;
 	}
+	ft_bits(pid, '\0');
 }
 
 int	main(int ac, char **av)
