@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_client.c                                     :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:43 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/26 14:00:14 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/27 15:32:33 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bonus_minitalk.h"
+#include "minitalk_bonus.h"
 
 static void	ft_send(int pid, char *msg)
 {
@@ -36,7 +36,7 @@ static void	ft_send(int pid, char *msg)
 
 int	main(int ac, char **av)
 {
-	int	pid;
+	pid_t	pid;
 
 	if (ac != 3)
 	{

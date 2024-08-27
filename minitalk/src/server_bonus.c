@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_server.c                                     :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:53 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/26 14:00:12 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/27 15:43:19 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bonus_minitalk.h"
+#include "minitalk_bonus.h"
 
 t_msg	g_msg = {0, 0};
 
@@ -30,14 +30,15 @@ static void	ft_recieve(int sig)
 int	main(void)
 {
 	struct sigaction	sa;
-	int				pid;
+	pid_t			pid;
 
 	pid = getpid();
 	ft_printf("PID: %d\n", pid);
 	sa.sa_handler = ft_recieve;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
-	if (sigaction(SIGUSR1, &sa, NULL) == -1 || sigaction(SIGUSR2, &sa, NULL) == -1)
+	if (sigaction(SIGUSR1, &sa, NULL) == -1
+		|| sigaction(SIGUSR2, &sa, NULL) == -1)
 	{
 		ft_printf("sigaction");
 		exit(1);

@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_minitalk.h                                   :+:      :+:    :+:   */
+/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:08 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/26 14:00:37 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/27 15:33:17 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BONUS_MINITALK_H
-# define BONUS_MINITALK.H
+#ifndef MINITALK_BONUS_H
+# define MINITALK_BONUS_H
 
 # include "../libft/inc/libft.h"
 # include <signal.h>
+# include <sys/types.h>
 
 typedef struct	s_msg
 {
