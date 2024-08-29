@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:53 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/27 15:53:59 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:02:17 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	ft_recieve(int sig)
 int	main(void)
 {
 	struct sigaction	sa;
-	pid_t			pid;
+	pid_t				pid;
 
 	pid = getpid();
 	ft_printf("PID: %d\n", pid);
