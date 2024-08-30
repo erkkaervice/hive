@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:20 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/29 16:00:57 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:37:26 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_msg	g_msg = {NULL, 0, 0, 0};
 
-void	reset_message(void)
+static void	ft_reset(void)
 {
 	if (g_msg.buf)
 	{
@@ -26,17 +26,14 @@ void	reset_message(void)
 	g_msg.bix = 0;
 }
 
-void	handle_message_start_end(void)
+static void	ft_limiter(void)
 {
 	if (g_msg.chr == '\1')
 	{
-		reset_message();
+		ft_reset();
 		g_msg.buf = malloc(BUFFER_SIZE);
 		if (!g_msg.buf)
-		{
-			ft_printf("Memory allocation failed\n");
 			exit(1);
-		}
 	}
 	else if (g_msg.chr == '\0')
 	{
@@ -47,11 +44,11 @@ void	handle_message_start_end(void)
 			g_msg.buf = NULL;
 		}
 		write(1, "\n", 1);
-		reset_message();
+		ft_reset();
 	}
 }
 
-void	handle_buffer_allocation(void)
+static void	ft_buffer(void)
 {
 	char	*new_buf;
 	size_t	new_size;
@@ -60,26 +57,27 @@ void	handle_buffer_allocation(void)
 	{
 		g_msg.buf = malloc(BUFFER_SIZE);
 		if (!g_msg.buf)
-		{
-			ft_printf("Memory allocation failed\n");
 			exit(1);
-		}
+		g_msg.bix = 0;
 	}
 	else if (g_msg.bix >= BUFFER_SIZE)
 	{
 		new_size = g_msg.bix + BUFFER_SIZE;
-		new_buf = realloc(g_msg.buf, new_size);
+		if (new_size <= BUFFER_SIZE)
+			exit(1);
+		new_buf = malloc(new_size);
 		if (!new_buf)
 		{
-			ft_printf("Memory reallocation failed\n");
 			free(g_msg.buf);
 			exit(1);
 		}
+		ft_memcpy(new_buf, g_msg.buf, g_msg.bix);
+		free(g_msg.buf);
 		g_msg.buf = new_buf;
 	}
 }
 
-void	handle_signal(int sig)
+static void	ft_signal(int sig)
 {
 	if (sig == SIGUSR2)
 		g_msg.chr |= (1 << g_msg.btc);
@@ -87,10 +85,10 @@ void	handle_signal(int sig)
 	if (g_msg.btc == 8)
 	{
 		if (g_msg.chr == '\1' || g_msg.chr == '\0')
-			handle_message_start_end();
+			ft_limiter();
 		else
 		{
-			handle_buffer_allocation();
+			ft_buffer();
 			if (g_msg.bix < BUFFER_SIZE || g_msg.buf != NULL)
 				g_msg.buf[g_msg.bix++] = g_msg.chr;
 		}
@@ -103,15 +101,12 @@ int	main(void)
 {
 	struct sigaction	sa;
 
-	sa.sa_handler = handle_signal;
+	sa.sa_handler = ft_signal;
 	sa.sa_flags = SA_RESTART;
 	sigemptyset(&sa.sa_mask);
 	if (sigaction(SIGUSR1, &sa, NULL) == -1
 		|| sigaction(SIGUSR2, &sa, NULL) == -1)
-	{
-		ft_printf("Error setting up signal handlers\n");
 		return (1);
-	}
 	ft_printf("Server PID: %d\n", getpid());
 	while (1)
 		pause();
