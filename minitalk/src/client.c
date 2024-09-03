@@ -6,57 +6,61 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:33 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/29 16:01:23 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/03 15:47:34 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static void	ft_bits(int pid, char c)
+void send_bit(pid_t server_pid, int bit)
 {
-	int	bit;
-
-	bit = 0;
-	while (bit < 8)
-	{
-		if (c & (1 << bit))
-			kill(pid, SIGUSR2);
-		else
-			kill(pid, SIGUSR1);
-		usleep(500);
-		bit++;
-	}
+    if (bit)
+    {
+        if (kill(server_pid, SIGUSR2) == -1)
+        {
+            ft_printf("Error sending SIGUSR2\n");
+            exit(1);
+        }
+    }
+    else
+    {
+        if (kill(server_pid, SIGUSR1) == -1)
+        {
+            ft_printf("Error sending SIGUSR1\n");
+            exit(1);
+        }
+    }
+    usleep(5000); // Increased delay to ensure reliable transmission
 }
 
-static void	ft_chunk(int pid, char *msg)
+void send_char(pid_t server_pid, char c)
 {
-	int	i;
-
-	i = 0;
-	while (msg[i])
-	{
-		ft_bits(pid, msg[i]);
-		i++;
-	}
+    send_bit(server_pid, (c & 1));          // Send the least significant bit
+    send_bit(server_pid, (c >> 1) & 1);     // Send the next bit
+    send_bit(server_pid, (c >> 2) & 1);     // Send the next bit
+    send_bit(server_pid, (c >> 3) & 1);     // Send the next bit
+    send_bit(server_pid, (c >> 4) & 1);     // Send the next bit
+    send_bit(server_pid, (c >> 5) & 1);     // Send the next bit
+    send_bit(server_pid, (c >> 6) & 1);     // Send the next bit
+    send_bit(server_pid, (c >> 7) & 1);     // Send the most significant bit
 }
 
-static void	ft_send(int pid, char *msg)
+int main(int argc, char *argv[])
 {
-	ft_bits(pid, '\1');
-	ft_chunk(pid, msg);
-	ft_bits(pid, '\0');
-}
+    if (argc != 3)
+    {
+        ft_printf("Usage: ./client <PID> <message>\n");
+        return 1;
+    }
 
-int	main(int ac, char **av)
-{
-	int	pid;
+    pid_t server_pid = (pid_t)ft_atoi(argv[1]);
+    char *message = argv[2];
 
-	if (ac != 3)
-	{
-		ft_printf("Usage: %s <server_pid> <message>\n", av[0]);
-		return (1);
-	}
-	pid = ft_atoi(av[1]);
-	ft_send(pid, av[2]);
-	return (0);
+    while (*message)
+    {
+        send_char(server_pid, *message++);
+    }
+    send_char(server_pid, '\0'); // Send null terminator to indicate end of message
+
+    return 0;
 }
