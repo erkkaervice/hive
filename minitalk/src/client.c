@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:33 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/03 15:47:34 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/03 16:16:22 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void send_bit(pid_t server_pid, int bit)
             exit(1);
         }
     }
-    usleep(5000); // Increased delay to ensure reliable transmission
+    usleep(1000); // Increased delay to ensure reliable transmission
 }
 
 void send_char(pid_t server_pid, char c)
