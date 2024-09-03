@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 17:41:41 by eala-lah          #+#    #+#              #
-#    Updated: 2024/07/03 15:58:33 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/09/03 17:25:01 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ converters/ft_atoi.c \
 converters/ft_itoa.c \
 converters/ft_tolower.c \
 converters/ft_toupper.c \
+errors/ft_error.c \
 getnextline/get_next_line.c \
 lists/ft_lstadd_back_bonus.c \
 lists/ft_lstadd_front_bonus.c \
