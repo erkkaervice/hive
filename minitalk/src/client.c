@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:33 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/04 16:54:28 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/04 17:51:53 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,40 @@ void	ft_confirm(int end, int bit)
 		ft_printf("VERY SUCCESS!\n");
 }
 
-void	ft_bits(int server_pid, int bit)
+void    ft_bits(int server_pid, int bit)
 {
-	if (bit)
-	{
-		if (kill(server_pid, SIGUSR1) == -1)
-			ft_error("ERROR IN SENDING SIGUSR1");
-	}
-	else
-	{
-		if (kill(server_pid, SIGUSR2) == -1)
-			ft_error("ERROR IN SENDING SIGUSR2");
-	}
-	while (g_ack == 0)
-		pause();
-	g_ack = 0;
+    int retries = 5; // Retry up to 5 times if not acknowledged
+    int backoff = 1; // Initial backoff time
+
+    while (retries--)
+    {
+        if (bit)
+        {
+            if (kill(server_pid, SIGUSR1) == -1)
+                ft_error("ERROR IN SENDING SIGUSR1");
+        }
+        else
+        {
+            if (kill(server_pid, SIGUSR2) == -1)
+                ft_error("ERROR IN SENDING SIGUSR2");
+        }
+
+        while (g_ack == 0)
+            pause();
+
+        if (g_ack == 1)
+        {
+            g_ack = 0;
+            break;
+        }
+
+        ft_printf("Retrying in %d seconds...\n", backoff);
+        sleep(backoff);
+        backoff *= 2; // Exponential backoff
+    }
+
+    if (retries == 0)
+        ft_error("FAILED TO RECEIVE ACKNOWLEDGMENT");
 }
 
 void	ft_send(int server_pid, char c, int end)

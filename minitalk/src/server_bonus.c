@@ -6,18 +6,18 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:53 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/04 14:16:44 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/04 17:05:38 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
 
-void	ft_recieve(int sig, siginfo_t *info, void *unused)
+void	ft_recieve(int sig, siginfo_t *info, void *birds)
 {
 	static int	chr = 0;
 	static int	bit = 7;
 
-	(void)unused;
+	(void)birds;
 	if (sig == SIGUSR1)
 		chr |= (1 << bit);
 	else
