@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/20 15:47:32 by eala-lah          #+#    #+#              #
-#    Updated: 2024/08/26 14:02:54 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/09/04 14:21:58 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,16 +43,16 @@ $(OBJ_PATH):
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
-$(OBJ_PATH)server.o: $(SRC_PATH)$(SERVER_SRC)
+$(OBJ_PATH)server.o: $(SRC_PATH)$(SERVER_SRC) inc/minitalk.h
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
-$(OBJ_PATH)client.o: $(SRC_PATH)$(CLIENT_SRC)
+$(OBJ_PATH)client.o: $(SRC_PATH)$(CLIENT_SRC) inc/minitalk.h
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
-$(OBJ_PATH)server_bonus.o: $(SRC_PATH)$(BONUS_SERVER_SRC)
+$(OBJ_PATH)server_bonus.o: $(SRC_PATH)$(BONUS_SERVER_SRC) inc/minitalk_bonus.h
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
-$(OBJ_PATH)client_bonus.o: $(SRC_PATH)$(BONUS_CLIENT_SRC)
+$(OBJ_PATH)client_bonus.o: $(SRC_PATH)$(BONUS_CLIENT_SRC) inc/minitalk_bonus.h
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
 $(NAME_SERVER): $(SERVER_OBJS)

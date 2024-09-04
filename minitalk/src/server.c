@@ -6,59 +6,48 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:20 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/03 15:37:40 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:16:42 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-char g_data = 0; // Single global variable for character data
-
-void handle_signal(int signal)
+void	ft_recieve(int sig, siginfo_t *info, void *unused)
 {
-    static int bit_count = 0;
+	static int	chr = 0;
+	static int	bit = 7;
 
-    if (signal == SIGUSR2)
-    {
-        g_data |= (1 << bit_count); // Set the bit if SIGUSR2
-    }
-
-    bit_count++;
-
-    if (bit_count == 8)
-    {
-        if (g_data == '\0') // End of message
-        {
-            write(1, "\n", 1); // Newline for message end
-        }
-        else
-        {
-            write(1, &g_data, 1); // Output the character
-        }
-
-        g_data = 0; // Reset for next character
-        bit_count = 0; // Reset bit count
-    }
+	(void)unused;
+	if (sig == SIGUSR1)
+		chr |= (1 << bit);
+	else
+		chr &= ~(1 << bit);
+	bit--;
+	if (bit == -1)
+	{
+		if (chr == '\0')
+			ft_printf("\n");
+		else
+			write(1, &chr, 1);
+		chr = 0;
+		bit = 7;
+	}
+	if (kill(info->si_pid, SIGUSR1) == -1)
+		ft_error("ERROR IN SENDING SIGNAL");
 }
 
-int main(void)
+int	main(void)
 {
-    struct sigaction sa;
-    sa.sa_handler = handle_signal;
-    sa.sa_flags = SA_RESTART | SA_NODEFER;
-    sigemptyset(&sa.sa_mask);
+	struct sigaction	sa;
 
-    if (sigaction(SIGUSR1, &sa, NULL) == -1 || sigaction(SIGUSR2, &sa, NULL) == -1)
-    {
-        ft_printf("Error setting up signal handlers\n");
-        return 1;
-    }
-
-    ft_printf("Server PID: %d\n", getpid());
-
-    while (1)
-    {
-        pause(); // Wait for signals
-    }
-    return 0;
+	ft_printf("Server PID: %d\n", getpid());
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_SIGINFO;
+	sa.sa_sigaction = ft_recieve;
+	if ((sigaction(SIGUSR1, &sa, NULL) == -1)
+		|| (sigaction(SIGUSR2, &sa, NULL) == -1))
+		ft_error("ERROR IN SETTING UP SIGNAL HANDLER");
+	while (1)
+		pause();
+	return (0);
 }
