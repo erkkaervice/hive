@@ -6,74 +6,81 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:33 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/04 15:37:55 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:16:52 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-volatile sig_atomic_t	g_res;
+volatile sig_atomic_t	g_ack;
 
-void	ft_handler(int sig)
+void signal_handler(int sig)
 {
-	if (sig == SIGUSR1)
-		g_res = 1;
+    if (sig == SIGUSR1)
+        g_ack = 1;
 }
 
-void	ft_confirm(int end, int bit)
+void send_bit(int server_pid, int bit)
 {
-	while (g_res == 0)
-		pause();
-	if (end && (bit == 0))
-		ft_printf("Received\n");
-	g_res = 0;
+    if (bit)
+    {
+        if (kill(server_pid, SIGUSR1) == -1)
+            ft_error("ERROR IN SENDING SIGUSR1");
+    }
+    else
+    {
+        if (kill(server_pid, SIGUSR2) == -1)
+            ft_error("ERROR IN SENDING SIGUSR2");
+    }
+    while (g_ack == 0)
+        pause();
+    g_ack = 0;
 }
 
-void	ft_send(int server_pid, char c, int end)
+/* Send a character to the server bit by bit */
+void send_character(int server_pid, char c)
 {
-	int					bit;
-	struct sigaction	sa;
-
-	bit = 7;
-	g_res = 0;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
-	sa.sa_handler = ft_handler;
-	if (sigaction(SIGUSR1, &sa, NULL) == -1)
-		ft_error("ERROR IN SETTING UP SIGNAL HANDLER");
-	while (bit >= 0)
-	{
-		if ((c & (1 << bit)) != 0)
-		{
-			if (kill(server_pid, SIGUSR1) == -1)
-				ft_error("ERROR IN SENDING SIGNAL");
-		}
-		else
-		{
-			if (kill(server_pid, SIGUSR2) == -1)
-				ft_error("ERROR IN SENDING SIGNAL");
-		}
-		ft_confirm(end, bit);
-		bit--;
-	}
+    send_bit(server_pid, (c & 0x80) != 0); // Send most significant bit
+    send_bit(server_pid, (c & 0x40) != 0);
+    send_bit(server_pid, (c & 0x20) != 0);
+    send_bit(server_pid, (c & 0x10) != 0);
+    send_bit(server_pid, (c & 0x08) != 0);
+    send_bit(server_pid, (c & 0x04) != 0);
+    send_bit(server_pid, (c & 0x02) != 0);
+    send_bit(server_pid, (c & 0x01) != 0); // Send least significant bit
 }
 
-int	main(int argc, char **argv)
+/* Main function to handle sending the message */
+int main(int argc, char **argv)
 {
-	int		server_pid;
-	char	*msg;
+    int server_pid;
+    char *msg;
+    struct sigaction sa;
 
-	if (argc != 3 || !(*argv[2]))
-		ft_error("ERROR IN INPUTS");
-	server_pid = ft_atoi(argv[1]);
-	if (server_pid <= 0)
-		ft_error("ERROR IN INPUTS");
-	msg = argv[2];
-	while (*msg)
-	{
-		ft_send(server_pid, *msg, 0);
-		msg++;
-	}
-	ft_send(server_pid, *msg, 1);
-	return (0);
+    if (argc != 3 || !(*argv[2]))
+        ft_error("USAGE: ./client_bonus <server_pid> <message>");
+
+    server_pid = ft_atoi(argv[1]);
+    if (server_pid <= 0)
+        ft_error("INVALID SERVER PID");
+
+    // Setup signal handler
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags = 0;
+    sa.sa_handler = signal_handler;
+    if (sigaction(SIGUSR1, &sa, NULL) == -1)
+        ft_error("ERROR IN SETTING UP SIGNAL HANDLER");
+
+    // Send each character in the message
+    msg = argv[2];
+    while (*msg)
+    {
+        send_character(server_pid, *msg);
+        msg++;
+    }
+
+    // Send null character to indicate end of message
+    send_character(server_pid, '\0');
+
+    return (0);
 }
