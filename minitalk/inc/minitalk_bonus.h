@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:08 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/04 15:04:24 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/04 15:19:11 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,5 @@
 
 # include "../libft/inc/libft.h"
 # include <signal.h>
-
-typedef struct signal
-{
-	int	bit;
-	int	chr;
-}	t_signal;
 
 #endif
