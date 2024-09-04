@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:08 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/29 16:03:27 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:28:11 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 
 # include "../libft/inc/libft.h"
 # include <signal.h>
-# include <sys/types.h>
 
-typedef struct s_msg
-{
-	unsigned char	chr;
-	int				btc;
-}	t_msg;
+typedef struct Signal {
+	int	bit;
+	int	current_byte;
+}	t_signal;
 
 #endif

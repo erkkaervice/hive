@@ -6,45 +6,49 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:53 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/08/29 16:02:17 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:04:10 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
 
-t_msg	g_msg = {0, 0};
+t_signal	g_signal;
 
-static void	ft_recieve(int sig)
+static void	btoc(int sig, siginfo_t *info, void *other)
 {
-	if (sig == SIGUSR2)
-		g_msg.chr |= (1 << g_msg.btc);
-	g_msg.btc++;
-	if (g_msg.btc == 8)
+	pid_t		client_pid;
+
+	(void) other;
+	client_pid = info->si_pid;
+	if (sig == SIGUSR1)
+		g_signal.current_byte = g_signal.current_byte | (1 << g_signal.bit);
+	g_signal.bit --;
+	if (g_signal.bit == -1)
 	{
-		write(1, &g_msg.chr, 1);
-		if (g_msg.chr == '\0')
-			write(1, "\n", 1);
-		g_msg.chr = 0;
-		g_msg.btc = 0;
+		if (g_signal.current_byte == '\0')
+			ft_printf("\n");
+		else
+			write(1, &(g_signal.current_byte), 1);
+		g_signal.current_byte = 0;
+		g_signal.bit = 7;
 	}
+	if (kill (client_pid, SIGUSR1) == -1)
+		ft_error("ERROR IN SENDING SIGNAL");
 }
 
 int	main(void)
 {
 	struct sigaction	sa;
-	pid_t				pid;
 
-	pid = getpid();
-	ft_printf("PID: %d\n", pid);
-	sa.sa_handler = ft_recieve;
+	g_signal.current_byte = 0;
+	g_signal.bit = 7;
+	ft_printf("Server PID: %d\n", getpid());
 	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
-	if (sigaction(SIGUSR1, &sa, NULL) == -1
-		|| sigaction(SIGUSR2, &sa, NULL) == -1)
-	{
-		ft_printf("sigaction");
-		exit(1);
-	}
+	sa.sa_flags = SA_SIGINFO;
+	sa.sa_sigaction = btoc;
+	if ((sigaction(SIGUSR1, &sa, NULL) == -1)
+		|| (sigaction(SIGUSR2, &sa, NULL) == -1))
+		ft_error("ERROR IN SETTING UP SIGNAL HANDLER");
 	while (1)
 		pause();
 	return (0);
