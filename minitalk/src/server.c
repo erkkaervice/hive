@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:20 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/05 14:38:28 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:38:51 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_recieve(int sig, siginfo_t *info, void *birds)
 	if (bit == -1)
 	{
 		if (chr == '\0')
-			ft_printf("\n");
+			write(1, "\n", 1);
 		else
 			write(1, &chr, 1);
 		chr = 0;
