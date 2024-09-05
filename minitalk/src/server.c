@@ -6,19 +6,19 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:20 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/04 17:57:28 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/05 12:08:00 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	ft_recieve(int sig, siginfo_t *info, void *birds)
+void	ft_recieve(int sig, siginfo_t *info, void *context)
 {
 	static int	chr = 0;
 	static int	bit = 7;
 	sigset_t	block_mask;
 
-	(void)birds;
+	(void)context;
 
 	// Block further signals while processing the current one
 	sigemptyset(&block_mask);
@@ -49,6 +49,7 @@ void	ft_recieve(int sig, siginfo_t *info, void *birds)
 	// Unblock signals after processing
 	sigprocmask(SIG_UNBLOCK, &block_mask, NULL);
 }
+
 
 int	main(void)
 {
