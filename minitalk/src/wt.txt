@@ -1,0 +1,163 @@
+Certainly! Here’s a detailed walkthrough of how the `minitalk` client-server communication system works. This explanation will break down the `client.c` and `server.c` files step-by-step.
+
+### Overview
+
+The `minitalk` project is a simple message passing system using UNIX signals. The server receives messages from the client via signals and prints them. The client sends messages to the server using UNIX signals.
+
+### `client.c`
+
+**Purpose**: The client sends a string message to the server using UNIX signals (`SIGUSR1` and `SIGUSR2`).
+
+#### Code Walkthrough
+
+1. **Include Headers**
+   ```c
+   #include "minitalk.h"
+   ```
+   - Includes the header file `minitalk.h`, which contains necessary definitions and function declarations.
+
+2. **Global Variable**
+   ```c
+   volatile sig_atomic_t g_ack;
+   ```
+   - A global variable `g_ack` used to acknowledge the receipt of signals from the server.
+
+3. **Signal Handler for Acknowledgment**
+   ```c
+   void ft_ack_handler(int sig)
+   {
+       if (sig == SIGUSR1)
+           g_ack = 1;
+   }
+   ```
+   - This function sets `g_ack` to `1` when it receives a `SIGUSR1` signal from the server, indicating that the server has successfully received a bit.
+
+4. **Send a Bit**
+   ```c
+   void ft_send_bit(int server_pid, int bit)
+   {
+       int signal = (bit) ? SIGUSR1 : SIGUSR2;
+       if (kill(server_pid, signal) == -1)
+           ft_error("ERROR IN SENDING SIGNAL");
+       while (!g_ack)
+           pause();
+       g_ack = 0;
+   }
+   ```
+   - Sends a bit to the server using either `SIGUSR1` or `SIGUSR2`. It waits for an acknowledgment signal from the server before proceeding.
+
+5. **Send a Character**
+   ```c
+   void ft_send_char(int server_pid, char c, int end)
+   {
+       int bit = 7;
+       while (bit >= 0)
+       {
+           ft_send_bit(server_pid, (c >> bit) & 1);
+           bit--;
+       }
+       if (end && !c)
+           ft_printf("VERY SUCCESS!\n");
+   }
+   ```
+   - Sends a complete character to the server by sending each bit of the character. After sending the character, if `end` is true and the character is `\0`, it prints a success message.
+
+6. **Main Function**
+   ```c
+   int main(int argc, char **argv)
+   {
+       pid_t server_pid;
+       char *msg;
+       struct sigaction sa;
+
+       if (argc != 3 || !(*argv[2]))
+           ft_error("USAGE: ./client <server_pid> <message>");
+       server_pid = ft_atoi(argv[1]);
+       if (server_pid <= 0)
+           ft_error("INVALID SERVER PID");
+       sigemptyset(&sa.sa_mask);
+       sa.sa_flags = 0;
+       sa.sa_handler = ft_ack_handler;
+       if (sigaction(SIGUSR1, &sa, NULL) == -1)
+           ft_error("ERROR IN SETTING UP SIGNAL HANDLER");
+       msg = argv[2];
+       while (*msg)
+       {
+           ft_send_char(server_pid, *msg++, 0);
+       }
+       ft_send_char(server_pid, '\0', 1);
+       return (0);
+   }
+   ```
+   - Checks command-line arguments, sets up the signal handler for acknowledgments, and sends the message to the server character by character. Finally, sends a null character to indicate the end of the message.
+
+### `server.c`
+
+**Purpose**: The server receives a string message from the client via UNIX signals and prints it.
+
+#### Code Walkthrough
+
+1. **Include Headers**
+   ```c
+   #include "minitalk.h"
+   ```
+   - Includes the header file `minitalk.h`.
+
+2. **Signal Handler for Receiving Data**
+   ```c
+   void ft_receive_signal(int sig, siginfo_t *info, void *unused)
+   {
+       static int chr = 0;
+       static int bit = 7;
+
+       (void)unused;
+       if (sig == SIGUSR1)
+           chr |= (1 << bit);
+       else
+           chr &= ~(1 << bit);
+       bit--;
+       if (bit < 0)
+       {
+           if (chr == '\0')
+               ft_printf("\n");
+           else
+               write(1, &chr, 1);
+           chr = 0;
+           bit = 7;
+       }
+       if (kill(info->si_pid, SIGUSR1) == -1)
+           ft_error("ERROR IN SENDING SIGNAL");
+   }
+   ```
+   - Receives signals from the client. It builds up the received character bit by bit. When a character is fully received (i.e., all 8 bits), it prints the character. Sends an acknowledgment signal back to the client.
+
+3. **Main Function**
+   ```c
+   int main(void)
+   {
+       struct sigaction sa;
+
+       ft_printf("Server PID: %d\n", getpid());
+       sigemptyset(&sa.sa_mask);
+       sa.sa_flags = SA_SIGINFO;
+       sa.sa_sigaction = ft_receive_signal;
+       if (sigaction(SIGUSR1, &sa, NULL) == -1 || sigaction(SIGUSR2, &sa, NULL) == -1)
+           ft_error("ERROR IN SETTING UP SIGNAL HANDLER");
+       while (1)
+           pause();
+       return (0);
+   }
+   ```
+   - Prints the server’s PID, sets up the signal handler for receiving data, and enters an infinite loop to wait for signals. The server will continuously handle incoming signals and process the received data.
+
+### Summary
+
+- **Client**:
+  - Sends a message to the server character by character using signals.
+  - Waits for an acknowledgment from the server after sending each bit.
+
+- **Server**:
+  - Receives and reconstructs characters from incoming signals.
+  - Sends an acknowledgment back to the client after processing each character.
+
+The client and server communicate solely through UNIX signals, and the message is reconstructed on the server side from these signals.
