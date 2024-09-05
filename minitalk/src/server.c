@@ -6,19 +6,19 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:20 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/05 12:08:00 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:09:35 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	ft_recieve(int sig, siginfo_t *info, void *context)
+void	ft_recieve(int sig, siginfo_t *info, void *birds)
 {
 	static int	chr = 0;
 	static int	bit = 7;
 	sigset_t	block_mask;
 
-	(void)context;
+	(void)birds;
 
 	// Block further signals while processing the current one
 	sigemptyset(&block_mask);
@@ -50,11 +50,9 @@ void	ft_recieve(int sig, siginfo_t *info, void *context)
 	sigprocmask(SIG_UNBLOCK, &block_mask, NULL);
 }
 
-
 int	main(void)
 {
 	struct sigaction	sa;
-
 	ft_printf("Server PID: %d\n", getpid());
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_SIGINFO;
