@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:43 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/05 16:18:06 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/09 12:36:17 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(int argc, char **argv)
 	if (server_pid <= 0)
 		ft_error("INVALID SERVER PID");
 	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
+	sa.sa_flags = SA_SIGINFO;
 	sa.sa_handler = ft_acker;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 		ft_error("ERROR IN SETTING UP SIGNAL HANDLER");
