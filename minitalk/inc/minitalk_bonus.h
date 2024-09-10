@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:08 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/09 12:07:45 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/10 17:00:19 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,8 @@
 # include "../libft/inc/libft.h"
 # include <signal.h>
 # include <stdbool.h>
+
+# define MAX_RETRIES 5
+# define RETRY_DELAY 1000000
 
 #endif

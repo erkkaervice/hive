@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:43 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/10 16:17:01 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/10 17:06:39 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,36 @@ void	ft_acker(int sig)
 		g_ack = 1;
 }
 
+void	ft_signal(int server_pid, int signal)
+{
+	if (kill(server_pid, signal) == -1)
+		ft_error("PROBLEM WITH SIGNAL, TRY TELEGRAM\n");
+}
+
 void	ft_bits(int server_pid, int bit)
 {
-	if (bit)
+	int	retries;
+
+	retries = 0;
+	while (retries < MAX_RETRIES)
 	{
-		if (kill(server_pid, SIGUSR1) == -1)
-			ft_error("ERROR IN SENDING SIGUSR1");
+		if (bit)
+			ft_signal(server_pid, SIGUSR1);
+		else
+			ft_signal(server_pid, SIGUSR2);
+		usleep(100);
+		while (!g_ack && retries < MAX_RETRIES)
+		{
+			usleep(RETRY_DELAY);
+			retries++;
+		}
+		if (g_ack)
+		{
+			g_ack = 0;
+			return ;
+		}
 	}
-	else
-	{
-		if (kill(server_pid, SIGUSR2) == -1)
-			ft_error("ERROR IN SENDING SIGUSR2");
-	}
-	usleep(100);
-	while (!g_ack)
-		pause();
-	g_ack = 0;
+	ft_error("SERVER IS BUSY, TRY AGAIN LATER\n");
 }
 
 void	ft_send(int server_pid, char c, int end)

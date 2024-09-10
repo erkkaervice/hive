@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:53 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/10 16:25:02 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/10 17:06:58 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 volatile sig_atomic_t	g_state = 0;
 
-void	process_bit(int sig, int *chr, int *bit)
+void	ft_bit(int sig, int *chr, int *bit)
 {
 	if (sig == SIGUSR1)
 		*chr |= (1 << *bit);
@@ -23,13 +23,13 @@ void	process_bit(int sig, int *chr, int *bit)
 	(*bit)--;
 }
 
-void	process_end_of_message(int chr, pid_t last_pid)
+void	ft_eom(int chr, pid_t last_pid)
 {
 	if (chr == '\0')
 	{
 		write(1, "\n", 1);
 		if (kill(last_pid, SIGUSR1) == -1)
-			ft_error("ERROR IN SENDING SIGNAL");
+			ft_error("PROBLEM WITH SIGNAL, TRY TELEGRAM\n");
 		g_state = 0;
 	}
 	else
@@ -50,15 +50,15 @@ void	ft_receive(int sig, siginfo_t *info, void *context)
 	}
 	else if (info->si_pid != last_pid)
 		return ;
-	process_bit(sig, &chr, &bit);
+	ft_bit(sig, &chr, &bit);
 	if (bit < 0)
 	{
-		process_end_of_message(chr, last_pid);
+		ft_eom(chr, last_pid);
 		chr = 0;
 		bit = 7;
 	}
 	if (kill(last_pid, SIGUSR1) == -1)
-		ft_error("ERROR IN SENDING SIGNAL");
+		ft_error("PROBLEM WITH SIGNAL, TRY TELEGRAM\n");
 }
 
 int	main(void)
