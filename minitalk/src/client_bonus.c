@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:43 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/09 14:14:39 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:17:01 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_bits(int server_pid, int bit)
 		if (kill(server_pid, SIGUSR2) == -1)
 			ft_error("ERROR IN SENDING SIGUSR2");
 	}
+	usleep(100);
 	while (!g_ack)
 		pause();
 	g_ack = 0;
