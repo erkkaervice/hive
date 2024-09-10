@@ -6,13 +6,13 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:53 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/10 16:19:02 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:25:02 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
 
-volatile sig_atomic_t g_state = 0;
+volatile sig_atomic_t	g_state = 0;
 
 void	process_bit(int sig, int *chr, int *bit)
 {
@@ -38,9 +38,9 @@ void	process_end_of_message(int chr, pid_t last_pid)
 
 void	ft_receive(int sig, siginfo_t *info, void *context)
 {
-	static int	chr = 0;
-	static int	bit = 7;
-	static pid_t last_pid = 0;
+	static int		chr = 0;
+	static int		bit = 7;
+	static pid_t	last_pid = 0;
 
 	(void)context;
 	if (g_state == 0)
@@ -60,7 +60,6 @@ void	ft_receive(int sig, siginfo_t *info, void *context)
 	if (kill(last_pid, SIGUSR1) == -1)
 		ft_error("ERROR IN SENDING SIGNAL");
 }
-
 
 int	main(void)
 {
