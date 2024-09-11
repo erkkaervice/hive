@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:53 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/10 17:06:58 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/11 11:45:35 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	ft_eom(int chr, pid_t last_pid)
 		write(1, &chr, 1);
 }
 
-void	ft_receive(int sig, siginfo_t *info, void *context)
+void	ft_receive(int sig, siginfo_t *info, void *birds)
 {
 	static int		chr = 0;
 	static int		bit = 7;
 	static pid_t	last_pid = 0;
 
-	(void)context;
+	(void)birds;
 	if (g_state == 0)
 	{
 		last_pid = info->si_pid;
