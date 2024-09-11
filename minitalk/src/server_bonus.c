@@ -6,12 +6,11 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:53 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/11 12:49:32 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/11 13:41:43 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
-#include <stdlib.h>
 
 volatile sig_atomic_t	g_state = 0;
 
