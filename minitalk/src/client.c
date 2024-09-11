@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:33 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/05 16:17:21 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:22:02 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,31 @@ void	ft_acker(int sig)
 
 void	ft_bits(int server_pid, int bit)
 {
-	if (bit)
+	int	retries;
+
+	retries = 0;
+	while (retries < MAX_RETRIES)
 	{
-		if (kill(server_pid, SIGUSR1) == -1)
-			ft_error("ERROR IN SENDING SIGUSR1");
+		if (bit)
+			ft_signal(server_pid, SIGUSR1);
+		else
+			ft_signal(server_pid, SIGUSR2);
+		usleep(100);
+		while (!g_ack && retries < MAX_RETRIES)
+		{
+			usleep(RETRY_DELAY);
+			retries++;
+		}
+		if (g_ack)
+		{
+			g_ack = 0;
+			return ;
+		}
 	}
-	else
-	{
-		if (kill(server_pid, SIGUSR2) == -1)
-			ft_error("ERROR IN SENDING SIGUSR2");
-	}
-	while (!g_ack)
-		pause();
-	g_ack = 0;
+	ft_error("SERVER IS BUSY, TRY AGAIN LATER\n");
 }
 
-void	ft_send(int server_pid, char c)
+void	ft_send(int server_pid, char c, int end)
 {
 	int	bit;
 
@@ -47,6 +56,8 @@ void	ft_send(int server_pid, char c)
 		ft_bits(server_pid, (c >> bit) & 1);
 		bit--;
 	}
+	if (end && !c)
+		ft_printf("VERY SUCCESS!\n");
 }
 
 int	main(int argc, char **argv)
@@ -61,13 +72,13 @@ int	main(int argc, char **argv)
 	if (server_pid <= 0)
 		ft_error("INVALID SERVER PID");
 	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
+	sa.sa_flags = SA_SIGINFO;
 	sa.sa_handler = ft_acker;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 		ft_error("ERROR IN SETTING UP SIGNAL HANDLER");
 	msg = argv[2];
 	while (*msg)
-		ft_send(server_pid, *msg++);
-	ft_send(server_pid, '\0');
+		ft_send(server_pid, *msg++, 0);
+	ft_send(server_pid, '\0', 1);
 	return (0);
 }

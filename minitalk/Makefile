@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/20 15:47:32 by eala-lah          #+#    #+#              #
-#    Updated: 2024/09/04 14:21:58 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/09/11 14:20:21 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,15 +22,20 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 SRC_PATH    = src/
 SERVER_SRC  = server.c
 CLIENT_SRC  = client.c
+UTILS_SRC   = utils.c
 
 BONUS_SERVER_SRC = server_bonus.c
 BONUS_CLIENT_SRC = client_bonus.c
+BONUS_UTILS_SRC  = utils_bonus.c
 
 OBJ_PATH    = obj/
 SERVER_OBJS = $(OBJ_PATH)server.o
 CLIENT_OBJS = $(OBJ_PATH)client.o
+UTILS_OBJS  = $(OBJ_PATH)utils.o
+
 BONUS_SERVER_OBJS = $(OBJ_PATH)server_bonus.o
 BONUS_CLIENT_OBJS = $(OBJ_PATH)client_bonus.o
+BONUS_UTILS_OBJS  = $(OBJ_PATH)utils_bonus.o
 
 CC      = gcc
 CFLAGS  = -Wall -Wextra -Werror
@@ -49,23 +54,29 @@ $(OBJ_PATH)server.o: $(SRC_PATH)$(SERVER_SRC) inc/minitalk.h
 $(OBJ_PATH)client.o: $(SRC_PATH)$(CLIENT_SRC) inc/minitalk.h
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
+$(OBJ_PATH)utils.o: $(SRC_PATH)$(UTILS_SRC) inc/minitalk.h
+	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
+
 $(OBJ_PATH)server_bonus.o: $(SRC_PATH)$(BONUS_SERVER_SRC) inc/minitalk_bonus.h
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
 $(OBJ_PATH)client_bonus.o: $(SRC_PATH)$(BONUS_CLIENT_SRC) inc/minitalk_bonus.h
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
-$(NAME_SERVER): $(SERVER_OBJS)
-	$(CC) $(CFLAGS) $(SERVER_OBJS) -o $(NAME_SERVER) -L $(LIBFT_DIR) -lft
+$(OBJ_PATH)utils_bonus.o: $(SRC_PATH)$(BONUS_UTILS_SRC) inc/minitalk_bonus.h
+	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
-$(NAME_CLIENT): $(CLIENT_OBJS)
-	$(CC) $(CFLAGS) $(CLIENT_OBJS) -o $(NAME_CLIENT) -L $(LIBFT_DIR) -lft
+$(NAME_SERVER): $(SERVER_OBJS) $(UTILS_OBJS)
+	$(CC) $(CFLAGS) $(SERVER_OBJS) $(UTILS_OBJS) -o $(NAME_SERVER) -L $(LIBFT_DIR) -lft
 
-$(BONUS_SERVER): $(BONUS_SERVER_OBJS)
-	$(CC) $(CFLAGS) $(BONUS_SERVER_OBJS) -o $(BONUS_SERVER) -L $(LIBFT_DIR) -lft
+$(NAME_CLIENT): $(CLIENT_OBJS) $(UTILS_OBJS)
+	$(CC) $(CFLAGS) $(CLIENT_OBJS) $(UTILS_OBJS) -o $(NAME_CLIENT) -L $(LIBFT_DIR) -lft
 
-$(BONUS_CLIENT): $(BONUS_CLIENT_OBJS)
-	$(CC) $(CFLAGS) $(BONUS_CLIENT_OBJS) -o $(BONUS_CLIENT) -L $(LIBFT_DIR) -lft
+$(BONUS_SERVER): $(BONUS_SERVER_OBJS) $(BONUS_UTILS_OBJS)
+	$(CC) $(CFLAGS) $(BONUS_SERVER_OBJS) $(BONUS_UTILS_OBJS) -o $(BONUS_SERVER) -L $(LIBFT_DIR) -lft
+
+$(BONUS_CLIENT): $(BONUS_CLIENT_OBJS) $(BONUS_UTILS_OBJS)
+	$(CC) $(CFLAGS) $(BONUS_CLIENT_OBJS) $(BONUS_UTILS_OBJS) -o $(BONUS_CLIENT) -L $(LIBFT_DIR) -lft
 
 bonus: $(OBJ_PATH) $(LIBFT) $(BONUS_SERVER) $(BONUS_CLIENT)
 

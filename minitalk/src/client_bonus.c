@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:43 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/10 17:06:39 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:09:34 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@ void	ft_acker(int sig)
 {
 	if (sig == SIGUSR1)
 		g_ack = 1;
-}
-
-void	ft_signal(int server_pid, int signal)
-{
-	if (kill(server_pid, signal) == -1)
-		ft_error("PROBLEM WITH SIGNAL, TRY TELEGRAM\n");
 }
 
 void	ft_bits(int server_pid, int bit)

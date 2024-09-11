@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:53 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/11 13:41:43 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:54:39 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,95 +14,88 @@
 
 volatile sig_atomic_t	g_state = 0;
 
-void	ft_bit(int sig, int *chr, int *bit)
-{
-	if (sig == SIGUSR1)
-		*chr |= (1 << *bit);
-	else if (sig == SIGUSR2)
-		*chr &= ~(1 << *bit);
-	(*bit)--;
-}
-
-void	ft_buffer(int chr, int *index, int *buffer_size, char **buffer)
+void	ft_buffer(int chr, int *ind, int *bsize, char **buf)
 {
 	int		i;
-	int		old_index;
-	char	*new_buffer;
+	int		pre;
+	char	*new;
 
-	if (*index >= *buffer_size)
+	if (*ind >= *bsize)
 	{
-		new_buffer = malloc(*buffer_size * 2);
-		if (!new_buffer)
+		new = malloc(*bsize * 2);
+		if (!new)
 			ft_error("MEMORY ALLOCATION FAILED\n");
 		i = 0;
-		old_index = *index;
-		while (i < old_index)
+		pre = *ind;
+		while (i < pre)
 		{
-			new_buffer[i] = (*buffer)[i];
+			new[i] = (*buf)[i];
 			i++;
 		}
-		free(*buffer);
-		*buffer = new_buffer;
-		*buffer_size *= 2;
+		free(*buf);
+		*buf = new;
+		*bsize *= 2;
 	}
-	(*buffer)[*index] = chr;
-	(*index)++;
+	(*buf)[*ind] = chr;
+	(*ind)++;
 }
 
-void	ft_process(int chr, pid_t last_pid)
+static void	ft_endmsg(char **buf, int *ind, int *bsize, pid_t pre_pid)
 {
-	static char	*buffer = NULL;
-	static int	index = 0;
-	static int	buffer_size = 128;
-
-	if (!buffer)
+	if (*buf)
 	{
-		buffer = malloc(buffer_size);
-		if (!buffer)
+		(*buf)[*ind] = '\0';
+		write(1, *buf, *ind);
+		write(1, "\n", 1);
+		free(*buf);
+	}
+	*buf = NULL;
+	*ind = 0;
+	*bsize = 128;
+	ft_signal(pre_pid, SIGUSR1);
+	g_state = 0;
+}
+
+void	ft_process(int chr, pid_t pre_pid)
+{
+	static char	*buf = NULL;
+	static int	ind = 0;
+	static int	bsize = 128;
+
+	if (!buf)
+	{
+		buf = malloc(bsize);
+		if (!buf)
 			ft_error("MEMORY ALLOCATION FAILED\n");
 	}
 	if (chr == '\0')
-	{
-		if (buffer)
-		{
-			buffer[index] = '\0';
-			write(1, buffer, index);
-			write(1, "\n", 1);
-			free(buffer);
-		}
-		buffer = NULL;
-		index = 0;
-		buffer_size = 128;
-		if (kill(last_pid, SIGUSR1) == -1)
-			ft_error("PROBLEM WITH SIGNAL, TRY TELEGRAM\n");
-		g_state = 0;
-	}
+		ft_endmsg(&buf, &ind, &bsize, pre_pid);
 	else
-		ft_buffer(chr, &index, &buffer_size, &buffer);
+		ft_buffer(chr, &ind, &bsize, &buf);
 }
 
 void	ft_receive(int sig, siginfo_t *info, void *birds)
 {
 	static int		chr = 0;
 	static int		bit = 7;
-	static pid_t	last_pid = 0;
+	static pid_t	pre_pid = 0;
 
 	(void)birds;
 	if (g_state == 0)
 	{
-		last_pid = info->si_pid;
-		g_state = last_pid;
+		pre_pid = info->si_pid;
+		g_state = pre_pid;
 	}
-	else if (info->si_pid != last_pid)
+	else if (info->si_pid != pre_pid)
 		return ;
 	ft_bit(sig, &chr, &bit);
 	if (bit < 0)
 	{
-		ft_process(chr, last_pid);
+		ft_process(chr, pre_pid);
 		chr = 0;
 		bit = 7;
 	}
-	if (kill(last_pid, SIGUSR1) == -1)
+	if (kill(pre_pid, SIGUSR1) == -1)
 		ft_error("PROBLEM WITH SIGNAL, TRY TELEGRAM\n");
 }
 
