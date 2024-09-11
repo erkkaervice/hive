@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:53 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/11 11:57:43 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/11 12:49:32 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,58 +24,62 @@ void	ft_bit(int sig, int *chr, int *bit)
 	(*bit)--;
 }
 
-void	ft_eom(int chr, pid_t last_pid)
+void	ft_buffer(int chr, int *index, int *buffer_size, char **buffer)
+{
+	int		i;
+	int		old_index;
+	char	*new_buffer;
+
+	if (*index >= *buffer_size)
+	{
+		new_buffer = malloc(*buffer_size * 2);
+		if (!new_buffer)
+			ft_error("MEMORY ALLOCATION FAILED\n");
+		i = 0;
+		old_index = *index;
+		while (i < old_index)
+		{
+			new_buffer[i] = (*buffer)[i];
+			i++;
+		}
+		free(*buffer);
+		*buffer = new_buffer;
+		*buffer_size *= 2;
+	}
+	(*buffer)[*index] = chr;
+	(*index)++;
+}
+
+void	ft_process(int chr, pid_t last_pid)
 {
 	static char	*buffer = NULL;
 	static int	index = 0;
-	static int	buffer_size = 128;  // Initial buffer size
-	int			i;
+	static int	buffer_size = 128;
 
-	// Allocate the initial buffer if not already allocated
 	if (!buffer)
 	{
 		buffer = malloc(buffer_size);
 		if (!buffer)
 			ft_error("MEMORY ALLOCATION FAILED\n");
 	}
-
-	if (chr == '\0')  // End of message
+	if (chr == '\0')
 	{
-		buffer[index] = '\0';  // Null-terminate the string
-		write(1, buffer, index);  // Print the entire message
-		write(1, "\n", 1);  // Newline after message
-		free(buffer);  // Free the allocated memory
-		buffer = NULL;  // Reset buffer for the next message
+		if (buffer)
+		{
+			buffer[index] = '\0';
+			write(1, buffer, index);
+			write(1, "\n", 1);
+			free(buffer);
+		}
+		buffer = NULL;
 		index = 0;
-		buffer_size = 128;  // Reset buffer size
+		buffer_size = 128;
 		if (kill(last_pid, SIGUSR1) == -1)
 			ft_error("PROBLEM WITH SIGNAL, TRY TELEGRAM\n");
-		g_state = 0;  // Reset state for new client
+		g_state = 0;
 	}
 	else
-	{
-		if (index >= buffer_size)
-		{
-			// Allocate a larger buffer (double the size)
-			char *new_buffer = malloc(buffer_size * 2);
-			if (!new_buffer)
-				ft_error("MEMORY ALLOCATION FAILED\n");
-
-			// Copy contents from the old buffer to the new one
-			i = 0;
-			while (i < index)
-			{
-				new_buffer[i] = buffer[i];
-				i++;
-			}
-
-			// Free the old buffer and point to the new one
-			free(buffer);
-			buffer = new_buffer;
-			buffer_size *= 2;  // Double the buffer size
-		}
-		buffer[index++] = chr;  // Store received character in buffer
-	}
+		ft_buffer(chr, &index, &buffer_size, &buffer);
 }
 
 void	ft_receive(int sig, siginfo_t *info, void *birds)
@@ -95,7 +99,7 @@ void	ft_receive(int sig, siginfo_t *info, void *birds)
 	ft_bit(sig, &chr, &bit);
 	if (bit < 0)
 	{
-		ft_eom(chr, last_pid);
+		ft_process(chr, last_pid);
 		chr = 0;
 		bit = 7;
 	}
