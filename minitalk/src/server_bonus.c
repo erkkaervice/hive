@@ -6,13 +6,13 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:53 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/11 14:54:39 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:58:59 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
 
-volatile sig_atomic_t	g_state = 0;
+volatile sig_atomic_t	g_pid = 0;
 
 void	ft_buffer(int chr, int *ind, int *bsize, char **buf)
 {
@@ -24,7 +24,7 @@ void	ft_buffer(int chr, int *ind, int *bsize, char **buf)
 	{
 		new = malloc(*bsize * 2);
 		if (!new)
-			ft_error("MEMORY ALLOCATION FAILED\n");
+			ft_error("MEMORY ALLOCATION FAILED");
 		i = 0;
 		pre = *ind;
 		while (i < pre)
@@ -40,7 +40,7 @@ void	ft_buffer(int chr, int *ind, int *bsize, char **buf)
 	(*ind)++;
 }
 
-static void	ft_endmsg(char **buf, int *ind, int *bsize, pid_t pre_pid)
+static void	ft_endmsg(char **buf, int *ind, int *bsize, pid_t pid)
 {
 	if (*buf)
 	{
@@ -52,11 +52,11 @@ static void	ft_endmsg(char **buf, int *ind, int *bsize, pid_t pre_pid)
 	*buf = NULL;
 	*ind = 0;
 	*bsize = 128;
-	ft_signal(pre_pid, SIGUSR1);
-	g_state = 0;
+	ft_signal(pid, SIGUSR1);
+	g_pid = 0;
 }
 
-void	ft_process(int chr, pid_t pre_pid)
+void	ft_process(int chr, pid_t pid)
 {
 	static char	*buf = NULL;
 	static int	ind = 0;
@@ -66,10 +66,10 @@ void	ft_process(int chr, pid_t pre_pid)
 	{
 		buf = malloc(bsize);
 		if (!buf)
-			ft_error("MEMORY ALLOCATION FAILED\n");
+			ft_error("MEMORY ALLOCATION FAILED");
 	}
 	if (chr == '\0')
-		ft_endmsg(&buf, &ind, &bsize, pre_pid);
+		ft_endmsg(&buf, &ind, &bsize, pid);
 	else
 		ft_buffer(chr, &ind, &bsize, &buf);
 }
@@ -78,38 +78,38 @@ void	ft_receive(int sig, siginfo_t *info, void *birds)
 {
 	static int		chr = 0;
 	static int		bit = 7;
-	static pid_t	pre_pid = 0;
+	static pid_t	pid = 0;
 
 	(void)birds;
-	if (g_state == 0)
+	if (g_pid == 0)
 	{
-		pre_pid = info->si_pid;
-		g_state = pre_pid;
+		pid = info->si_pid;
+		g_pid = pid;
 	}
-	else if (info->si_pid != pre_pid)
+	else if (info->si_pid != pid)
 		return ;
 	ft_bit(sig, &chr, &bit);
 	if (bit < 0)
 	{
-		ft_process(chr, pre_pid);
+		ft_process(chr, pid);
 		chr = 0;
 		bit = 7;
 	}
-	if (kill(pre_pid, SIGUSR1) == -1)
-		ft_error("PROBLEM WITH SIGNAL, TRY TELEGRAM\n");
+	if (kill(pid, SIGUSR1) == -1)
+		ft_error("PROBLEM WITH SIGNAL, TRY TELEGRAM");
 }
 
 int	main(void)
 {
 	struct sigaction	sa;
 
-	ft_printf("Server PID: %d\n", getpid());
+	ft_printf("PID: %d\n", getpid());
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = ft_receive;
 	if ((sigaction(SIGUSR1, &sa, NULL) == -1)
 		|| (sigaction(SIGUSR2, &sa, NULL) == -1))
-		ft_error("ERROR IN SETTING UP SIGNAL HANDLER");
+		ft_error("NOT GETTING IT");
 	while (1)
 		pause();
 	return (0);

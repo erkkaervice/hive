@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:33 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/11 14:22:02 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/13 13:10:41 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,36 @@
 
 volatile sig_atomic_t	g_ack;
 
+void	ft_validate(pid_t pid)
+{
+	if (pid <= 0)
+		ft_error("THINK POSITIVE!");
+	if (kill(pid, 0) == -1)
+		ft_error("NOT A VALID PID...");
+}
+
 void	ft_acker(int sig)
 {
 	if (sig == SIGUSR1)
 		g_ack = 1;
 }
 
-void	ft_bits(int server_pid, int bit)
+void	ft_bits(int pid, int bit)
 {
-	int	retries;
+	int	retry;
 
-	retries = 0;
-	while (retries < MAX_RETRIES)
+	retry = 0;
+	while (retry < MAX_RETRY)
 	{
 		if (bit)
-			ft_signal(server_pid, SIGUSR1);
+			ft_signal(pid, SIGUSR1);
 		else
-			ft_signal(server_pid, SIGUSR2);
+			ft_signal(pid, SIGUSR2);
 		usleep(100);
-		while (!g_ack && retries < MAX_RETRIES)
+		while (!g_ack && retry < MAX_RETRY)
 		{
 			usleep(RETRY_DELAY);
-			retries++;
+			retry++;
 		}
 		if (g_ack)
 		{
@@ -43,42 +51,41 @@ void	ft_bits(int server_pid, int bit)
 			return ;
 		}
 	}
-	ft_error("SERVER IS BUSY, TRY AGAIN LATER\n");
+	ft_error("SERVER IS BUSY, TRY AGAIN LATER");
 }
 
-void	ft_send(int server_pid, char c, int end)
+void	ft_send(int pid, char c, int end)
 {
 	int	bit;
 
 	bit = 7;
 	while (bit >= 0)
 	{
-		ft_bits(server_pid, (c >> bit) & 1);
+		ft_bits(pid, (c >> bit) & 1);
 		bit--;
 	}
 	if (end && !c)
-		ft_printf("VERY SUCCESS!\n");
+		ft_printf("VERY SUCCESS!");
 }
 
 int	main(int argc, char **argv)
 {
-	pid_t				server_pid;
+	pid_t				pid;
 	char				*msg;
 	struct sigaction	sa;
 
 	if (argc != 3 || !(*argv[2]))
-		ft_error("USAGE: ./client <server_pid> <message>");
-	server_pid = ft_atoi(argv[1]);
-	if (server_pid <= 0)
-		ft_error("INVALID SERVER PID");
+		ft_error("TRY: ./client <pid> <message>");
+	pid = ft_atoi(argv[1]);
+	ft_validate(pid);
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_handler = ft_acker;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
-		ft_error("ERROR IN SETTING UP SIGNAL HANDLER");
+		ft_error("NOT GIVING IT");
 	msg = argv[2];
 	while (*msg)
-		ft_send(server_pid, *msg++, 0);
-	ft_send(server_pid, '\0', 1);
+		ft_send(pid, *msg++, 0);
+	ft_send(pid, '\0', 1);
 	return (0);
 }
