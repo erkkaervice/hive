@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:20 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/13 13:02:40 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:31:43 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_buffer(int chr, int *ind, int *bsize, char **buf)
 	{
 		new = malloc(*bsize * 2);
 		if (!new)
-			ft_error("MEMORY ALLOCATION FAILED");
+			ft_error("MEMORY ALLOCATION FAILED\n");
 		i = 0;
 		pre = *ind;
 		while (i < pre)
@@ -66,7 +66,7 @@ void	ft_process(int chr, pid_t pid)
 	{
 		buf = malloc(bsize);
 		if (!buf)
-			ft_error("MEMORY ALLOCATION FAILED");
+			ft_error("MEMORY ALLOCATION FAILED\n");
 	}
 	if (chr == '\0')
 		ft_endmsg(&buf, &ind, &bsize, pid);
@@ -96,7 +96,7 @@ void	ft_receive(int sig, siginfo_t *info, void *birds)
 		bit = 7;
 	}
 	if (kill(pid, SIGUSR1) == -1)
-		ft_error("PROBLEM WITH SIGNAL, TRY TELEGRAM");
+		ft_error("PROBLEM WITH SIGNAL, TRY TELEGRAM\n");
 }
 
 int	main(void)
@@ -109,7 +109,7 @@ int	main(void)
 	sa.sa_sigaction = ft_receive;
 	if ((sigaction(SIGUSR1, &sa, NULL) == -1)
 		|| (sigaction(SIGUSR2, &sa, NULL) == -1))
-		ft_error("NOT GETTING IT");
+		ft_error("NOT GETTING IT\n");
 	while (1)
 		pause();
 	return (0);

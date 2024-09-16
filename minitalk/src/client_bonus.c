@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:43 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/09/13 13:10:42 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:31:04 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ volatile sig_atomic_t	g_ack;
 void	ft_validate(pid_t pid)
 {
 	if (pid <= 0)
-		ft_error("THINK POSITIVE!");
+		ft_error("THINK POSITIVE!\n");
 	if (kill(pid, 0) == -1)
-		ft_error("NOT A VALID PID...");
+		ft_error("NOT A VALID PID...\n");
 }
 
 void	ft_acker(int sig)
@@ -51,7 +51,7 @@ void	ft_bits(int pid, int bit)
 			return ;
 		}
 	}
-	ft_error("SERVER IS BUSY, TRY AGAIN LATER");
+	ft_error("SERVER IS BUSY, TRY AGAIN LATER\n");
 }
 
 void	ft_send(int pid, char c, int end)
@@ -65,7 +65,7 @@ void	ft_send(int pid, char c, int end)
 		bit--;
 	}
 	if (end && !c)
-		ft_printf("VERY SUCCESS!");
+		ft_printf("VERY SUCCESS!\n");
 }
 
 int	main(int argc, char **argv)
@@ -75,14 +75,14 @@ int	main(int argc, char **argv)
 	struct sigaction	sa;
 
 	if (argc != 3 || !(*argv[2]))
-		ft_error("TRY: ./client <pid> <message>");
+		ft_error("TRY: ./client <pid> <message>\n");
 	pid = ft_atoi(argv[1]);
 	ft_validate(pid);
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_handler = ft_acker;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
-		ft_error("NOT GIVING IT");
+		ft_error("NOT GIVING IT\n");
 	msg = argv[2];
 	while (*msg)
 		ft_send(pid, *msg++, 0);
