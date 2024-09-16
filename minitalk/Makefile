@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/20 15:47:32 by eala-lah          #+#    #+#              #
-#    Updated: 2024/09/11 14:20:21 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/09/13 13:26:22 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH)
 
 $(LIBFT):
-	make -C $(LIBFT_DIR)
+	make -C $(LIBFT_DIR) CFLAGS="-Wall -Wextra -Werror -fPIC"
 
 $(OBJ_PATH)server.o: $(SRC_PATH)$(SERVER_SRC) inc/minitalk.h
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
