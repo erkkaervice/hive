@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 13:58:34 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/01/29 15:56:27 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:28:37 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ unsigned int	slinky(char *str)
 
 	i = 0;
 	while (str[i] != '\0')
-	{
 		i++;
-	}
 	return (i);
 }
 
@@ -47,9 +45,7 @@ char	*ft_strdup(char *src)
 	i = slinky(src);
 	dst = (char *)malloc(sizeof(char) * i);
 	if (!(dst))
-	{
 		return (0);
-	}
 	return (cp_slinky(src, dst));
 }
 
@@ -61,13 +57,9 @@ int	main(void)
 
 	mission = ft_strdup(str1);
 	if (mission == 0)
-	{
 		printf("Mission failed");
-	}
 	else
-	{
 		printf("%s\n", mission);
-	}
 	free(mission);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:30:33 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/01/30 14:47:53 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:28:41 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ int	slinky(char *str)
 
 	i = 0;
 	while (str[i])
-	{
 		i++;
-	}
 	return (i);
 }
 
@@ -40,14 +38,10 @@ char	*kreator(int size, char **strs, char *sep)
 	}
 	length += slinky(sep) * (size -1);
 	if (size <= 0)
-	{
 		length = 1;
-	}
 	str = (char *)malloc(sizeof(char) * length);
 	if (!str)
-	{
 		return (0);
-	}
 	return (str);
 }
 
@@ -89,13 +83,9 @@ int	main(void)
 	char	*mission = ft_strjoin(3, (char *[]){str1, str2, str3}, " ");
 
 	if (mission)
-	{
 		printf("%s\n", mission);
-	}
 	else
-	{
 		printf("Mission failed\n");
-	}
 	free(mission);
 	return (0);
 }

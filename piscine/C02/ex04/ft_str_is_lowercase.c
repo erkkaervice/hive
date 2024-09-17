@@ -6,18 +6,16 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 18:32:25 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/01/17 13:38:05 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:32:56 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int	check_lowercase(char c)
+int	ft_check_lowercase(char c)
 {
 	if ((c >= 'a') && (c <= 'z'))
-	{
 		return (1);
-	}
 	return (0);
 }
 
@@ -28,10 +26,8 @@ int	ft_str_is_lowercase(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (!(check_lowercase(str[i])))
-		{
+		if (!(ft_check_lowercase(str[i])))
 			return (0);
-		}
 		i++;
 	}
 	return (1);

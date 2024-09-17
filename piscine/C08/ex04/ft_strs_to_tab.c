@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 17:20:26 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/01/31 11:07:04 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:28:47 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ int	slinky(char *str)
 
 	i = 0;
 	while (str[i] != '\0')
-	{
 		i++;
-	}
 	return (i);
 }
 
@@ -32,15 +30,11 @@ char	*mechaslinky(char *str)
 
 	i = 0;
 	while (str[i])
-	{
 		i++;
-	}
 	dst = (char *)malloc(sizeof(char) * (i + 1));
 	i = 0;
 	if (!(dst))
-	{
 		return (0);
-	}
 	while (str[i])
 	{
 		dst[i] = str[i];
@@ -57,9 +51,7 @@ struct	s_stock_str	*ft_strs_to_tab(int ac, char **av)
 
 	stock = (t_stock_str *)malloc(sizeof(t_stock_str) * (ac + 1));
 	if (!(stock))
-	{
 		return (0);
-	}
 	i = 0;
 	while (i < ac)
 	{

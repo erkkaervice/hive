@@ -5,4 +5,5 @@
 # Born2beRoot DONE
 # get_next_line / DONE
 # push_swap / DONE
-# minitalk / IN PROGRESS
+# minitalk / DONE
+# fract-ol / IN PROGRESS

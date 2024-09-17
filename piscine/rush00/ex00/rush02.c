@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rush.c                                             :+:      :+:    :+:   */
+/*   rush02.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: likong <likong@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 12:03:17 by likong            #+#    #+#             */
-/*   Updated: 2024/01/13 15:24:41 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:28:48 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,15 @@ void	putchar(char ch);
 void	choice_element(int i, int j, int x, int y)
 {
 	if ((j == 0 || j == x - 1) && i == 0)
-	{
 		putchar('A');
-	}
 	else if ((j == 0 || j == x - 1) && i == y - 1)
-	{
 		putchar('C');
-	}
 	else if ((j == 0 || j == x - 1) && i != 0 && i != y - 1)
-	{
 		putchar('B');
-	}
 	else if (j != 0 && j != x - 1 && (i == 0 || i == y - 1))
-	{
 		putchar('B');
-	}
 	else
-	{
 		write(1, " ", 1);
-	}
 }
 
 void	rush(int x, int y)

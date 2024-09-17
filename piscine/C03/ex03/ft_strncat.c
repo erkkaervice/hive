@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:21:09 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/01/18 17:02:24 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:28:28 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ int	slinky(char *str)
 
 	i = 0;
 	while (str[i] != '\0')
-	{
 		i++;
-	}
 	return (i);
 }
 
@@ -30,9 +28,7 @@ char	*ft_strncat(char *dest, char *src, unsigned int nb)
 	unsigned int	j;
 
 	if (nb < 1)
-	{
 		return (dest);
-	}
 	i = 0;
 	j = slinky(dest);
 	while (src[i] != '\0' && i < nb)

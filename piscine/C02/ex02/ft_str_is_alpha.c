@@ -6,22 +6,18 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 14:59:28 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/01/17 13:36:32 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:32:56 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int	check_alpha(char c)
+int	ft_check_alpha(char c)
 {
 	if ((c >= 'a') && (c <= 'z'))
-	{
 		return (1);
-	}
 	if ((c >= 'A') && (c <= 'Z'))
-	{
 		return (1);
-	}
 	return (0);
 }
 
@@ -32,10 +28,8 @@ int	ft_str_is_alpha(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (!(check_alpha(str[i])))
-		{
+		if (!(ft_check_alpha(str[i])))
 			return (0);
-		}
 		i++;
 	}
 	return (1);

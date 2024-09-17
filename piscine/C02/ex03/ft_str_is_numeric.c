@@ -6,18 +6,16 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 17:15:21 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/01/17 13:37:14 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:32:56 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int	check_numeric(int n)
+int	ft_check_numeric(int n)
 {
 	if ((n >= '0') && (n <= '9'))
-	{
 		return (1);
-	}
 	return (0);
 }
 
@@ -28,10 +26,8 @@ int	ft_str_is_numeric(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (!(check_numeric(str[i])))
-		{
+		if (!(ft_check_numeric(str[i])))
 			return (0);
-		}
 		i++;
 	}
 	return (1);

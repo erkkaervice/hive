@@ -1,2 +1,0 @@
-gcc -Wall -Wextra -Werror -D BUFFER_SIZE -o gnl_test get_next_line_bonus.c get_next_line_utils_bonus.c test_next_line.c
-./gnl_test empty_file.txt single_char.txt one_line.txt multi_line.txt large_lines.txt line_endings.txt unicode.txt blank_lines.txt trailing_whitespace.txt 

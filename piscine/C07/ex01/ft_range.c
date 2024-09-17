@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:35:27 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/01/30 10:43:25 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:28:38 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ int	*ft_range(int min, int max)
 
 	i = 0;
 	if (min >= max)
-	{
 		return (0);
-	}
 	array = (int *)malloc(sizeof(int) * (max - min));
 	while (min < max)
 	{

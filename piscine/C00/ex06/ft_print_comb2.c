@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:08:20 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/02/01 11:11:07 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:28:31 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	converse(int i)
+void	ft_converse(int i)
 {
 	int	tens;
 	int	ones;
@@ -47,9 +47,9 @@ void	ft_print_comb2(void)
 		j = i + 1;
 		while (j <= 99)
 		{
-			converse(i);
+			ft_converse(i);
 			ft_putchar(' ');
-			converse(j);
+			ft_converse(j);
 			if (i < 98)
 			{
 				ft_putchar(',');

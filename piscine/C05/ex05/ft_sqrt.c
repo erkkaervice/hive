@@ -6,7 +6,7 @@
 /*   By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 18:07:22 by eala-lah          #+#    #+#             */
-/*   Updated: 2024/01/31 13:50:42 by eala-lah         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:28:33 by eala-lah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,9 @@ int	ft_sqrt(int nb)
 		while (squirtle * squirtle <= nb)
 		{
 			if (squirtle * squirtle == nb)
-			{
 				return (squirtle);
-			}
 			if (squirtle > 46340)
-			{
 				return (0);
-			}
 			squirtle++;
 		}
 	}

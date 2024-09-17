@@ -57,10 +57,11 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
-    "string.h": "c",
-    "types.h": "c",
-    "minitalk.h": "c",
-    "signal.h": "c",
-    "minitalk_bonus.h": "c"
-  }
+	"string.h": "c",
+	"types.h": "c",
+	"minitalk.h": "c",
+	"signal.h": "c",
+	"minitalk_bonus.h": "c",
+	"unistd.h": "c"
+}
 }
