@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/20 15:47:32 by eala-lah          #+#    #+#              #
-#    Updated: 2024/09/13 13:26:22 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/10/03 15:17:15 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,10 @@ BONUS_SERVER = server_bonus
 BONUS_CLIENT = client_bonus
 
 INCS        = -I ./inc/
-LIBFT_DIR   = libft
+LIBFT_DIR   = libft/
 LIBFT       = $(LIBFT_DIR)/libft.a
 
-SRC_PATH    = src/
+SRC_DIR    = src/
 SERVER_SRC  = server.c
 CLIENT_SRC  = client.c
 UTILS_SRC   = utils.c
@@ -28,42 +28,42 @@ BONUS_SERVER_SRC = server_bonus.c
 BONUS_CLIENT_SRC = client_bonus.c
 BONUS_UTILS_SRC  = utils_bonus.c
 
-OBJ_PATH    = obj/
-SERVER_OBJS = $(OBJ_PATH)server.o
-CLIENT_OBJS = $(OBJ_PATH)client.o
-UTILS_OBJS  = $(OBJ_PATH)utils.o
+OBJ_DIR    = obj/
+SERVER_OBJS = $(OBJ_DIR)server.o
+CLIENT_OBJS = $(OBJ_DIR)client.o
+UTILS_OBJS  = $(OBJ_DIR)utils.o
 
-BONUS_SERVER_OBJS = $(OBJ_PATH)server_bonus.o
-BONUS_CLIENT_OBJS = $(OBJ_PATH)client_bonus.o
-BONUS_UTILS_OBJS  = $(OBJ_PATH)utils_bonus.o
+BONUS_SERVER_OBJS = $(OBJ_DIR)server_bonus.o
+BONUS_CLIENT_OBJS = $(OBJ_DIR)client_bonus.o
+BONUS_UTILS_OBJS  = $(OBJ_DIR)utils_bonus.o
 
 CC      = gcc
 CFLAGS  = -Wall -Wextra -Werror
 
-all: $(OBJ_PATH) $(LIBFT) $(NAME_SERVER) $(NAME_CLIENT)
+all: $(OBJ_DIR) $(LIBFT) $(NAME_SERVER) $(NAME_CLIENT)
 
-$(OBJ_PATH):
-	mkdir -p $(OBJ_PATH)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR) CFLAGS="-Wall -Wextra -Werror -fPIC"
 
-$(OBJ_PATH)server.o: $(SRC_PATH)$(SERVER_SRC) inc/minitalk.h
+$(OBJ_DIR)server.o: $(SRC_DIR)$(SERVER_SRC) inc/minitalk.h
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
-$(OBJ_PATH)client.o: $(SRC_PATH)$(CLIENT_SRC) inc/minitalk.h
+$(OBJ_DIR)client.o: $(SRC_DIR)$(CLIENT_SRC) inc/minitalk.h
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
-$(OBJ_PATH)utils.o: $(SRC_PATH)$(UTILS_SRC) inc/minitalk.h
+$(OBJ_DIR)utils.o: $(SRC_DIR)$(UTILS_SRC) inc/minitalk.h
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
-$(OBJ_PATH)server_bonus.o: $(SRC_PATH)$(BONUS_SERVER_SRC) inc/minitalk_bonus.h
+$(OBJ_DIR)server_bonus.o: $(SRC_DIR)$(BONUS_SERVER_SRC) inc/minitalk_bonus.h
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
-$(OBJ_PATH)client_bonus.o: $(SRC_PATH)$(BONUS_CLIENT_SRC) inc/minitalk_bonus.h
+$(OBJ_DIR)client_bonus.o: $(SRC_DIR)$(BONUS_CLIENT_SRC) inc/minitalk_bonus.h
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
-$(OBJ_PATH)utils_bonus.o: $(SRC_PATH)$(BONUS_UTILS_SRC) inc/minitalk_bonus.h
+$(OBJ_DIR)utils_bonus.o: $(SRC_DIR)$(BONUS_UTILS_SRC) inc/minitalk_bonus.h
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
 $(NAME_SERVER): $(SERVER_OBJS) $(UTILS_OBJS)
@@ -78,10 +78,10 @@ $(BONUS_SERVER): $(BONUS_SERVER_OBJS) $(BONUS_UTILS_OBJS)
 $(BONUS_CLIENT): $(BONUS_CLIENT_OBJS) $(BONUS_UTILS_OBJS)
 	$(CC) $(CFLAGS) $(BONUS_CLIENT_OBJS) $(BONUS_UTILS_OBJS) -o $(BONUS_CLIENT) -L $(LIBFT_DIR) -lft
 
-bonus: $(OBJ_PATH) $(LIBFT) $(BONUS_SERVER) $(BONUS_CLIENT)
+bonus: $(OBJ_DIR) $(LIBFT) $(BONUS_SERVER) $(BONUS_CLIENT)
 
 clean:
-	rm -rf $(OBJ_PATH)
+	rm -rf $(OBJ_DIR)
 	make -C $(LIBFT_DIR) clean
 
 fclean: clean

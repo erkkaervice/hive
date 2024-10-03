@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/20 15:44:12 by eala-lah          #+#    #+#              #
-#    Updated: 2024/08/19 15:25:18 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/10/03 15:32:33 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@ NAME        = push_swap
 BONUS_NAME  = checker
 
 INCS        = -I ./inc/
-LIBFT_DIR   = libft
+LIBFT_DIR   = libft/
 LIBFT       = $(LIBFT_DIR)/libft.a
 
-SRC_PATH    = src/
-SRCS        = $(addprefix $(SRC_PATH), $(SRC))
+SRC_DIR    = src/
+SRCS        = $(addprefix $(SRC_DIR), $(SRC))
 SRC         = \
     1-validation.c \
     2-stacking.c \
@@ -45,23 +45,23 @@ BONUS_SRC   = \
     rotate.c \
     reverse_rotate.c
 
-OBJ_PATH    = obj/
-OBJS        = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
-BONUS_OBJS  = $(addprefix $(OBJ_PATH), $(BONUS_SRC:.c=.o))
+OBJ_DIR    = obj/
+OBJS        = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
+BONUS_OBJS  = $(addprefix $(OBJ_DIR), $(BONUS_SRC:.c=.o))
 
 CC      = gcc
 CFLAGS  = -Wall -Wextra -Werror
 
-all: $(OBJ_PATH) $(LIBFT) $(NAME)
+all: $(OBJ_DIR) $(LIBFT) $(NAME)
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
-$(OBJ_PATH):
-	mkdir -p $(OBJ_PATH)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 $(LIBFT):
-	make -C $(LIBFT_DIR)
+	make -C $(LIBFT_DIR) CFLAGS="-Wall -Wextra -Werror -fPIC"
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L $(LIBFT_DIR) -lft
@@ -69,10 +69,10 @@ $(NAME): $(OBJS)
 $(BONUS_NAME): $(BONUS_OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(BONUS_OBJS) -o $(BONUS_NAME) -L $(LIBFT_DIR) -lft
 
-bonus: $(OBJ_PATH) $(BONUS_NAME)
+bonus: $(OBJ_DIR) $(BONUS_NAME)
 
 clean:
-	rm -rf $(OBJ_PATH)
+	rm -rf $(OBJ_DIR)
 	make -C $(LIBFT_DIR) clean
 
 fclean: clean
