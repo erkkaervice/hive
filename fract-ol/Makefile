@@ -6,7 +6,7 @@
 #    By: eala-lah <eala-lah@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/03 15:04:01 by eala-lah          #+#    #+#              #
-#    Updated: 2024/10/03 15:45:24 by eala-lah         ###   ########.fr        #
+#    Updated: 2024/10/03 16:06:25 by eala-lah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ $(LIBFT):
 	make -C $(LIBFT_DIR) CFLAGS="-Wall -Wextra -Werror -fPIC"
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L $(MLX_DIR) $(LIBFT_DIR) -lft
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L $(MLX_DIR) $(LIBFT_DIR) -lm -lXext -lX11 -lft
 
 bonus: all
 
